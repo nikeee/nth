@@ -40,6 +40,7 @@ namespace NTH.Text
 
             return d[dUpperBound0 - 1, dUpperBound1 - 1];
         }
+
         internal static int CalculateVector(string a, string b)
         {
             if (a.IsNullOrEmpty())
@@ -69,7 +70,7 @@ namespace NTH.Text
                 int previousRow = currentRow ^ 1;
                 for (int j = 1; j <= m; ++j)
                 {
-                    int cost = b[j - 1] != a[i - 1] ? 1 : 0;
+                    int cost = a[i - 1] != b[j - 1] ? 1 : 0;
                     d[currentRow, j] = MathEx.Min(
                                                     d[previousRow, j] + 1,
                                                     d[currentRow, j - 1] + 1,
@@ -78,6 +79,31 @@ namespace NTH.Text
                 }
             }
             return d[currentRow, m];
+        }
+
+        internal static int CalculateRecursive(string a, string b)
+        {
+            if (a.IsNullOrEmpty())
+                return b.IsNullOrEmpty() ? 0 : b.Length;
+            else if (b.IsNullOrEmpty())
+                return a.Length;
+            return CalculateRecursive(a, b, a.Length, b.Length);
+        }
+
+        private static int CalculateRecursive(string a, string b, int lengthA, int lengthB)
+        {
+            if (lengthA == 0)
+                return lengthB;
+            if (lengthB == 0)
+                return lengthA;
+
+            int cost = a[lengthA - 1] != b[lengthB - 1] ? 1 : 0;
+
+            return MathEx.Min(
+                    CalculateRecursive(a, b, lengthA - 1, lengthB) + 1,
+                    CalculateRecursive(a, b, lengthA, lengthB - 1) + 1,
+                    CalculateRecursive(a, b, lengthA - 1, lengthB - 1) + cost
+                );
         }
     }
 
@@ -90,7 +116,7 @@ namespace NTH.Text
         private int[] _transpositionRow;
 
         public DamerauLevensteinDistanceMetric()
-            :this(DefaultLength)
+            : this(DefaultLength)
         { }
         public DamerauLevensteinDistanceMetric(int maxLength)
         {

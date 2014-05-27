@@ -25,6 +25,8 @@ namespace NTH.Text
                     return LevenshteinCalculator.CalculateMatrix(source, target);
                 case LevenshteinMethod.Vector:
                     return LevenshteinCalculator.CalculateVector(source, target);
+                case LevenshteinMethod.Recursive:
+                    return LevenshteinCalculator.CalculateRecursive(source, target);
                 case LevenshteinMethod.Damerau:
                     return new DamerauLevensteinDistanceMetric().GetDistance(source, target, -1);
                 default:
@@ -37,6 +39,7 @@ namespace NTH.Text
     {
         Matrix,
         Vector,
+        Recursive,
         Damerau,
         Default = Matrix
     }
