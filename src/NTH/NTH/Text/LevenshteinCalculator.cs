@@ -90,19 +90,19 @@ namespace NTH.Text
             return CalculateRecursive(a, b, a.Length, b.Length);
         }
 
-        private static int CalculateRecursive(string a, string b, int lengthA, int lengthB)
+        private static int CalculateRecursive(string a, string b, int aLength, int bLength)
         {
-            if (lengthA == 0)
-                return lengthB;
-            if (lengthB == 0)
-                return lengthA;
+            if (aLength == 0)
+                return bLength;
+            if (bLength == 0)
+                return aLength;
 
-            int cost = a[lengthA - 1] != b[lengthB - 1] ? 1 : 0;
+            int cost = a[aLength - 1] != b[bLength - 1] ? 1 : 0;
 
             return MathEx.Min(
-                    CalculateRecursive(a, b, lengthA - 1, lengthB) + 1,
-                    CalculateRecursive(a, b, lengthA, lengthB - 1) + 1,
-                    CalculateRecursive(a, b, lengthA - 1, lengthB - 1) + cost
+                    CalculateRecursive(a, b, aLength - 1, bLength) + 1,
+                    CalculateRecursive(a, b, aLength, bLength - 1) + 1,
+                    CalculateRecursive(a, b, aLength - 1, bLength - 1) + cost
                 );
         }
     }
