@@ -1,6 +1,6 @@
 ﻿namespace NTH.Analysis
 {
-    enum DiffType
+    public enum DiffType
     {
         Equal,
         Insert,

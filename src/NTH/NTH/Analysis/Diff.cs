@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace NTH.Analysis
 {
-    class Diff<T> where T : IComparable<T>
+    public class Diff<T> where T : IComparable<T>
     {
         public DiffType Type { get; private set; }
         public T Content { get; private set; }

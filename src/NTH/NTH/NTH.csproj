@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +44,7 @@
     <Compile Include="Analysis\Diff.cs" />
     <Compile Include="Analysis\DiffFinder.cs" />
     <Compile Include="Analysis\DiffType.cs" />
+    <Compile Include="Analysis\Patch.cs" />
     <Compile Include="Analysis\Rendering\ConsoleCharDiffRenderer.cs" />
     <Compile Include="Analysis\Rendering\ConsoleDiffRenderer.cs" />
     <Compile Include="Analysis\Rendering\GenericConsoleDiffRenderer.cs" />
