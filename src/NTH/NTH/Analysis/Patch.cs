@@ -41,7 +41,89 @@ namespace NTH.Analysis
             return diffs.Where(d => d.Type != DiffType.Delete).Select(d => d.Content).ToList();
         }
 
+        public static IList<Patch<T>> Create(IList<T> source, IList<Diff<T>> diffs)
+        {
+            if (diffs == null)
+                throw new ArgumentNullException("diffs");
+            if (diffs.Count == 0)
+                return new List<Patch<T>>();
 
+            const int PatchMargin = 47;
+
+            var p = new Patch<T>();
+            var patches = new List<Patch<T>>();
+
+            int charCount0 = 0;
+            int charCount1 = 0;
+
+            var prePatchText = source;
+            var postPatchText = new List<T>(source);
+
+            foreach (var d in diffs)
+            {
+                if (p.Diffs.Count == 0 && d.Type != DiffType.Equal)
+                {
+                    p.Start0 = charCount0;
+                    p.Start1 = charCount1;
+                }
+
+                var len = d.Content.ToString().Length + 1;
+
+                switch (d.Type)
+                {
+                    case DiffType.Equal:
+
+                        if (d.Content.ToString().Length >= 2 * PatchMargin
+                            && p.Diffs.Count != 0
+                            && d != diffs[diffs.Count - 1])
+                        {
+                            p.Diffs.Add(d);
+                            p.Length0 += len;
+                            p.Length1 += len;
+                        }
+                        if (len >= 2 * PatchMargin)
+                        {
+                            if (p.Diffs.Count != 0)
+                            {
+                                // TODO: p_addContext
+                                patches.Add(p);
+                                p = new Patch<T>();
+                                prePatchText = postPatchText;
+                                charCount0 = charCount1;
+                            }
+                        }
+                        break;
+                    case DiffType.Insert:
+                        p.Diffs.Add(d);
+                        p.Length1 += d.Content.ToString().Length;
+                        postPatchText.Insert(charCount1, d.Content);
+                        // postPatchText = postPatchText.Insert(charCount1, d.Content);
+                        break;
+                    case DiffType.Delete:
+                        p.Length0 += d.Content.ToString().Length;
+                        p.Diffs.Add(d);
+                        postPatchText.RemoveRange(charCount1, d.Content.ToString().Length);
+                        // postPatchText = postPatchText.Remove(charCount1, d.Content.ToString().Length);
+                        break;
+                    default:
+                        break;
+                }
+
+                if (d.Type != DiffType.Insert)
+                    charCount0 += len;
+                if (d.Type != DiffType.Delete)
+                    charCount1 += len;
+
+            }
+
+            if (p.Diffs.Count != 0)
+            {
+                // TODO: p_addContext
+                patches.Add(p);
+            }
+
+            return patches;
+        }
 
         private static char GetDiffTypeChar(DiffType type)
         {
