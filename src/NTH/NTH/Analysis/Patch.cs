@@ -41,6 +41,45 @@ namespace NTH.Analysis
             return diffs.Where(d => d.Type != DiffType.Delete).Select(d => d.Content).ToList();
         }
 
+#if false
+        
+        const int MaxMatchBits = 10;
+        const int PatchMargin = 47;
+
+        private void AddContext(Patch<T> p, T content)
+        {
+
+            var sc = content.ToString();
+            if(sc.Length == 0)
+                return;
+            var pattern = sc.Substring(p.Start1, p.Length0);
+            int padding = 0;
+
+            int begin, end;
+
+            while (sc.IndexOf(pattern, StringComparison.Ordinal) != sc.LastIndexOf(pattern, StringComparison.Ordinal)
+                   && pattern.Length < MaxMatchBits - PatchMargin*2)
+            {
+                padding += PatchMargin;
+
+                // May optimize here
+                begin = Math.Max(0, p.Start1 - padding);
+                end = Math.Min(sc.Length, p.Start1 + p.Length0 + padding);
+                pattern = sc.Substring(begin, end - begin);
+            }
+            padding += PatchMargin;
+
+            begin = Math.Max(0, p.Start1 - padding);
+            end = p.Start1;
+
+            var prefix = sc.Substring(begin, end - begin);
+
+            if (prefix.Length != 0)
+            {
+                p.Diffs.Insert(0,new Diff<T>());
+            }
+        }
+
         public static IList<Patch<T>> Create(IList<T> source, IList<Diff<T>> diffs)
         {
             if (diffs == null)
@@ -48,7 +87,6 @@ namespace NTH.Analysis
             if (diffs.Count == 0)
                 return new List<Patch<T>>();
 
-            const int PatchMargin = 47;
 
             var p = new Patch<T>();
             var patches = new List<Patch<T>>();
@@ -125,6 +163,8 @@ namespace NTH.Analysis
             return patches;
         }
 
+        #endif
+
         private static char GetDiffTypeChar(DiffType type)
         {
             switch (type)
@@ -159,7 +199,6 @@ namespace NTH.Analysis
                 return (start + 1).ToString();
             return string.Concat(start + 1, ',', length);
         }
-
 
         /// <summary>Emmulates GNU diff format. Indicies are printed as 1-based, not 0-based.</summary>
         /// <remarks>Header: @@ -382,8 +481,9 @@</remarks>
