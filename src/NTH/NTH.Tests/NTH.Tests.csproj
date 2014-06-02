@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Analysis\DiffFinderTests.cs" />
+    <Compile Include="MathExTests.cs" />
     <Compile Include="Text\StringExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

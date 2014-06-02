@@ -21,7 +21,7 @@ namespace NTH
                 throw new ArgumentNullException("values");
 
             int minVal = values[values.Length - 1];
-            for (int i = values.Length - 2; i != 0; --i)
+            for (int i = values.Length - 2; i >= 0; --i)
                 if (values[i] < minVal)
                     minVal = values[i];
             return minVal;
@@ -31,11 +31,11 @@ namespace NTH
             if (values == null || values.Length == 0)
                 throw new ArgumentNullException("values");
 
-            int minVal = values[values.Length - 1];
-            for (int i = values.Length - 2; i != 0; --i)
-                if (values[i] > minVal)
-                    minVal = values[i];
-            return minVal;
+            int maxVal = values[values.Length - 1];
+            for (int i = values.Length - 2; i >= 0; --i)
+                if (values[i] > maxVal)
+                    maxVal = values[i];
+            return maxVal;
         }
     }
 }
