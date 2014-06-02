@@ -51,6 +51,7 @@
     <Compile Include="Analysis\Rendering\IDiffRenderer.cs" />
     <Compile Include="MathEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Text\DamerauLevensteinDistanceMetric.cs" />
     <Compile Include="Text\LevenshteinCalculator.cs" />
     <Compile Include="Text\StringExtensions.cs" />
   </ItemGroup>
