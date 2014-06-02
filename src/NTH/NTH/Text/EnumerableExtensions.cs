@@ -12,7 +12,7 @@ namespace NTH.Text
         
         public static IOrderedEnumerable<string> OrderByLevenshteinDistanceTo(this IEnumerable<string> strings, string target, LevenshteinMethod method)
         {
-            return strings.OrderByLevenshteinDistanceTo(target, method, true);
+            return strings.OrderByLevenshteinDistanceTo(target, method, false);
         }
 
         public static IOrderedEnumerable<string> OrderByLevenshteinDistanceTo(this IEnumerable<string> strings, string target, LevenshteinMethod method, bool descending)
