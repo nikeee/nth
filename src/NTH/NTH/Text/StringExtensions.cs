@@ -28,7 +28,7 @@ namespace NTH.Text
                 case LevenshteinMethod.Recursive:
                     return LevenshteinCalculator.CalculateRecursive(source, target);
                 case LevenshteinMethod.Damerau:
-                    return new DamerauLevensteinDistanceMetric().GetDistance(source, target, -1);
+                    return new DamerauLevenshteinDistanceMetric().GetDistance(source, target, -1);
                 default:
                     throw new ArgumentException("Invalid method.");
             }

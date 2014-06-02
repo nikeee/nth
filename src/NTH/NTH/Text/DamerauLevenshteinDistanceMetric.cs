@@ -2,7 +2,7 @@
 
 namespace NTH.Text
 {
-    internal class DamerauLevensteinDistanceMetric
+    internal class DamerauLevenshteinDistanceMetric
     {
         private const int DefaultLength = 255;
 
@@ -10,10 +10,10 @@ namespace NTH.Text
         private int[] _previousRow;
         private int[] _transpositionRow;
 
-        public DamerauLevensteinDistanceMetric()
+        public DamerauLevenshteinDistanceMetric()
             : this(DefaultLength)
         { }
-        public DamerauLevensteinDistanceMetric(int maxLength)
+        public DamerauLevenshteinDistanceMetric(int maxLength)
         {
             _currentRow = new int[maxLength + 1];
             _previousRow = new int[maxLength + 1];
