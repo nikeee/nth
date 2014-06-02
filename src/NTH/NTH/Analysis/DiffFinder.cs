@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace NTH.Analysis
 {
-    class DiffFinder<T> where T : IComparable<T>
+    public class DiffFinder<T> where T : IComparable<T>
     {
         public List<Diff<T>> ComputeDiff(T[] before, T[] after)
         {
@@ -80,7 +80,7 @@ namespace NTH.Analysis
             return diffs;
         }
 
-        private List<Diff<T>> ComputeDiffInternal(T[] before, T[] after)
+        private IList<Diff<T>> ComputeDiffInternal(T[] before, T[] after)
         {
             Debug.Assert(before != null);
             Debug.Assert(after != null);
@@ -127,7 +127,7 @@ namespace NTH.Analysis
             return Bisect(before, after);
         }
 
-        protected List<Diff<T>> Bisect(T[] before, T[] after)
+        protected IList<Diff<T>> Bisect(T[] before, T[] after)
         {
             Debug.Assert(before != null);
             Debug.Assert(after != null);
