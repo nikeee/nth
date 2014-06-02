@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace NTH.Text
 {
@@ -28,7 +29,7 @@ namespace NTH.Text
                 case LevenshteinMethod.Recursive:
                     return LevenshteinCalculator.CalculateRecursive(source, target);
                 case LevenshteinMethod.Damerau:
-                    return new DamerauLevenshteinDistanceMetric().GetDistance(source, target, -1);
+                    return new DamerauLevenshteinDistanceMetric().GetDistance(source, target, -1); // May change to static call here, seperating each method to a seperate static class
                 default:
                     throw new ArgumentException("Invalid method.");
             }
