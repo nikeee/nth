@@ -50,9 +50,11 @@
     <Compile Include="Analysis\Rendering\GenericConsoleDiffRenderer.cs" />
     <Compile Include="Analysis\Rendering\IDiffRenderer.cs" />
     <Compile Include="MathEx.cs" />
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Text\DamerauLevenshteinDistanceMetric.cs" />
     <Compile Include="Text\EnumerableExtensions.cs" />
+    <Compile Include="Text\Formatting\ByteSizeFormatter.cs" />
     <Compile Include="Text\LevenshteinCalculator.cs" />
     <Compile Include="Text\LevenshteinMethod.cs" />
     <Compile Include="Text\StringExtensions.cs" />
