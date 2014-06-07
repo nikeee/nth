@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace NTH.Text.Formatting
 {
@@ -30,9 +31,9 @@ namespace NTH.Text.Formatting
 
         private static string WindowsInternal(long byteCount)
         {
-            var buffer = new StringBuilder(10);
-            var res = NativeMethods.StrFormatByteSize(byteCount, buffer, buffer.Capacity);
-            return res != null ? buffer.ToString() : string.Empty;
+            var buffer = new StringBuilder(20);
+            NativeMethods.StrFormatByteSize(byteCount, buffer, buffer.Capacity);
+            return buffer.ToString();
         }
     }
 }
