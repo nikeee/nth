@@ -24,7 +24,7 @@ namespace NTH.Text
         {
             if (a.IsNullOrEmpty())
                 return b.IsNullOrEmpty() ? 0 : b.Length;
-            else if (b.IsNullOrEmpty())
+            if (b.IsNullOrEmpty())
                 return a.Length;
 
             if (a.Length > b.Length)

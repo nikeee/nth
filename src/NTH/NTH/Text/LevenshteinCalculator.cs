@@ -6,7 +6,7 @@
         {
             if (a.IsNullOrEmpty())
                 return b.IsNullOrEmpty() ? 0 : b.Length;
-            else if (b.IsNullOrEmpty())
+            if (b.IsNullOrEmpty())
                 return a.Length;
 
             int n = a.Length;
@@ -43,7 +43,7 @@
         {
             if (a.IsNullOrEmpty())
                 return b.IsNullOrEmpty() ? 0 : b.Length;
-            else if (b.IsNullOrEmpty())
+            if (b.IsNullOrEmpty())
                 return a.Length;
 
             if (a.Length > b.Length)
@@ -83,7 +83,7 @@
         {
             if (a.IsNullOrEmpty())
                 return b.IsNullOrEmpty() ? 0 : b.Length;
-            else if (b.IsNullOrEmpty())
+            if (b.IsNullOrEmpty())
                 return a.Length;
             return CalculateRecursive(a, b, a.Length, b.Length);
         }
