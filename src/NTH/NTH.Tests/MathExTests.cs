@@ -7,6 +7,25 @@ namespace NTH.Tests
     public class MathExTests
     {
         [TestMethod]
+        public void Pow()
+        {
+            var res = MathEx.Pow(10, 1);
+            Assert.AreEqual(10, res);
+
+            res = MathEx.Pow(10, 0);
+            Assert.AreEqual(1, res);
+
+            res = MathEx.Pow(10, 2);
+            Assert.AreEqual(10 * 10, res);
+
+            res = MathEx.Pow(10, 3);
+            Assert.AreEqual(10 * 10 * 10, res);
+
+            res = MathEx.Pow(10, 4);
+            Assert.AreEqual(10 * 10 * 10 * 10, res);
+        }
+
+        [TestMethod]
         public void Min()
         {
             var res = MathEx.Min(-1, 0, 1);

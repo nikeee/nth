@@ -4,6 +4,26 @@ namespace NTH
 {
     public static class MathEx
     {
+        public static int Pow(int x, int y)
+        {
+            if(y < 0)
+                throw new ArgumentException("Invalid y");
+            if (y == 0)
+                return 1;
+            if (y == 1)
+                return x;
+
+            var res = 1;
+            while (y != 0)
+            {
+                if ((y & 1) == 1)
+                    res *= x;
+                x *= x;
+                y >>= 1;
+            }
+            return res;
+        }
+
         public static int Min(int a, int b, int c)
         {
             var ab = a > b ? b : a;
