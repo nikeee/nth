@@ -74,29 +74,4 @@ namespace NTH
             return (size / Math.Pow(unit, 6)).ToString("F0") + " E" + i + "B";
         }
     }
-
-    public enum PrefixType
-    {
-        Decimal = 0x1,
-        Binary = 0x2
-    }
-
-    public enum BytePrefix
-    {
-        Bytes = 0x000,
-
-        KiloByte = 0x101,
-        MegaByte,
-        GigaByte,
-        TeraByte,
-        PetaByte,
-        ExaByte,
-
-        KibiByte = 0x201,
-        MibiByte,
-        GibiByte,
-        TebiByte,
-        PebiByte,
-        ExbiByte
-    }
 }
