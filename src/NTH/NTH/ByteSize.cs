@@ -37,6 +37,7 @@ namespace NTH
         }
 
         //TODO: Add Parse/TryParse method
+        //TODO: Add implicit/explicit cast operators
 
         public string ToString(PrefixType prefixType)
         {
