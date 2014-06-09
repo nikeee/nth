@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NTH.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NTH.Tests.Text
 {

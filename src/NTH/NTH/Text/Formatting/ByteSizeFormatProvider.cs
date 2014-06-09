@@ -3,7 +3,6 @@ using System.Globalization;
 
 namespace NTH.Text.Formatting
 {
-    // TODO: Own ByteSize class
     public class ByteSizeFormatProvider : IFormatProvider, ICustomFormatter
     {
         public string Format(string format, object arg, IFormatProvider formatProvider)

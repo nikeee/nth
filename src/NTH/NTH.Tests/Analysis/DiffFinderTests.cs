@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NTH.Analysis;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NTH.Tests.Analysis
 {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NTH.Text.Formatting;
 
 namespace NTH.Tests.Text.Formatting
@@ -16,7 +11,7 @@ namespace NTH.Tests.Text.Formatting
         {
             long fileSize = 1337;
             var expected = ByteSizeFormatter.FormatBytes(fileSize);
-            var actual = fileSize.ToString(new ByteSizeFormatProvider());
+            var actual = string.Format(new ByteSizeFormatProvider(), "{0}", fileSize);
             Assert.AreEqual(expected, actual);
 
         }
