@@ -42,6 +42,8 @@ namespace NTH
         //TODO: Add Parse/TryParse method
         //TODO: Add implicit/explicit cast operators
 
+        #region +/- operators
+
         public static ByteSize operator +(ByteSize bs1, ByteSize bs2)
         {
             if (bs1 == null)
@@ -67,6 +69,7 @@ namespace NTH
             return new ByteSize(bs1._byteCount - bs2._byteCount);
         }
 
+        #endregion
         #region Equals
 
         public static bool operator ==(ByteSize a, ByteSize b)
