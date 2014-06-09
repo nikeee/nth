@@ -4,6 +4,9 @@ namespace NTH
 {
     public class ByteSize
     {
+        private static ByteSize _zero;
+        public static ByteSize Zero { get { return _zero ?? (_zero = new ByteSize(0, BytePrefix.Bytes)); } }
+
         private readonly long _byteCount;
 
         public long ByteCount { get { return _byteCount; } }
@@ -56,7 +59,7 @@ namespace NTH
 
             if (size < unit)
                 return (size).ToString("F0") + " bytes";
-            
+
             if (size < Math.Pow(unit, 2))
                 return (size / unit).ToString("F0") + " K" + i + "B";
 
