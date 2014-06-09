@@ -41,7 +41,31 @@ namespace NTH
 
         //TODO: Add Parse/TryParse method
         //TODO: Add implicit/explicit cast operators
-        //TODO: Add +/- operators
+
+        public static ByteSize operator +(ByteSize bs1, ByteSize bs2)
+        {
+            if (bs1 == null)
+            {
+                if (bs2 == null)
+                    return new ByteSize(0, BytePrefix.Bytes);
+                return new ByteSize(bs2.ByteCount);
+            }
+            if (bs2 == null)
+                return new ByteSize(bs1.ByteCount);
+            return new ByteSize(bs1._byteCount + bs2._byteCount);
+        }
+        public static ByteSize operator -(ByteSize bs1, ByteSize bs2)
+        {
+            if (bs1 == null)
+            {
+                if (bs2 == null)
+                    return new ByteSize(0, BytePrefix.Bytes);
+                return new ByteSize(-bs2.ByteCount);
+            }
+            if (bs2 == null)
+                return new ByteSize(bs1.ByteCount);
+            return new ByteSize(bs1._byteCount - bs2._byteCount);
+        }
 
         public string ToString(PrefixType prefixType)
         {
