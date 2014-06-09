@@ -5,6 +5,8 @@ namespace NTH.Tests
     [TestClass]
     public class ByteSizeTests
     {
+        #region Ctor
+
         [TestMethod]
         public void Constructor()
         {
@@ -97,7 +99,7 @@ namespace NTH.Tests
 
             bs = new ByteSize(2, BytePrefix.MibiByte);
             Assert.AreEqual(1024 * 1024 * 2, bs.ByteCount);
-            
+
             bs = new ByteSize(3, BytePrefix.MibiByte);
             Assert.AreEqual(1024 * 1024 * 3, bs.ByteCount);
 
@@ -114,5 +116,55 @@ namespace NTH.Tests
             bs = new ByteSize(3, BytePrefix.GibiByte);
             Assert.AreEqual(1024L * 1024L * 1024L * 3L, bs.ByteCount);
         }
+
+        #endregion
+        #region ToString
+
+        [TestMethod]
+        public new void ToString()
+        {
+            var bs = new ByteSize(1024, BytePrefix.Bytes);
+            Assert.AreEqual("1 KiB", bs.ToString());
+
+            bs = new ByteSize(0, BytePrefix.KibiByte);
+            Assert.AreEqual("0 bytes", bs.ToString());
+
+            bs = new ByteSize(1, BytePrefix.KibiByte);
+            Assert.AreEqual("1 KiB", bs.ToString());
+
+            bs = new ByteSize(2, BytePrefix.KibiByte);
+            Assert.AreEqual("2 KiB", bs.ToString());
+
+            bs = new ByteSize(3, BytePrefix.KibiByte);
+            Assert.AreEqual("3 KiB", bs.ToString());
+
+
+            bs = new ByteSize(0, BytePrefix.MibiByte);
+            Assert.AreEqual("0 bytes", bs.ToString());
+
+            bs = new ByteSize(1, BytePrefix.MibiByte);
+            Assert.AreEqual("1 MiB", bs.ToString());
+
+            bs = new ByteSize(2, BytePrefix.MibiByte);
+            Assert.AreEqual("2 MiB", bs.ToString());
+
+            bs = new ByteSize(3, BytePrefix.MibiByte);
+            Assert.AreEqual("3 MiB", bs.ToString());
+
+
+            bs = new ByteSize(0, BytePrefix.GibiByte);
+            Assert.AreEqual("0 bytes", bs.ToString());
+
+            bs = new ByteSize(1, BytePrefix.GibiByte);
+            Assert.AreEqual("1 GiB", bs.ToString());
+
+            bs = new ByteSize(2, BytePrefix.GibiByte);
+            Assert.AreEqual("2 GiB", bs.ToString());
+
+            bs = new ByteSize(3, BytePrefix.GibiByte);
+            Assert.AreEqual("3 GiB", bs.ToString());
+        }
+
+        #endregion
     }
 }
