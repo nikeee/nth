@@ -11,6 +11,8 @@ namespace NTH
 
         public long ByteCount { get { return _byteCount; } }
 
+        #region Ctor
+
         public ByteSize()
             : this(0)
         { }
@@ -38,6 +40,8 @@ namespace NTH
                 _byteCount = prefixedBytes;
             }
         }
+
+        #endregion
 
         //TODO: Add Parse/TryParse method
         //TODO: Add implicit/explicit cast operators
@@ -105,6 +109,7 @@ namespace NTH
         }
 
         #endregion
+        #region ToString
 
         public string ToString(PrefixType prefixType)
         {
@@ -141,5 +146,7 @@ namespace NTH
 
             return (size / Math.Pow(unit, 6)).ToString("F0") + " E" + i + "B";
         }
+
+        #endregion
     }
 }
