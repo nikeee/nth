@@ -49,9 +49,11 @@
     <Compile Include="Analysis\Rendering\ConsoleDiffRenderer.cs" />
     <Compile Include="Analysis\Rendering\GenericConsoleDiffRenderer.cs" />
     <Compile Include="Analysis\Rendering\IDiffRenderer.cs" />
+    <Compile Include="BytePrefix.cs" />
     <Compile Include="ByteSize.cs" />
     <Compile Include="MathEx.cs" />
     <Compile Include="NativeMethods.cs" />
+    <Compile Include="PrefixType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Text\DamerauLevenshteinDistanceMetric.cs" />
     <Compile Include="Text\EnumerableExtensions.cs" />
