@@ -14,7 +14,6 @@ namespace NTH
         public ByteSize(long bytes)
             : this(bytes, BytePrefix.Bytes)
         { }
-
         public ByteSize(long prefixedBytes, BytePrefix type)
         {
             if (prefixedBytes == 0)
@@ -36,6 +35,8 @@ namespace NTH
                 _byteCount = prefixedBytes;
             }
         }
+
+        //TODO: Add Parse/TryParse method
 
         public string ToString(PrefixType prefixType)
         {
