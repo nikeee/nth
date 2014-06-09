@@ -166,5 +166,68 @@ namespace NTH.Tests
         }
 
         #endregion
+        #region Operators
+
+        [TestMethod]
+        public void OperatorAdd()
+        {
+            var bs1 = new ByteSize();
+            var bs2 = new ByteSize();
+            var expected = new ByteSize();
+            var actual = bs1 + bs2;
+
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+
+            bs1 = new ByteSize(1);
+            bs2 = new ByteSize(2);
+            expected = new ByteSize(3);
+            actual = bs1 + bs2;
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+
+
+            bs1 = new ByteSize(1024);
+            bs2 = new ByteSize(2);
+            expected = new ByteSize(1026);
+            actual = bs1 + bs2;
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+
+            bs1 = new ByteSize(1, BytePrefix.KibiByte);
+            bs2 = new ByteSize(2);
+            expected = new ByteSize(1026);
+            actual = bs1 + bs2;
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+        }
+
+        [TestMethod]
+        public void OperatorSubtract()
+        {
+            var bs1 = new ByteSize();
+            var bs2 = new ByteSize();
+            var expected = new ByteSize();
+            var actual = bs1 - bs2;
+
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+
+            bs1 = new ByteSize(2);
+            bs2 = new ByteSize(1);
+            expected = new ByteSize(1);
+            actual = bs1 - bs2;
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+
+
+            bs1 = new ByteSize(1024);
+            bs2 = new ByteSize(2);
+            expected = new ByteSize(1022);
+            actual = bs1 - bs2;
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+
+            bs1 = new ByteSize(1, BytePrefix.KibiByte);
+            bs2 = new ByteSize(2);
+            expected = new ByteSize(1022);
+            actual = bs1 - bs2;
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+        }
+
+        #endregion
     }
 }

@@ -67,6 +67,42 @@ namespace NTH
             return new ByteSize(bs1._byteCount - bs2._byteCount);
         }
 
+        #region Equals
+
+        public static bool operator ==(ByteSize a, ByteSize b)
+        {
+            if (object.ReferenceEquals(a, b))
+                return true;
+            if ((object)a == null || (object)b == null)
+                return false;
+            return a._byteCount == b._byteCount;
+        }
+
+        public static bool operator !=(ByteSize a, ByteSize b)
+        {
+            return !(a == b);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var bs = obj as ByteSize;
+            if (bs == null)
+                return false;
+            return bs._byteCount == this._byteCount;
+        }
+
+        public bool Equals(ByteSize bs)
+        {
+            return bs._byteCount == _byteCount;
+        }
+
+        public override int GetHashCode()
+        {
+            return _byteCount.GetHashCode();
+        }
+
+        #endregion
+
         public string ToString(PrefixType prefixType)
         {
             return Format(_byteCount, prefixType);
