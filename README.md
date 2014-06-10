@@ -5,7 +5,7 @@ NTH library
 
 ## Reduce noise
 
-Extension methods help to reduce boilerplate code.
+Extension methods help to reduce code noise.
 ```
 string foo = "bar";
 if(foo.IsNullOrEmpty())
@@ -30,7 +30,7 @@ MathEx.Max(1, 2, 3); // If there are ony 3 parameters, an optimized version is u
 // same for Min()
 // available for int, long, float and double
 ```
-A Pow() method for integers:
+A `Pow()` method for integers:
 ```
 int @base = 2;
 int exponent = 4;
