@@ -23,11 +23,10 @@ namespace NTH.Text
             if (value == null)
                 return true;
                 
-            if (value == System.DBNull.Value)
+            if (DBNull.Value.Equals(value))
                 return true;
 
-            IConvertible convertible = value as IConvertible;
-            return convertible != null && convertible.GetTypeCode() == TypeCode.DBNull;
+            return value.GetTypeCode() == TypeCode.DBNull;
         }
 
         public static int LevenshteinDistanceTo(this string source, string target)
