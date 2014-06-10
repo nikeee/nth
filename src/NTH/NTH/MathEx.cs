@@ -4,6 +4,8 @@ namespace NTH
 {
     public static class MathEx
     {
+        #region Pow
+
         public static int Pow(int x, int y)
         {
             if (y < 0)
@@ -50,6 +52,8 @@ namespace NTH
             }
             return res;
         }
+
+        #endregion
 
         #region Min, 3 params
 
