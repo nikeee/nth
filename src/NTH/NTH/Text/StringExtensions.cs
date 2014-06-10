@@ -14,7 +14,7 @@ namespace NTH.Text
                 return true;
                 
             for(int i = 0; i < value.Length; ++i)
-                if(!Char.IsWhiteSpace(value[i]))
+                if(!char.IsWhiteSpace(value[i]))
                     return false;
             return true;
         }

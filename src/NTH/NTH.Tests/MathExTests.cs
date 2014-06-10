@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NTH.Tests
 {
@@ -22,6 +23,23 @@ namespace NTH.Tests
 
             res = MathEx.Pow(10, 4);
             Assert.AreEqual(10 * 10 * 10 * 10, res);
+        }
+
+        [TestMethod]
+        public void PowOptimization()
+        {
+            // Test bit shifting optimization
+
+            var actual = MathEx.Pow(2, 1);
+            var expected = (int)Math.Pow(2, 1);
+            Assert.AreEqual(expected, actual);
+
+            for (int i = 0; i < 31; ++i)
+            {
+                actual = MathEx.Pow(2, i);
+                expected = (int)Math.Pow(2, i);
+                Assert.AreEqual(expected, actual);
+            }
         }
 
         [TestMethod]

@@ -15,9 +15,8 @@ namespace NTH
             if (y == 1)
                 return x;
 
-            // TODO: Add optimization using shifting
-            // if (x == 1 && y < sizeof(int) * 8)
-            //  return x << y;
+            if (x == 2 && y < sizeof(int) * 8)
+                return 1 << y;
 
             var res = 1;
             while (y != 0)
@@ -38,9 +37,8 @@ namespace NTH
             if (y == 1)
                 return x;
 
-            // TODO: Add optimization using shifting
-            // if (x == 1 && y < sizeof(int) * 8)
-            //  return x << y;
+            if (x == 2 && y < sizeof(long) * 8)
+                return 1 << (int)y;
 
             var res = 1L;
             while (y != 0)
