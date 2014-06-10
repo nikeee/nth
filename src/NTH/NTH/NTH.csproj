@@ -51,6 +51,10 @@
     <Compile Include="Analysis\Rendering\IDiffRenderer.cs" />
     <Compile Include="BytePrefix.cs" />
     <Compile Include="ByteSize.cs" />
+    <Compile Include="Diagnostics\ArgumentList.cs" />
+    <Compile Include="Diagnostics\CommandLine.cs" />
+    <Compile Include="Diagnostics\CommandLineUtil.cs" />
+    <Compile Include="Diagnostics\ProcessEx.cs" />
     <Compile Include="MathEx.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="PrefixType.cs" />
