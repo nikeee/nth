@@ -26,6 +26,8 @@ someChar.IsWhiteSpace();
 ```
 MathEx.Max(1, 2, 3, 4, 5); // Using rest parameters
 MathEx.Max(1, 2, 3); // If there are ony 3 parameters, an optimized version is used
+// instead of
+Math.Max(Math.Max(1, 2), 3);
 
 // same for Min()
 // available for int, long, float and double
