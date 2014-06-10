@@ -4,13 +4,30 @@ namespace NTH.Text
 {
     public static class StringExtensions
     {
-        public static bool IsNullOrEmpty(this string s)
+        public static bool IsNullOrEmpty(this string value)
         {
-            return string.IsNullOrEmpty(s);
+            return value == null || value.Length == 0;
         }
-        public static bool IsNullOrWhiteSpace(this string s)
+        public static bool IsNullOrWhiteSpace(this string value)
         {
-            return string.IsNullOrWhiteSpace(s);
+            if (value == null)
+                return true;
+                
+            for(int i = 0; i < value.Length; ++i)
+                if(!Char.IsWhiteSpace(value[i]))
+                    return false;
+            return true;
+        }
+        public static bool IsNullOrDBNull(this string value)
+        {
+            if (value == null)
+                return true;
+                
+            if (value == System.DBNull.Value)
+                return true;
+
+            IConvertible convertible = value as IConvertible;
+            return convertible != null && convertible.GetTypeCode() == TypeCode.DBNull;
         }
 
         public static int LevenshteinDistanceTo(this string source, string target)
