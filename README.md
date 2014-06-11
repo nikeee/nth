@@ -13,6 +13,9 @@ if(foo.IsNullOrEmpty())
 // instead of
 if(string.IsNullOrEmpty(foo))
 // ...
+
+string baz = " this is\n some text containing white space    	\t ";
+var baz2 = baz.StripWhiteSpace(); // baz2 == "thisissometextcontainingwhitespace"
 ```
 
 Also available:
