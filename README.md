@@ -47,6 +47,10 @@ int result = MathEx.Pow(@base, exponent);
 
 
 ### CommandLine
+
+Using the CommandLine class, it is easier to handle command line arguments. Strings are automatically escaped and stuff.
+The CommandLine class has a `FilePath` property and a `Arguments` property. The arguments property is of type `ArgumentList` which can be used separately.
+
 ```
 static void Main(string[] argv)
 {
@@ -58,8 +62,11 @@ static void Main(string[] argv)
 	// C:\Demo.exe -n "some argument"
 	ProcessEx.Start(newCommandLine);
 	
+	string commandLineString = newCommandLine.ToString();
 	Console.WriteLine("Spawned process using command line:");
-	Console.WriteLine(newCommandLine.ToString());
+	Console.WriteLine(commandLineString);
+	
+	var parsedCommandLine = CommandLine.Parse(commandLineString); // Parsing functionality available
 
 
 	Console.WriteLine("Current arguments:");
