@@ -41,6 +41,11 @@ namespace NTH.Text
                     sb.Append(value[i]);
             return sb.ToString();
         }
+        
+        public static bool Contains(this string str, string value, StringComparison comparisonType)
+        {
+            return str.IndexOf(value, comparisonType) > -1;
+        }
 
         public static int LevenshteinDistanceTo(this string source, string target)
         {
