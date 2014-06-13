@@ -38,7 +38,10 @@ namespace NTH.Security.Cryptography
             _seed = _hash = seed;
         }
 
+        #endregion
         #region Overrides
+        
+        public override int HashSize { get { return 32; } }
 
         public override void Initialize()
         {
@@ -56,8 +59,6 @@ namespace NTH.Security.Cryptography
             HashValue = hashBuffer;
             return hashBuffer;
         }
-
-        public override int HashSize { get { return 32; } }
 
         #endregion
         #region Computations
