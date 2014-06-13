@@ -16,6 +16,34 @@ namespace NTH.Diagnostics
             FilePath = filePath;
             Arguments = arguments ?? new ArgumentList();
         }
+        
+        private static CommandLine _current;
+        public static CommandLine Current
+        {
+            get
+            {
+                return _current ?? (_current = CreateCurrentCommandLine());
+            }
+        }
+        
+        private static CommandLine CreateCurrentCommandLine()
+        {
+            var currentArgs = Environment.GetCommandLineArgs();
+            System.Diagnostics.Debug.Assert(currentArgs != null);
+            System.Diagnostics.Debug.Assert(currentArgs.Legnth > 0);
+            
+            // first Argument is path to executable
+            if(currentArgs.Length == 0)
+                throw new Exception();
+            if(currentArgs.Length == 1)
+                return new CommandLine(currentArgs[0]);
+
+            var filePath = currentArgs[0];
+            var args = new ArgumentList();
+            for(int i = 1; i < currentArgs.Length; ++i)
+                args.Add(currentArgs[i]);
+            return new CommandLine(filePath, args);
+        }
 
         public override string ToString()
         {
@@ -36,6 +64,5 @@ namespace NTH.Diagnostics
             var arguments = ArgumentList.Parse(line);
             return new CommandLine(filePath, arguments);
         }
-
     }
 }
