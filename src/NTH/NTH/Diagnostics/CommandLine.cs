@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace NTH.Diagnostics
 {
@@ -30,7 +31,7 @@ namespace NTH.Diagnostics
         {
             var currentArgs = Environment.GetCommandLineArgs();
             System.Diagnostics.Debug.Assert(currentArgs != null);
-            System.Diagnostics.Debug.Assert(currentArgs.Legnth > 0);
+            System.Diagnostics.Debug.Assert(currentArgs.Length > 0);
             
             // first Argument is path to executable
             if(currentArgs.Length == 0)
