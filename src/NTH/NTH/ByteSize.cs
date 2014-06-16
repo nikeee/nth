@@ -60,6 +60,10 @@ namespace NTH
                 return new ByteSize(bs1.ByteCount);
             return new ByteSize(bs1._byteCount + bs2._byteCount);
         }
+        public static ByteSize operator ++(ByteSize b)
+        {
+            return new ByteSize(b.ByteCount + 1);
+        }
         public static ByteSize operator -(ByteSize bs1, ByteSize bs2)
         {
             if (bs1 == null)
@@ -71,6 +75,10 @@ namespace NTH
             if (bs2 == null)
                 return new ByteSize(bs1.ByteCount);
             return new ByteSize(bs1._byteCount - bs2._byteCount);
+        }
+        public static ByteSize operator --(ByteSize b)
+        {
+            return new ByteSize(b.ByteCount - 1);
         }
 
         #endregion
