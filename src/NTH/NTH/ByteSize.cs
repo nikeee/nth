@@ -82,6 +82,29 @@ namespace NTH
         }
 
         #endregion
+        #region gt/lt operators
+        
+        public static bool operator <(ByteSize b1, ByteSize b2)
+        {
+            return b1.ByteCount < b2.ByteCount;
+        }
+
+        public static bool operator <=(ByteSize b1, ByteSize b2)
+        {
+            return b1.ByteCount <= b2.ByteCount;
+        }
+
+        public static bool operator >(ByteSize b1, ByteSize b2)
+        {
+            return b1.ByteCount > b2.ByteCount;
+        }
+
+        public static bool operator >=(ByteSize b1, ByteSize b2)
+        {
+            return b1.ByteCount >= b2.ByteCount;
+        }
+        
+        #endregion
         #region Equals
 
         public static bool operator ==(ByteSize a, ByteSize b)
