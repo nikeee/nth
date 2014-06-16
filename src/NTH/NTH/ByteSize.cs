@@ -62,7 +62,7 @@ namespace NTH
         }
         public static ByteSize operator ++(ByteSize b)
         {
-            return new ByteSize(b.ByteCount + 1);
+            return new ByteSize(b._byteCount + 1);
         }
         public static ByteSize operator -(ByteSize bs1, ByteSize bs2)
         {
@@ -78,7 +78,7 @@ namespace NTH
         }
         public static ByteSize operator --(ByteSize b)
         {
-            return new ByteSize(b.ByteCount - 1);
+            return new ByteSize(b._byteCount - 1);
         }
 
         #endregion
@@ -86,22 +86,22 @@ namespace NTH
         
         public static bool operator <(ByteSize b1, ByteSize b2)
         {
-            return b1.ByteCount < b2.ByteCount;
+            return b1._byteCount < b2._byteCount;
         }
 
         public static bool operator <=(ByteSize b1, ByteSize b2)
         {
-            return b1.ByteCount <= b2.ByteCount;
+            return b1._byteCount <= b2._byteCount;
         }
 
         public static bool operator >(ByteSize b1, ByteSize b2)
         {
-            return b1.ByteCount > b2.ByteCount;
+            return b1._byteCount > b2._byteCount;
         }
 
         public static bool operator >=(ByteSize b1, ByteSize b2)
         {
-            return b1.ByteCount >= b2.ByteCount;
+            return b1._byteCount >= b2._byteCount;
         }
         
         #endregion
