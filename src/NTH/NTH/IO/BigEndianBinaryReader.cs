@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NTH.IO
 {
-    internal class BigEndianBinaryReader : BinaryReader
+    public class BigEndianBinaryReader : BinaryReader
     {
         #region Ctors
 
