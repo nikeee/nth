@@ -53,4 +53,23 @@ namespace NTH.IO
                     | ((b & 0x80) >> 7));
 #endif
         }
+        
+        public static T ConvertToStruct<T>(this byte[] bytes)
+            where T : struct
+        {
+            if(bytes == null)
+                throw new ArgumentNullException("bytes");
+            // Debug.Assert(bytes != null);
+            try
+            {
+                GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
+                if(handle.IsAllocated)
+                    return (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
+            }
+            finally
+            {
+                handle.Free();
+            }
+        }
+    }
 }
