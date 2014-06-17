@@ -40,7 +40,7 @@ namespace NTH.IO
 
         public static byte ReverseBits(this byte b)
         {
-            return bitReverseTable[b];
+            return _bitReverseTable[b];
 #if FALSE
             return (byte)
                     (((b & 0x01) << 7)
