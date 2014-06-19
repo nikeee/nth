@@ -56,6 +56,9 @@
     <Compile Include="Diagnostics\CommandLine.cs" />
     <Compile Include="Diagnostics\CommandLineUtil.cs" />
     <Compile Include="Diagnostics\ProcessEx.cs" />
+    <Compile Include="IO\BigEndianBinaryReader.cs" />
+    <Compile Include="IO\BigEndianBinaryWriter.cs" />
+    <Compile Include="IO\ByteExtensions.cs" />
     <Compile Include="MathEx.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="PrefixType.cs" />
