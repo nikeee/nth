@@ -5,7 +5,7 @@ namespace NTH.IO
 {
     public static class ByteExtensions
     {
-        private static readonly byte[] _bitReverseTable =
+        private static readonly byte[] BitReverseTable =
         {
             0x00, 0x80, 0x40, 0xc0, 0x20, 0xa0, 0x60, 0xe0,
             0x10, 0x90, 0x50, 0xd0, 0x30, 0xb0, 0x70, 0xf0,
@@ -43,7 +43,7 @@ namespace NTH.IO
 
         public static byte ReverseBits(this byte b)
         {
-            return _bitReverseTable[b];
+            return BitReverseTable[b];
 #if FALSE
             return (byte)
                     (((b & 0x01) << 7)
@@ -56,11 +56,11 @@ namespace NTH.IO
                     | ((b & 0x80) >> 7));
 #endif
         }
-        
+
         public static T ConvertToStruct<T>(this byte[] bytes)
             where T : struct
         {
-            if(bytes == null)
+            if (bytes == null)
                 throw new ArgumentNullException("bytes");
             // Debug.Assert(bytes != null);
 
