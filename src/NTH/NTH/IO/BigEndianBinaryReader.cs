@@ -32,6 +32,7 @@ namespace NTH.IO
 
         #endregion
         #region Int32
+
         public override int ReadInt32()
         {
             FillBuffer(4);
