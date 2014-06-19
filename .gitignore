@@ -14,11 +14,12 @@
 *.docstates
 
 *.pfx
-HolzShotsRoot.pfx
 *.crt
 *.pem
 *.pvk
 *.spc
+*.user
+*.dotsettings
 
 # Include dlls if they’re in the NuGet packages directory
 !/packages/*/lib/*.dll
