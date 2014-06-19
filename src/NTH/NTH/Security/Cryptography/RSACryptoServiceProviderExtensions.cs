@@ -16,9 +16,9 @@ namespace NTH.Security.Cryptography
                 throw new NullReferenceException();
             if (string.IsNullOrWhiteSpace(pemString))
                 throw new ArgumentNullException("pemString");
-            var der = ConvertPemToDer(pemString);
 
-            provider.ImportPublicKeyDer(der);
+            var derData = ConvertPemToDer(pemString);
+            provider.ImportPublicKeyDer(derData);
         }
 
         public static void ImportPublicKeyDer(this RSACryptoServiceProvider provider, byte[] derData)
@@ -32,6 +32,27 @@ namespace NTH.Security.Cryptography
             byte[] publicKeyBlob = GetPublicKeyBlobFromRsa(rsaData);
 
             provider.ImportCspBlob(publicKeyBlob);
+        }
+
+        public static void ImportPrivateKeyPem(this RSACryptoServiceProvider provider, string pemString)
+        {
+            if (provider == null)
+                throw new NullReferenceException();
+            if (string.IsNullOrWhiteSpace(pemString))
+                throw new ArgumentNullException("pemString");
+
+            byte[] derData = ConvertPemToDer(pemString);
+            provider.ImportPrivateKeyDer(derData);
+        }
+
+        public static void ImportPrivateKeyDer(this RSACryptoServiceProvider provider, byte[] derData)
+        {
+            if (provider == null)
+                throw new NullReferenceException();
+            if (derData == null)
+                throw new ArgumentNullException();
+            var privateKeyBlob = GetPrivateKeyDer(derData);
+            provider.ImportCspBlob(privateKeyBlob);
         }
 
 
@@ -90,8 +111,8 @@ namespace NTH.Security.Cryptography
             Debug.Assert(rsaData != null);
             byte[] data = null;
 
-            UInt32 dwCertPublicKeyBlobSize = 0;
-            bool success =  NativeMethods.CryptDecodeObject(
+            uint dwCertPublicKeyBlobSize = 0;
+            bool success = NativeMethods.CryptDecodeObject(
                     CryptEncodingFlags.X509AsnEncoding | CryptEncodingFlags.Pkcs7AsnEncoding,
                     new IntPtr((int)CryptOutputTypes.RsaCspPublicKeyBlob), rsaData, rsaData.Length,
                     CryptDecodeFlags.None,
@@ -100,7 +121,7 @@ namespace NTH.Security.Cryptography
                 throw new Win32Exception();
 
             data = new byte[dwCertPublicKeyBlobSize];
-            success =  NativeMethods.CryptDecodeObject(
+            success = NativeMethods.CryptDecodeObject(
                     CryptEncodingFlags.X509AsnEncoding | CryptEncodingFlags.Pkcs7AsnEncoding,
                     new IntPtr((int)CryptOutputTypes.RsaCspPublicKeyBlob), rsaData, rsaData.Length,
                     CryptDecodeFlags.None,
@@ -109,6 +130,29 @@ namespace NTH.Security.Cryptography
             if (!success)
                 throw new Win32Exception();
 
+            return data;
+        }
+
+        private static byte[] GetPrivateKeyDer(byte[] derData)
+        {
+            byte[] data = null;
+            uint dwRSAPrivateKeyBlobSize = 0;
+            bool success = NativeMethods.CryptDecodeObject(
+                    CryptEncodingFlags.X509AsnEncoding | CryptEncodingFlags.Pkcs7AsnEncoding,
+                    new IntPtr((int)CryptOutputTypes.PkcsRsaPrivateKey),
+                    derData, derData.Length, CryptDecodeFlags.None, data, ref dwRSAPrivateKeyBlobSize);
+
+            if (!success)
+                throw new Win32Exception();
+
+            data = new byte[dwRSAPrivateKeyBlobSize];
+
+            success = NativeMethods.CryptDecodeObject(
+                    CryptEncodingFlags.X509AsnEncoding | CryptEncodingFlags.Pkcs7AsnEncoding,
+                    new IntPtr((int) CryptOutputTypes.PkcsRsaPrivateKey),
+                    derData, derData.Length, CryptDecodeFlags.None, data, ref dwRSAPrivateKeyBlobSize);
+            if (!success)
+                throw new Win32Exception();
             return data;
         }
 
