@@ -1,3 +1,6 @@
+using System;
+using System.Runtime.InteropServices;
+
 namespace NTH.IO
 {
     public static class ByteExtensions
@@ -60,11 +63,12 @@ namespace NTH.IO
             if(bytes == null)
                 throw new ArgumentNullException("bytes");
             // Debug.Assert(bytes != null);
+
+            var handle = default(GCHandle);
             try
             {
-                GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-                if(handle.IsAllocated)
-                    return (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
+                handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
+                return (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
             }
             finally
             {
