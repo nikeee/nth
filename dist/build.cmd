@@ -1,2 +1,2 @@
 @echo off
-../.nuget/NuGet.exe Pack ./NTH.nuspec
+"../.nuget/NuGet.exe" Pack "./NTH.nuspec"
