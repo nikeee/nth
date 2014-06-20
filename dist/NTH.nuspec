@@ -7,6 +7,6 @@
         <licenseUrl>https://raw.github.com/nikeee/nth/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/nikeee/nth</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>A library that cointains nice-to-have functionality that is missing in the .NET Framework.</description>
+        <description>A library that contains nice-to-have functionality that is missing in the .NET Framework.</description>
     </metadata>
 </package>
