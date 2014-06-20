@@ -91,8 +91,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)..\..\dist\lib\net40\$(TargetFileName)"
-copy "$(TargetDir)$(TargetName).xml" "$(SolutionDir)..\..\dist\lib\net40\$(TargetName).xml"</PostBuildEvent>
+    <PostBuildEvent>IF "$(ConfigurationName)" == "Distribution" (
+    copy "$(TargetPath)" "$(SolutionDir)..\..\dist\lib\net40\$(TargetFileName)"
+    copy "$(TargetDir)$(TargetName).xml" "$(SolutionDir)..\..\dist\lib\net40\$(TargetName).xml"
+)
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
