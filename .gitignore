@@ -93,3 +93,5 @@ Thumbs.db
 
 !dist/lib/net40/*.dll
 !.nuget/NuGet.exe
+
+dist/*.nupkg
