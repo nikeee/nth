@@ -20,6 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -56,6 +58,7 @@
     <Compile Include="Diagnostics\CommandLine.cs" />
     <Compile Include="Diagnostics\CommandLineUtil.cs" />
     <Compile Include="Diagnostics\ProcessEx.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Int32Extensions.cs" />
     <Compile Include="IntPtrExtensions.cs" />
     <Compile Include="IO\BigEndianBinaryReader.cs" />

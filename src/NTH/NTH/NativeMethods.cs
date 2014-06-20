@@ -8,7 +8,7 @@ namespace NTH
     {
         private const string Shlwapi = "Shlwapi.dll";
 
-        [DllImport(Shlwapi, CharSet = CharSet.Auto)]
-        internal static extern IntPtr StrFormatByteSize(long fileSize, [MarshalAs(UnmanagedType.LPTStr)] StringBuilder buffer, int bufferSize);
+        [DllImport(Shlwapi, ThrowOnUnmappableChar=true)]
+        internal static extern IntPtr StrFormatByteSize(long fileSize, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder buffer, int bufferSize);
     }
 }

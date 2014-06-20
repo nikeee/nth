@@ -6,17 +6,17 @@ namespace NTH
     {
         private const string Prefix = "0x";
 
-        public static string ToHexString(this IntPtr ptr)
+        public static string ToHexString(this IntPtr value)
         {
-            return ptr.ToHexString(true);
+            return value.ToHexString(true);
         }
-        public static string ToHexString(this IntPtr ptr, bool includePrefix)
+        public static string ToHexString(this IntPtr value, bool includePrefix)
         {
-            return ptr.ToHexString(includePrefix, IntPtr.Size);
+            return value.ToHexString(includePrefix, IntPtr.Size);
         }
-        public static string ToHexString(this IntPtr ptr, bool includePrefix, int pointerSize)
+        public static string ToHexString(this IntPtr value, bool includePrefix, int pointerSize)
         {
-            return (includePrefix ? Prefix : string.Empty) + ptr.ToString("X").PadLeft(2 * pointerSize, '0');
+            return (includePrefix ? Prefix : string.Empty) + value.ToString("X").PadLeft(2 * pointerSize, '0');
         }
     }
 }
