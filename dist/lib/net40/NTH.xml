@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NTH</name>
+    </assembly>
+    <members>
+        <member name="M:NTH.Analysis.Patch`1.ToString">
+            <summary>Emmulates GNU diff format. Indicies are printed as 1-based, not 0-based.</summary>
+            <remarks>Header: @@ -382,8 +481,9 @@</remarks>
+            <returns>The GNU diff string.</returns>
+        </member>
+        <member name="T:NTH.IO.BigEndianBinaryReader">
+            <summary>Reads primitive data types as binary big endian values in a specific encoding.</summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:NTH.IO.BigEndianBinaryReader.#ctor(System.IO.Stream)">
+            <summary>Initializes a new instance of the <see cref="T:NTH.IO.BigEndianBinaryReader" /> class based on the supplied stream and using <see cref="T:System.Text.UTF8Encoding" />.</summary>
+            <param name="input">A stream.</param>
+            <exception cref="T:System.ArgumentException">The stream does not support reading, the stream is null, or the stream is already closed.</exception>
+        </member>
+        <member name="M:NTH.IO.BigEndianBinaryReader.#ctor(System.IO.Stream,System.Text.Encoding)">
+            <summary>Initializes a new instance of the <see cref="T:NTH.IO.BigEndianBinaryReader" /> class based on the supplied stream and a specific character encoding.</summary>
+            <param name="input">The supplied stream. </param>
+            <param name="encoding">The character encoding. </param>
+            <exception cref="T:System.ArgumentException">The stream does not support reading, the stream is null, or the stream is already closed. </exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="encoding" /> is null. </exception>
+        </member>
+        <member name="T:NTH.IO.BigEndianBinaryWriter">
+            <summary>Writes primitive types in binary big endian to a stream and supports writing strings in a specific encoding.</summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:NTH.IO.BigEndianBinaryWriter.#ctor(System.IO.Stream)">
+            <summary>Initializes a new instance of the <see cref="T:NTH.IO.BigEndianBinaryWriter" /> class based on the supplied stream and using UTF-8 as the encoding for strings.</summary>
+            <param name="output">The output stream.</param>
+            <exception cref="T:System.ArgumentException">The stream does not support writing, or the stream is already closed.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="output" /> is null.</exception>
+        </member>
+        <member name="M:NTH.IO.BigEndianBinaryWriter.#ctor(System.IO.Stream,System.Text.Encoding)">
+            <summary>Initializes a new instance of the <see cref="T:NTH.IO.BigEndianBinaryWriter" /> class based on the supplied stream and a specific character encoding.</summary>
+            <param name="output">The supplied stream.</param>
+            <param name="encoding">The character encoding.</param>
+            <exception cref="T:System.ArgumentException">The stream does not support writing, or the stream is already closed.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="output" /> or <paramref name="encoding" /> is null.</exception>
+        </member>
+        <member name="M:NTH.MathEx.Pow(System.Int32,System.Int32)">
+            <summary>Returns a specified number raised to the specified power.</summary>
+            <returns>The number <paramref name="x" /> raised to the power <paramref name="y" />.</returns>
+            <param name="x">An integer to be raised to a power.</param>
+            <param name="y">An integer that specifies a power.</param>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:NTH.MathEx.Pow(System.Int64,System.Int64)">
+            <summary>Returns a specified number raised to the specified power.</summary>
+            <returns>The number <paramref name="x" /> raised to the power <paramref name="y" />.</returns>
+            <param name="x">A long integer to be raised to a power.</param>
+            <param name="y">A long integer that specifies a power.</param>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:NTH.MathEx.Min(System.Int32,System.Int32,System.Int32)">
+            <summary>Returns the smaller of three 32-bit signed integers.</summary>
+            <returns>Parameter <paramref name="a" />, <paramref name="b" /> or <paramref name="c" />, whichever is smaller.</returns>
+            <param name="a">The first of three 32-bit signed integers to compare.</param>
+            <param name="b">The second of three 32-bit signed integers to compare.</param>
+            <param name="c">The second of three 32-bit signed integers to compare.</param>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:NTH.MathEx.Max(System.Int32,System.Int32,System.Int32)">
+            <summary>Returns the larger of three 32-bit signed integers.</summary>
+            <returns>Parameter <paramref name="a" />, <paramref name="b" /> or <paramref name="c" />, whichever is larger.</returns>
+            <param name="a">The first of three 32-bit signed integers to compare.</param>
+            <param name="b">The second of three 32-bit signed integers to compare.</param>
+            <param name="c">The second of three 32-bit signed integers to compare.</param>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="F:NTH.PrefixType.Unknown">
+            <summary>???</summary>
+        </member>
+        <member name="F:NTH.PrefixType.Decimal">
+            <summary>Decimal prefix. See <see cref="!:https://en.wikipedia.org/wiki/Binary_prefix">Wikipedia</see>.</summary>
+        </member>
+        <member name="F:NTH.PrefixType.Binary">
+            <summary>Decimal prefix. See <see cref="!:https://en.wikipedia.org/wiki/Binary_prefix">Wikipedia</see>.</summary>
+        </member>
+        <member name="T:NTH.Security.Cryptography.Crc32">
+             <summary>Implements a 32-bit CRC hash algorithm compatible with Zip etc.</summary>
+             <remarks>
+             If you need to call multiple times for the same data either use the HashAlgorithm
+             interface or remember that the result of one Compute call needs to be ~ (XOR) before
+             being passed in as the seed for the next Compute call.
+            
+             This class was imported from Damien Guard:
+             https://github.com/damieng/DamienGKit/blob/master/CSharp/DamienG.Library/Security/Cryptography/Crc32.cs
+             Originally published at http://damieng.com/blog/2006/08/08/calculating_crc32_in_c_and_net
+             It was adapted to the coding standards of this project.
+             </remarks>
+        </member>
+        <member name="M:NTH.Security.Cryptography.Crc32.#ctor">
+            <summary>Initializes a new instance of <see cref="T:NTH.Security.Cryptography.Crc32" />.</summary>
+        </member>
+        <member name="M:NTH.Security.Cryptography.Crc32.Initialize">
+            <summary>Initializes <see cref="T:NTH.Security.Cryptography.Crc32" />.</summary>
+        </member>
+        <member name="T:NTH.Text.Formatting.ByteSizeFormatter">
+            <summary>Format a byte size long to a human readable format.</summary>
+        </member>
+        <member name="M:NTH.Text.Formatting.ByteSizeFormatter.FormatBytes(System.Int64)">
+            <summary>
+            Formats a long representing a byte size to a human readable format. Uses the Windows API.
+            Because it uses the Windows API, it always calculates using the binary power (1024), but returns the decimal prefix (e.g. KB).
+            </summary>
+            <param name="byteCount">The number of bytes</param>
+            <returns>Formatted string.</returns>
+        </member>
+        <member name="M:NTH.Text.Formatting.ByteSizeFormatter.FormatBytes(System.Int64,System.Boolean)">
+            <summary>
+            Formats a long representing a byte size to a human readable format. Uses the Windows API.
+            Because it uses the Windows API, it always calculates using the binary power (1024), but returns the decimal prefix (e.g. KB).
+            </summary>
+            <param name="byteCount">The number of bytes</param>
+            <param name="useBinaryPrefix">If this parameter is true, it returns a binary prefixed value. If not the return value is using a decimal prefix. Note that the value always calculates with binary powers.</param>
+            <returns>Formatted string.</returns>
+        </member>
+    </members>
+</doc>
