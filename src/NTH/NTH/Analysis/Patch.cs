@@ -1,4 +1,8 @@
-﻿using System;
+﻿#if false
+
+#if FEATURE_FULL_FX
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -223,3 +227,6 @@ namespace NTH.Analysis
 
     }
 }
+
+#endif
+#endif

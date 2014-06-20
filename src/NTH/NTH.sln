@@ -4,8 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTH", "NTH\NTH.csproj", "{431AF39E-76AC-4E44-8B72-E71800030548}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F985EE7B-4937-426F-A33F-A97939C39291} = {F985EE7B-4937-426F-A33F-A97939C39291}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTH.Tests", "NTH.Tests\NTH.Tests.csproj", "{7BF5A1DB-911C-4A1F-83B9-0873557446AF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F985EE7B-4937-426F-A33F-A97939C39291} = {F985EE7B-4937-426F-A33F-A97939C39291}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTH-40-client", "NTH\NTH-40-client.csproj", "{F985EE7B-4937-426F-A33F-A97939C39291}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +34,12 @@ Global
 		{7BF5A1DB-911C-4A1F-83B9-0873557446AF}.Distribution|Any CPU.Build.0 = Distribution|Any CPU
 		{7BF5A1DB-911C-4A1F-83B9-0873557446AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BF5A1DB-911C-4A1F-83B9-0873557446AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F985EE7B-4937-426F-A33F-A97939C39291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F985EE7B-4937-426F-A33F-A97939C39291}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F985EE7B-4937-426F-A33F-A97939C39291}.Distribution|Any CPU.ActiveCfg = Distribution|Any CPU
+		{F985EE7B-4937-426F-A33F-A97939C39291}.Distribution|Any CPU.Build.0 = Distribution|Any CPU
+		{F985EE7B-4937-426F-A33F-A97939C39291}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F985EE7B-4937-426F-A33F-A97939C39291}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

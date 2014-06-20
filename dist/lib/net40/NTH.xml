@@ -4,11 +4,6 @@
         <name>NTH</name>
     </assembly>
     <members>
-        <member name="M:NTH.Analysis.Patch`1.ToString">
-            <summary>Emmulates GNU diff format. Indicies are printed as 1-based, not 0-based.</summary>
-            <remarks>Header: @@ -382,8 +481,9 @@</remarks>
-            <returns>The GNU diff string.</returns>
-        </member>
         <member name="T:NTH.IO.BigEndianBinaryReader">
             <summary>Reads primitive data types as binary big endian values in a specific encoding.</summary>
             <filterpriority>2</filterpriority>
