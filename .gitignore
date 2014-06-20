@@ -92,3 +92,4 @@ Thumbs.db
 *.ide
 
 !dist/lib/net40/*.dll
+!.nuget/NuGet.exe
