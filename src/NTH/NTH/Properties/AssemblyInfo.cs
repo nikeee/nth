@@ -1,11 +1,11 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("NTH")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A library that contains nice-to-have functionality that is missing in the .NET Framework.")]
 [assembly: AssemblyConfiguration("")]
-// [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("NTH")]
 [assembly: AssemblyCopyright("Copyright © Niklas Mollenhauer 2014")]
 [assembly: AssemblyTrademark("")]
@@ -17,4 +17,8 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("en")]
+
+#if DEBUG // currently only test debug builds
 [assembly: InternalsVisibleTo("NTH.Tests", AllInternalsVisible = true)]
+#endif
