@@ -16,7 +16,7 @@ namespace NTH
         }
         public static string ToHexString(this IntPtr ptr, bool includePrefix, int pointerSize)
         {
-            return (includePrefix ? Prefix : "") + ptr.ToString("X").PadLeft(2 * pointerSize, '0');
+            return (includePrefix ? Prefix : string.Empty) + ptr.ToString("X").PadLeft(2 * pointerSize, '0');
         }
     }
 }

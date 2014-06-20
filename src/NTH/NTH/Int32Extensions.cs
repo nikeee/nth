@@ -11,7 +11,7 @@
 
         public static string ToHexString(this int i, bool includePrefix)
         {
-            return (includePrefix ? Prefix : "") + i.ToString("X").PadLeft(8, '0');
+            return (includePrefix ? Prefix : string.Empty) + i.ToString("X").PadLeft(8, '0');
         }
     }
 }
