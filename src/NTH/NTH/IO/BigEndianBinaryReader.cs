@@ -4,13 +4,24 @@ using System.Text;
 
 namespace NTH.IO
 {
+    /// <summary>Reads primitive data types as binary big endian values in a specific encoding.</summary>
+    /// <filterpriority>2</filterpriority>
     public class BigEndianBinaryReader : BinaryReader
     {
         #region Ctors
 
+        /// <summary>Initializes a new instance of the <see cref="NTH.IO.BigEndianBinaryReader" /> class based on the supplied stream and using <see cref="System.Text.UTF8Encoding" />.</summary>
+        /// <param name="input">A stream.</param>
+        /// <exception cref="System.ArgumentException">The stream does not support reading, the stream is null, or the stream is already closed.</exception>
         public BigEndianBinaryReader(Stream input)
             : base(input)
         { }
+
+        /// <summary>Initializes a new instance of the <see cref="NTH.IO.BigEndianBinaryReader" /> class based on the supplied stream and a specific character encoding.</summary>
+        /// <param name="input">The supplied stream. </param>
+        /// <param name="encoding">The character encoding. </param>
+        /// <exception cref="System.ArgumentException">The stream does not support reading, the stream is null, or the stream is already closed. </exception>
+        /// <exception cref="System.ArgumentNullException"><paramref name="encoding" /> is null. </exception>
         public BigEndianBinaryReader(Stream input, Encoding encoding)
             : base(input, encoding)
         { }

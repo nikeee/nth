@@ -6,6 +6,11 @@ namespace NTH
     {
         #region Pow
 
+        /// <summary>Returns a specified number raised to the specified power.</summary>
+        /// <returns>The number <paramref name="x" /> raised to the power <paramref name="y" />.</returns>
+        /// <param name="x">An integer to be raised to a power.</param>
+        /// <param name="y">An integer that specifies a power.</param>
+        /// <filterpriority>1</filterpriority>
         public static int Pow(int x, int y)
         {
             if (y < 0)
@@ -28,6 +33,12 @@ namespace NTH
             }
             return res;
         }
+
+        /// <summary>Returns a specified number raised to the specified power.</summary>
+        /// <returns>The number <paramref name="x" /> raised to the power <paramref name="y" />.</returns>
+        /// <param name="x">A long integer to be raised to a power.</param>
+        /// <param name="y">A long integer that specifies a power.</param>
+        /// <filterpriority>1</filterpriority>
         public static long Pow(long x, long y)
         {
             if (y < 0)
@@ -55,6 +66,12 @@ namespace NTH
 
         #region Min, 3 params
 
+        /// <summary>Returns the smaller of three 32-bit signed integers.</summary>
+        /// <returns>Parameter <paramref name="a" />, <paramref name="b" /> or <paramref name="c" />, whichever is smaller.</returns>
+        /// <param name="a">The first of three 32-bit signed integers to compare.</param>
+        /// <param name="b">The second of three 32-bit signed integers to compare.</param>
+        /// <param name="c">The second of three 32-bit signed integers to compare.</param>
+        /// <filterpriority>1</filterpriority>
         public static int Min(int a, int b, int c)
         {
             var ab = a > b ? b : a;
@@ -79,6 +96,12 @@ namespace NTH
         #endregion
         #region Max, 3 params
 
+        /// <summary>Returns the larger of three 32-bit signed integers.</summary>
+        /// <returns>Parameter <paramref name="a" />, <paramref name="b" /> or <paramref name="c" />, whichever is larger.</returns>
+        /// <param name="a">The first of three 32-bit signed integers to compare.</param>
+        /// <param name="b">The second of three 32-bit signed integers to compare.</param>
+        /// <param name="c">The second of three 32-bit signed integers to compare.</param>
+        /// <filterpriority>1</filterpriority>
         public static int Max(int a, int b, int c)
         {
             var ab = a > b ? a : b;
