@@ -4,17 +4,19 @@ namespace NTH
 {
     public static class IntPtrExtensions
     {
+        private const string Prefix = "0x";
+
         public static string ToHexString(this IntPtr ptr)
         {
             return ptr.ToHexString(true);
         }
-        public static string ToHexString(this IntPtr ptr, bool prefix)
+        public static string ToHexString(this IntPtr ptr, bool includePrefix)
         {
-            return ptr.ToHexString(prefix, IntPtr.Size);
+            return ptr.ToHexString(includePrefix, IntPtr.Size);
         }
-        public static string ToHexString(this IntPtr ptr, bool prefix, int pointerSize)
+        public static string ToHexString(this IntPtr ptr, bool includePrefix, int pointerSize)
         {
-            return (prefix ? "0x" : "") + ptr.ToString("X").PadLeft(2 * pointerSize, '0');
+            return (includePrefix ? Prefix : "") + ptr.ToString("X").PadLeft(2 * pointerSize, '0');
         }
     }
 }

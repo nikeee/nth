@@ -2,14 +2,16 @@
 {
     public static class Int32Extensions
     {
+        private const string Prefix = "0x";
+
         public static string ToHexString(this int i)
         {
             return i.ToHexString(true);
         }
 
-        public static string ToHexString(this int i, bool prefix)
+        public static string ToHexString(this int i, bool includePrefix)
         {
-            return (prefix ? "0x" : "") + i.ToString("X").PadLeft(8, '0');
+            return (includePrefix ? Prefix : "") + i.ToString("X").PadLeft(8, '0');
         }
     }
 }
