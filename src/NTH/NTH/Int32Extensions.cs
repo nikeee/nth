@@ -4,14 +4,14 @@
     {
         private const string Prefix = "0x";
 
-        public static string ToHexString(this int i)
+        public static string ToHexString(this int value)
         {
-            return i.ToHexString(true);
+            return value.ToHexString(true);
         }
 
-        public static string ToHexString(this int i, bool includePrefix)
+        public static string ToHexString(this int value, bool includePrefix)
         {
-            return (includePrefix ? Prefix : string.Empty) + i.ToString("X").PadLeft(8, '0');
+            return (includePrefix ? Prefix : string.Empty) + value.ToString("X").PadLeft(8, '0');
         }
     }
 }
