@@ -6,7 +6,7 @@ NTH library
 ## Reduce noise
 
 Extension methods help to reduce code noise.
-```
+```C#
 string foo = "bar";
 if(foo.IsNullOrEmpty())
 // ...
@@ -19,14 +19,14 @@ var baz2 = baz.StripWhiteSpace(); // baz2 == "thisissometextcontainingwhitespace
 ```
 
 Also available:
-```
+```C#
 foo.IsNullOrWhiteSpace();
 foo.IsNullOrDBNull();
 someChar.IsWhiteSpace();
 ```
 
 `MathEx` extending the Math class:
-```
+```C#
 MathEx.Max(1, 2, 3, 4, 5); // Using rest parameters
 MathEx.Max(1, 2, 3); // If there are ony 3 parameters, an optimized version is used
 // instead of
@@ -36,7 +36,7 @@ Math.Max(Math.Max(1, 2), 3);
 // available for int, long, float and double
 ```
 A `Pow()` method for integers:
-```
+```C#
 int @base = 2;
 int exponent = 4;
 int result = MathEx.Pow(@base, exponent);
@@ -51,7 +51,7 @@ int result = MathEx.Pow(@base, exponent);
 Using the CommandLine class, it is easier to handle command line arguments. Strings are automatically escaped and stuff.
 The CommandLine class has a `FilePath` property and a `Arguments` property. The arguments property is of type `ArgumentList` which can be used separately.
 
-```
+```C#
 static void Main(string[] argv)
 {
 	var newCommandLine = new CommandLine(@"C:\Demo.exe");
