@@ -85,5 +85,37 @@ namespace NTH.Tests
             res = MathEx.Max(300, -1, 0, 4, 13, 39, 42, 23, -4);
             Assert.AreEqual(300, res);
         }
+
+        [TestMethod]
+        public void Clamp()
+        {
+            var actual = MathEx.Clamp(1, 2, 3);
+            var expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp(2, 1, 3);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp(3, 1, 2);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp(3, 1, 1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp(1, 1, 1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp(2, 4, 6);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp(6, 0, 4);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
