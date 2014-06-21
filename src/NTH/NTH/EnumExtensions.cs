@@ -4,7 +4,6 @@ namespace NTH
 {
     public static class EnumExtensions
     {
-        // TODO: Tests
         public static T GetAttributeOfType<T>(this Enum value)
             where T : Attribute
         {
