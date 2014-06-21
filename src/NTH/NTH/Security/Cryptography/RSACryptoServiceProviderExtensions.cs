@@ -8,6 +8,10 @@ using NTH.NativeTypes;
 
 namespace NTH.Security.Cryptography
 {
+    /// <remarks> 
+    /// Evaluated from:
+    /// http://www.christian-etter.de/?p=771
+    /// </remarks>
     public static class RSACryptoServiceProviderExtensions
     {
         public static void ImportPublicKeyPem(this RSACryptoServiceProvider provider, string pemString)
