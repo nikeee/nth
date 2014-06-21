@@ -5,7 +5,7 @@ namespace NTH.Analysis
 {
     internal static class ArrayExtensions<T> where T : IComparable<T>
     {
-        public static int IndexOf(T[] array, T item)
+        internal static int IndexOf(T[] array, T item)
         {
             Debug.Assert(array != null);
             for (int i = 0; i < array.Length; ++i)
@@ -14,7 +14,7 @@ namespace NTH.Analysis
             return -1;
         }
 
-        public static int IndexOf(T[] array, T[] items)
+        internal static int IndexOf(T[] array, T[] items)
         {
             Debug.Assert(array != null);
 
@@ -40,13 +40,13 @@ namespace NTH.Analysis
             return -1;
         }
 
-        public static T[] Substring(T[] array, int startIndex)
+        internal static T[] Substring(T[] array, int startIndex)
         {
             Debug.Assert(array != null);
             return Substring(array, startIndex, array.Length - startIndex);
         }
 
-        public static T[] Substring(T[] array, int startIndex, int length)
+        internal static T[] Substring(T[] array, int startIndex, int length)
         {
             Debug.Assert(array != null);
             var min = Math.Min(length, array.Length - startIndex);
