@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Analysis\DiffFinderTests.cs" />
     <Compile Include="ByteSizeTests.cs" />
+    <Compile Include="EnumExtensionsTest.cs" />
     <Compile Include="MathExTests.cs" />
     <Compile Include="Text\EnumerableExtensionsTests.cs" />
     <Compile Include="Text\Formatting\ByteSizeFormatProviderTests.cs" />
