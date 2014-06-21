@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NTH
 {
@@ -18,6 +19,13 @@ namespace NTH
             if (attributes.Length == 0)
                 return null;
             return attributes[0] as T;
+        }
+
+        public static IEnumerable<Enum> GetFlags(this Enum input)
+        {
+            foreach (Enum value in Enum.GetValues(input.GetType()))
+                if (input.HasFlag(value))
+                    yield return value;
         }
     }
 }
