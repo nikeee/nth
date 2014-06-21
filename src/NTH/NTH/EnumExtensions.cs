@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NTH
 {
@@ -10,11 +11,11 @@ namespace NTH
         {
             var enumType = value.GetType();
             var memberInfo = enumType.GetMember(value.ToString());
-            
-            if(memberInfo.Length == 0)
+
+            if (memberInfo.Length == 0)
                 throw new ArgumentException("Invalid enum member");
 
-            var attributes = memberInfo[0].GetCustomAttributes(typeof (T), false);
+            var attributes = memberInfo[0].GetCustomAttributes(typeof(T), false);
 
             if (attributes.Length == 0)
                 return null;
