@@ -97,3 +97,5 @@ Thumbs.db
 !.nuget/NuGet.exe
 
 dist/*.nupkg
+
+*.user
