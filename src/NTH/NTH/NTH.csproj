@@ -65,7 +65,7 @@
     <Compile Include="Diagnostics\CommandLine.cs" />
     <Compile Include="Diagnostics\CommandLineUtil.cs" />
     <Compile Include="Diagnostics\ProcessEx.cs" />
-    <Compile Include="EnumUtil.cs" />
+    <Compile Include="EnumExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Int32Extensions.cs" />
     <Compile Include="IntPtrExtensions.cs" />
