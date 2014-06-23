@@ -12,7 +12,7 @@ namespace NTH.Runtime.InteropServices
         }
         public static IntPtr AllocStructGlobal<T>(int count)
         {
-            if(count < 1)
+            if (count < 1)
                 throw new ArgumentException("Invalid struct count");
 
             int size = Marshal.SizeOf(typeof(T));
@@ -22,6 +22,18 @@ namespace NTH.Runtime.InteropServices
         public static void FreeStructGlobal<T>(IntPtr hglobal)
         {
             Marshal.FreeHGlobal(hglobal);
+        }
+
+        public static void StructureToPtr<T>(T structure, IntPtr ptr, bool fDeleteOld)
+            where T : struct
+        {
+            Marshal.StructureToPtr(structure, ptr, fDeleteOld);
+        }
+
+        public static void DestroyStructure<T>(IntPtr ptr)
+            where T : struct
+        {
+            Marshal.DestroyStructure(ptr, typeof(T));
         }
     }
 }
