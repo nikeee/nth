@@ -1,9 +1,36 @@
 NTH library
 ===========
+## Contents
+1. [Documentation](#documentation)
+2. [Compatibility](#compatibility)
+3. [NuGet](#nuget)
+4. [Features](#features)
+    1. [Reduce Noise](#reduce-noise)
+    2. [CommandLine Class](#commandline)
+    3. [.ToHexString()](#tohexstring)
+    4. [.ReverseBits()](#reversebits)
+    5. [.ConvertToStruct&lt;T&gt;()](#converttostructt)
+    6. [ByteSize Class](#bytesize)
+    7. [Levenshtein Distance](#levenshtein-distance)
+    8. [TODO](#todo)
 
-# Features
+## Documentation
+The NTH library is documented [here](https://nikeee.github.io/nth). Also you can find several code annotations in the [source code](https://github.com/nikeee/nth/tree/master/src) using C#'s XML documentation style.
 
-## Reduce noise
+## Compatibility
+Currently, the NTH library can be used with .NET `4.0` (+ Client Profile), `4.5`, `4.5.1` and `4.5.2`. The binaries are compiled against .NET 4.0 AnyCPU. There are currently no plans to port this library to a .NET version < 4.
+
+## NuGet
+Install this library using NuGet:
+```
+PM> Install-Package NTH
+```
+The NuGet package is getting updated as soon as a new distribution build is available. The raw package contents (DLL files and XML documentation) are available [here](https://github.com/nikeee/nth/tree/master/dist/lib) for download, if needed.
+
+## Features
+Let's come to the good stuff, shall we?
+
+### Reduce Noise
 
 Extension methods help to reduce code noise.
 ```C#
@@ -52,10 +79,6 @@ int c = 3;
 int d = MathEx.Clamp(a, b, c); // d == 2
 ```
 
-
-## Helper classes
-
-
 ### CommandLine
 
 Using the CommandLine class, it is easier to handle command line arguments. Strings are automatically escaped and stuff.
@@ -103,7 +126,7 @@ byte a = 0x1;
 byte b = a.ReverseBits(); // 0b10000000
 ```
 
-### .ConvertToStruct<T>();
+### .ConvertToStruct&lt;T&gt;()
 Convert blob data (a byte array) to a typed struct instance.
 
 ```C#
@@ -166,4 +189,5 @@ var bestMatch = dictionary.OrderByLevenshteinDistanceTo(input).FirstOrDefault();
 Console.WriteLine("Did you mean " + bestMatch + "?"); // Did you mean bitte?
 ```
 
-// TODO
+### TODO
+// TODO: More to come soon!
