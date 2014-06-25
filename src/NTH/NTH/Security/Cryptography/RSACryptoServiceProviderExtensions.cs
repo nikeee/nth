@@ -92,7 +92,6 @@ namespace NTH.Security.Cryptography
             byte[] data = null;
 
             UInt32 dwCertPublicKeyInfoSize = 0;
-            //var pCertPublicKeyInfo = IntPtr.Zero;
 
             bool success = NativeMethods.CryptDecodeObject(
                     CryptEncodingFlags.X509AsnEncoding | CryptEncodingFlags.Pkcs7AsnEncoding,
@@ -116,21 +115,6 @@ namespace NTH.Security.Cryptography
             var info = data.ConvertToStruct<PublicKeyCertInfo>();
             var publicKey = new byte[info.PublicKey.cbData];
             Marshal.Copy(info.PublicKey.pbData, publicKey, 0, publicKey.Length);
-
-            /*
-            GCHandle handle = GCHandle.Alloc(data, GCHandleType.Pinned);
-            try
-            {
-                info = (PublicKeyCertInfo)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(PublicKeyCertInfo));
-                publicKey = new byte[info.PublicKey.cbData];
-                Marshal.Copy(info.PublicKey.pbData, publicKey, 0, publicKey.Length);
-            }
-            finally
-            {
-                handle.Free();
-            }
-            */
-
 
             return publicKey;
         }
