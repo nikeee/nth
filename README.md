@@ -140,9 +140,9 @@ fs++; // increment fs by one byte
 
 Console.WriteLine("Exact bytes: " + fs.ByteCount);
 
-fs += new ByteSize(1, BytePrefix.MibiByte); // + 1MiB
+fs += new ByteSize(1, ByteSizeUnit.MibiByte); // + 1MiB
 
-var twoGigabyte = new ByteSize(2, BytePrefix.GigaByte); // 2GB (not GiB)
+var twoGigabyte = new ByteSize(2, ByteSizeUnit.GigaByte); // 2GB (not GiB)
 bool areEqual = fs == twoGigabyte; // do these instances represent the same byte size?
 ```
 

@@ -56,8 +56,8 @@
     <Compile Include="Analysis\Rendering\ConsoleDiffRenderer.cs" />
     <Compile Include="Analysis\Rendering\GenericConsoleDiffRenderer.cs" />
     <Compile Include="Analysis\Rendering\IDiffRenderer.cs" />
-    <Compile Include="BytePrefix.cs" />
     <Compile Include="ByteSize.cs" />
+    <Compile Include="ByteSizeUnit.cs" />
     <Compile Include="Collections\Generic\EnumerableExtensions.cs" />
     <Compile Include="Diagnostics\ArgumentList.cs" />
     <Compile Include="Diagnostics\CommandLine.cs" />
