@@ -108,6 +108,11 @@
 )
 </PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>If Not Exist "$(ProjectDir)NTH-Key.pfx" (
+    copy "T:\Static\NTH-Key.pfx" "$(ProjectDir)NTH-Key.pfx"
+)</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
