@@ -43,6 +43,17 @@ int result = MathEx.Pow(@base, exponent);
 // same for long
 ```
 
+Clamp for bytes, shorts, ints, longs, floats, doubles and decimals.
+```C#
+int a = 1;
+int b = 2;
+int c = 3;
+
+int d = MathEx.Clamp(a, b, c); // d == 2
+
+```
+
+
 ## Helper classes
 
 
@@ -118,6 +129,42 @@ int c = instance.Field2; // == 0x05040302 (Little Endian and stuff)
 
 ```
 
+### ByteSize
 
+```C#
+var fileByteCount = new FileInfo(Assembly.GetEntryAssembly().Location).Length; // e.g. 5120
+
+var fs = new ByteSize(fileByteCount);
+Console.WriteLine(fs.ToString()); // 5 KiB
+
+fs++; // increment fs by one byte
+
+Console.WriteLine("Exact bytes: " + fs.ByteCount);
+
+fs += new ByteSize(1, BytePrefix.MibiByte); // + 1MiB
+
+var twoGigabyte = new ByteSize(2, BytePrefix.GigaByte); // 2GB (not GiB)
+bool areEqual = fs == twoGigabyte; // do these instances represent the same byte size?
+```
+
+### Levenshtein Distance
+
+```C#
+string tier = "tier";
+string tor = "tor";
+var distance = tier.LevenshteinDistanceTo(tor);
+Console.WriteLine(distance); // 2
+
+// dictionary:
+var dictionary = new[] {
+	"bier",
+	"bitte",
+	"bitter",
+	"besen"
+};
+var input = "biete";
+var bestMatch = dictionary.OrderByLevenshteinDistanceTo(input).FirstOrDefault();
+Console.WriteLine("Did you mean " + bestMatch + "?"); // Did you mean bitte?
+```
 
 // TODO
