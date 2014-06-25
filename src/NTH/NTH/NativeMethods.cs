@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NTH.NativeTypes;
+using System;
 using System.Runtime.InteropServices;
 using System.Text;
-using NTH.NativeTypes;
 
 namespace NTH
 {

@@ -22,13 +22,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *********************************************************************************/
 
+using NTH.IO;
+using NTH.NativeTypes;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
-using NTH.IO;
-using NTH.NativeTypes;
 
 namespace NTH.Security.Cryptography
 {
