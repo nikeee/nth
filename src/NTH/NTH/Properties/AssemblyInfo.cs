@@ -19,6 +19,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("1.0.3.0")]
 [assembly: NeutralResourcesLanguage("en")]
 
-#if DEBUG // currently only test debug builds
-[assembly: InternalsVisibleTo("NTH.Tests", AllInternalsVisible = true)]
-#endif

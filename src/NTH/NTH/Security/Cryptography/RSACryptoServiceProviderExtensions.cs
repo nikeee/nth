@@ -32,7 +32,7 @@ using System.Security.Cryptography;
 
 namespace NTH.Security.Cryptography
 {
-    /// <remarks> 
+    /// <remarks>
     /// This file was evaluated from <see cref="http://www.christian-etter.de/?p=771">CE's Blog</see>.
     /// The code has been adopted to the coding standards of this project.
     /// It was published with the approval of the original author.

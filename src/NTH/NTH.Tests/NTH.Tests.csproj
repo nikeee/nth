@@ -43,6 +43,12 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>NTH-Key.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -95,6 +101,9 @@
     <EmbeddedResource Include="Resources\RSACryptoServiceProviderExtensionPrivateKey.pem" />
     <EmbeddedResource Include="Resources\RSACryptoServiceProviderExtensionPublicKey.der" />
     <EmbeddedResource Include="Resources\RSACryptoServiceProviderExtensionPublicKey.pem" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NTH-Key.pfx" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
