@@ -76,4 +76,48 @@ static void Main(string[] argv)
 }
 ```
 
+### .ToHexString()
+There is a `.ToHexString()` extension method for `IntPtr` and `Int32`.
+```C#
+var pointer = new IntPtr(0xABCD);
+var str = pointer.ToHexString(); // "0x0000ABCD" (if current application is running as a 32-bit process)
+// The prefix can be excluded using an overload
+// If You want a specific padding (e.g. for a 64 bit pointer), you can do this explicitly using an overload:
+str = pointer.ToHexString(false, 8); // "000000000000ABCD"
+```
+
+### .ReverseBits()
+Reverse the bit order of a byte value:
+```C#
+byte a = 0x1;
+byte b = a.ReverseBits(); // 0b10000000
+```
+
+### .ConvertToStruct<T>();
+Convert blob data (a byte array) to a typed struct instance.
+
+```C#
+[StructLayout(LayoutKind.Explicit)]
+struct SomeStruct
+{
+	[FieldOffset(0)]
+	public byte Field1;
+	[FieldOffset(1)]
+	public int Field2;
+	[FieldOffset(5)]
+	public float Field3;
+}
+// sizeof(SomeStruct) == 1 + 4 + 4 == 9 byte
+
+byte[] blobData = new byte[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+SomeStruct instance = blobData.ConvertToStruct<SomeStruct>();
+
+byte b = instance.Field1; // == 1
+int c = instance.Field2; // == 0x05040302 (Little Endian and stuff)
+
+```
+
+
+
 // TODO
