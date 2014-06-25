@@ -64,6 +64,9 @@ namespace NTH.IO
                 throw new ArgumentNullException("bytes");
             // Debug.Assert(bytes != null);
 
+            if(Marshal.SizeOf(typeof(T)) != bytes.Length)
+                throw new ArgumentException("Given bytes do not match the native type size.");
+
             var handle = default(GCHandle);
             try
             {
