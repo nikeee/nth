@@ -60,11 +60,16 @@ namespace NTH.IO
         public static T ConvertToStruct<T>(this byte[] bytes)
             where T : struct
         {
+            return bytes.ConvertToStruct<T>(false);
+        }
+        public static T ConvertToStruct<T>(this byte[] bytes, bool ignoreSize)
+            where T : struct
+        {
             if (bytes == null)
                 throw new ArgumentNullException("bytes");
             // Debug.Assert(bytes != null);
 
-            if(Marshal.SizeOf(typeof(T)) != bytes.Length)
+            if (!ignoreSize && Marshal.SizeOf(typeof(T)) != bytes.Length)
                 throw new ArgumentException("Given bytes do not match the native type size.");
 
             var handle = default(GCHandle);

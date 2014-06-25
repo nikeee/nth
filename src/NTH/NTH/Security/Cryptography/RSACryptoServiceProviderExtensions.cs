@@ -112,7 +112,7 @@ namespace NTH.Security.Cryptography
             if (!success)
                 throw new Win32Exception();
 
-            var info = data.ConvertToStruct<PublicKeyCertInfo>();
+            var info = data.ConvertToStruct<PublicKeyCertInfo>(true);
             var publicKey = new byte[info.PublicKey.cbData];
             Marshal.Copy(info.PublicKey.pbData, publicKey, 0, publicKey.Length);
 
