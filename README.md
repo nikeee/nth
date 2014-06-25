@@ -43,14 +43,13 @@ int result = MathEx.Pow(@base, exponent);
 // same for long
 ```
 
-Clamp for bytes, shorts, ints, longs, floats, doubles and decimals.
+`Clamp` for bytes, shorts, ints, longs, floats, doubles and decimals.
 ```C#
 int a = 1;
 int b = 2;
 int c = 3;
 
 int d = MathEx.Clamp(a, b, c); // d == 2
-
 ```
 
 
