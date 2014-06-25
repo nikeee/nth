@@ -28,6 +28,7 @@ namespace NTH.Security.Cryptography
 
         #region Ctors
 
+        /// <summary>Initializes a new instance of <see cref="NTH.Security.Cryptography.Crc32" />.</summary>
         public Crc32()
             : this(DefaultPolynomial, DefaultSeed)
         { }
@@ -43,6 +44,7 @@ namespace NTH.Security.Cryptography
         
         public override int HashSize { get { return 32; } }
 
+        /// <summary>Initializes <see cref="NTH.Security.Cryptography.Crc32" />.</summary>
         public override void Initialize()
         {
             _hash = _seed;

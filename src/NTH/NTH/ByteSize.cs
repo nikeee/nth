@@ -5,7 +5,7 @@ namespace NTH
     public class ByteSize
     {
         private static ByteSize _zero;
-        public static ByteSize Zero { get { return _zero ?? (_zero = new ByteSize(0, BytePrefix.Bytes)); } }
+        public static ByteSize Zero { get { return _zero ?? (_zero = new ByteSize(0, ByteSizeUnit.Bytes)); } }
 
         private readonly long _byteCount;
 
@@ -17,9 +17,9 @@ namespace NTH
             : this(0)
         { }
         public ByteSize(long bytes)
-            : this(bytes, BytePrefix.Bytes)
+            : this(bytes, ByteSizeUnit.Bytes)
         { }
-        public ByteSize(long prefixedBytes, BytePrefix type)
+        public ByteSize(long prefixedBytes, ByteSizeUnit type)
         {
             if (prefixedBytes == 0)
             {
@@ -27,7 +27,7 @@ namespace NTH
                 return;
             }
 
-            if (type != BytePrefix.Bytes)
+            if (type != ByteSizeUnit.Bytes)
             {
                 int kind = (int)type >> 8;
                 int factorIdentifier = (int)type & 0xff;
@@ -53,7 +53,7 @@ namespace NTH
             if (bs1 == null)
             {
                 if (bs2 == null)
-                    return new ByteSize(0, BytePrefix.Bytes);
+                    return new ByteSize(0, ByteSizeUnit.Bytes);
                 return new ByteSize(bs2.ByteCount);
             }
             if (bs2 == null)
@@ -69,7 +69,7 @@ namespace NTH
             if (bs1 == null)
             {
                 if (bs2 == null)
-                    return new ByteSize(0, BytePrefix.Bytes);
+                    return new ByteSize(0, ByteSizeUnit.Bytes);
                 return new ByteSize(-bs2.ByteCount);
             }
             if (bs2 == null)

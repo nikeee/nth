@@ -41,9 +41,9 @@ namespace NTH.IO
             0x1f, 0x9f, 0x5f, 0xdf, 0x3f, 0xbf, 0x7f, 0xff
         };
 
-        public static byte ReverseBits(this byte b)
+        public static byte ReverseBits(this byte value)
         {
-            return BitReverseTable[b];
+            return BitReverseTable[value];
 #if FALSE
             return (byte)
                     (((b & 0x01) << 7)

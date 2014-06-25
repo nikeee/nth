@@ -4,22 +4,21 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{431AF39E-76AC-4E44-8B72-E71800030548}</ProjectGuid>
+    <ProjectGuid>{F985EE7B-4937-426F-A33F-A97939C39291}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NTH</RootNamespace>
     <AssemblyName>NTH</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug40\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;FEATURE_FULL_FX</DefineConstants>
+    <OutputPath>bin\Debug40-client\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -28,25 +27,24 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release40\</OutputPath>
-    <DefineConstants>TRACE;FEATURE_FULL_FX</DefineConstants>
+    <OutputPath>bin\Release40-client\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Distribution|AnyCPU'">
-    <OutputPath>bin\Distribution40\</OutputPath>
-    <DefineConstants>TRACE;FEATURE_FULL_FX</DefineConstants>
+    <OutputPath>bin\Distribution40-client\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Distribution40\NTH.xml</DocumentationFile>
+    <DocumentationFile>bin\Distribution40-client\NTH.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analysis\ArrayExtensions.cs" />
@@ -58,8 +56,8 @@
     <Compile Include="Analysis\Rendering\ConsoleDiffRenderer.cs" />
     <Compile Include="Analysis\Rendering\GenericConsoleDiffRenderer.cs" />
     <Compile Include="Analysis\Rendering\IDiffRenderer.cs" />
-    <Compile Include="ByteSizeUnit.cs" />
     <Compile Include="ByteSize.cs" />
+    <Compile Include="ByteSizeUnit.cs" />
     <Compile Include="Collections\Generic\EnumerableExtensions.cs" />
     <Compile Include="Diagnostics\ArgumentList.cs" />
     <Compile Include="Diagnostics\CommandLine.cs" />
@@ -75,16 +73,10 @@
     <Compile Include="IO\EndianUtil.cs" />
     <Compile Include="MathEx.cs" />
     <Compile Include="NativeMethods.cs" />
-    <Compile Include="NativeTypes\CryptDecodeFlags.cs" />
-    <Compile Include="NativeTypes\CryptEncodingFlags.cs" />
-    <Compile Include="NativeTypes\CryptOutputTypes.cs" />
-    <Compile Include="NativeTypes\CryptStringFlags.cs" />
-    <Compile Include="NativeTypes\PublicKeyCertInfo.cs" />
     <Compile Include="PrefixType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runtime\InteropServices\MarshalEx.cs" />
     <Compile Include="Security\Cryptography\Crc32.cs" />
-    <Compile Include="Security\Cryptography\RSACryptoServiceProviderExtensions.cs" />
     <Compile Include="Text\CharExtensions.cs" />
     <Compile Include="Text\DamerauLevenshteinDistanceMetric.cs" />
     <Compile Include="Text\EnumerableExtensions.cs" />
@@ -97,8 +89,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>IF "$(ConfigurationName)" == "Distribution" (
-    copy "$(TargetPath)" "$(SolutionDir)..\..\dist\lib\net40\$(TargetFileName)"
-    copy "$(TargetDir)$(TargetName).xml" "$(SolutionDir)..\..\dist\lib\net40\$(TargetName).xml"
+    copy "$(TargetPath)" "$(SolutionDir)..\..\dist\lib\net40-client\$(TargetFileName)"
+    copy "$(TargetDir)$(TargetName).xml" "$(SolutionDir)..\..\dist\lib\net40-client\$(TargetName).xml"
 )
 </PostBuildEvent>
   </PropertyGroup>

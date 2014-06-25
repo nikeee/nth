@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NTH.Text;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NTH.Tests.Text
 {

@@ -1,6 +1,6 @@
 ﻿namespace NTH
 {
-    public enum BytePrefix
+    public enum ByteSizeUnit
     {
         Bytes = 0x000,
 

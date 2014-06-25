@@ -1,0 +1,22 @@
+﻿using System;
+
+namespace NTH
+{
+    public static class IntPtrExtensions
+    {
+        private const string Prefix = "0x";
+
+        public static string ToHexString(this IntPtr value)
+        {
+            return value.ToHexString(true);
+        }
+        public static string ToHexString(this IntPtr value, bool includePrefix)
+        {
+            return value.ToHexString(includePrefix, IntPtr.Size);
+        }
+        public static string ToHexString(this IntPtr value, bool includePrefix, int pointerSize)
+        {
+            return (includePrefix ? Prefix : string.Empty) + value.ToString("X").PadLeft(2 * pointerSize, '0');
+        }
+    }
+}
