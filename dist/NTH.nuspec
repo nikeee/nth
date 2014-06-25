@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>NTH</id>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
         <authors>Niklas Mollenhauer</authors>
         <licenseUrl>https://raw.github.com/nikeee/nth/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/nikeee/nth</projectUrl>
