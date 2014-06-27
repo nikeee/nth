@@ -102,9 +102,14 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>If "$(ConfigurationName)" == "Distribution" (
-    copy "$(TargetPath)" "$(SolutionDir)..\..\dist\lib\net40-client\$(TargetFileName)"
-    copy "$(TargetDir)$(TargetName).xml" "$(SolutionDir)..\..\dist\lib\net40-client\$(TargetName).xml"
+    <PostBuildEvent>set configname=Distribution
+set dlldestination=$(SolutionDir)..\..\dist\lib\net40-client\$(TargetFileName)
+set xmldestination=$(SolutionDir)..\..\dist\lib\net40-client\$(TargetName).xml
+If "$(ConfigurationName)" == %25configname%25 (
+	copy "$(TargetPath)" %25dlldestination%25
+	copy "$(TargetDir)$(TargetName).xml" %25xmldestination%25
+) else (
+	echo [build copy job] Not on distribution build
 )
 </PostBuildEvent>
   </PropertyGroup>
@@ -116,12 +121,13 @@ If Not Exist %25keydest%25 (
 		If Exist %25keysource%25 (
 			copy %25keysource%25 %25keydest%25
 		) else (
-			echo Key file not existent.
+			echo [pfx copy job] Key file not existent.
 		)
 	) else (
-		echo Not on distribution build.
+		echo [pfx copy job] Not on distribution build.
 	)
-)</PreBuildEvent>
+)
+</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
