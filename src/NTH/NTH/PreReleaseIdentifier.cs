@@ -37,6 +37,14 @@ namespace NTH
             }
         }
 
+        public PreReleaseIdentifier(string identifier)
+        {
+            if (string.IsNullOrWhiteSpace(identifier))
+                throw new ArgumentNullException("identifier");
+            Value = identifier;
+        }
+
+
         public int GetIntegerValue()
         {
             if (!IsDigitValue)
@@ -44,11 +52,50 @@ namespace NTH
             return int.Parse(Value);
         }
 
-        public PreReleaseIdentifier(string identifier)
+        #region operators
+
+        #region ==
+
+        public static bool operator ==(PreReleaseIdentifier a, PreReleaseIdentifier b)
         {
-            if (string.IsNullOrWhiteSpace(identifier))
-                throw new ArgumentNullException("identifier");
-            Value = identifier;
+            if (ReferenceEquals(a, b))
+                return true;
+            if ((object)a == null || (object)b == null)
+                return false;
+
+            return a._value == b._value; // TODO: case (in)sensitive?
         }
+
+        public static bool operator !=(PreReleaseIdentifier a, PreReleaseIdentifier b)
+        {
+            return !(a == b);
+        }
+
+        #endregion
+        #region equals
+
+        public override bool Equals(object obj)
+        {
+            var p = obj as PreReleaseIdentifier;
+            if (p == null)
+                return false;
+            return p._value == _value; // TODO: case (in)sensitive?
+        }
+
+        public bool Equals(PreReleaseIdentifier obj)
+        {
+            if (obj == null)
+                return false;
+            return obj._value == _value; // TODO: case (in)sensitive?
+        }
+
+        // public override int GetHashCode()
+        // {
+        //     return _value.GetHashCode();
+        // }
+
+        #endregion
+        #endregion
+
     }
 }
