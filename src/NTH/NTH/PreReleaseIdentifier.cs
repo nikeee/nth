@@ -54,6 +54,30 @@ namespace NTH
 
         #region operators
 
+        #region >
+
+        public static bool operator >(PreReleaseIdentifier a, PreReleaseIdentifier b)
+        {
+            if (a.IsDigitValue && b.IsDigitValue)
+            {
+                return a.GetIntegerValue() > b.GetIntegerValue();
+            }
+            throw new NotImplementedException();
+        }
+
+        #endregion
+        #region <
+
+        public static bool operator <(PreReleaseIdentifier a, PreReleaseIdentifier b)
+        {
+            if (a.IsDigitValue && b.IsDigitValue)
+            {
+                return a.GetIntegerValue() < b.GetIntegerValue();
+            }
+            throw new NotImplementedException();
+        }
+
+        #endregion
         #region ==
 
         public static bool operator ==(PreReleaseIdentifier a, PreReleaseIdentifier b)
@@ -95,6 +119,7 @@ namespace NTH
         // }
 
         #endregion
+
         #endregion
 
     }
