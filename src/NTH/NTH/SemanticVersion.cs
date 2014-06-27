@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web.UI.WebControls;
 
 namespace NTH
 {
@@ -16,7 +17,7 @@ namespace NTH
         public int Minor { get; set; }
         public int Patch { get; set; }
 
-        public IList<PreReleaseIdentifier> PrereleaseIdentifier { get; set; }
+        public IList<PreReleaseIdentifier> PreReleaseIdentifier { get; set; }
         public IList<BuildMetadata> BuildMetadata { get; set; }
 
         public SemanticVersion(int major, int minor, int patch)
@@ -35,7 +36,7 @@ namespace NTH
             Minor = minor;
             Patch = patch;
 
-            PrereleaseIdentifier = preRelease;
+            PreReleaseIdentifier = preRelease;
             BuildMetadata = build;
         }
 
@@ -203,6 +204,68 @@ namespace NTH
         }
 
         #endregion
+        #region operators
+
+        #region >
+
+        public static bool operator >(SemanticVersion a, SemanticVersion b)
+        {
+            if (a.Major > b.Major)
+                return true;
+            if (a.Major != b.Major) // major of b is greater than b
+                return false;
+            // if getting here, majors are the same
+
+            if (a.Minor > b.Minor)
+                return true;
+            if (a.Minor != b.Minor) // minor of b is greater than b
+                return false;
+            // if getting here, minors are the same
+
+            if (a.Patch > b.Patch)
+                return true;
+            if (a.Patch != b.Patch)
+                return false;
+            // if getting here, Patch are the same
+
+            // it's up to the pre-release identifier
+
+            throw new NotImplementedException();
+            //return a.PreReleaseIdentifier > b.PreReleaseIdentifier;
+        }
+
+        #endregion
+        #region <
+
+        public static bool operator <(SemanticVersion a, SemanticVersion b)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+        #region ==
+
+        public static bool operator ==(SemanticVersion a, SemanticVersion b)
+        {
+            if (ReferenceEquals(a, b))
+                return true;
+            if ((object)a == null || (object)b == null)
+                return false;
+
+            return a.Major == b.Major
+                    && a.Minor == b.Minor
+                    && a.Patch == b.Patch
+                    && a.PreReleaseIdentifier == b.PreReleaseIdentifier;
+        }
+
+        public static bool operator !=(SemanticVersion a, SemanticVersion b)
+        {
+            return !(a == b);
+        }
+
+        #endregion
+
+        #endregion
 
         public override string ToString()
         {
@@ -210,10 +273,10 @@ namespace NTH
 
             sb.Append(Major).Append('.').Append(Minor).Append('.').Append(Patch);
 
-            if (PrereleaseIdentifier != null && PrereleaseIdentifier.Count > 0)
+            if (PreReleaseIdentifier != null && PreReleaseIdentifier.Count > 0)
             {
                 sb.Append('-');
-                sb.Append(string.Join(".", PrereleaseIdentifier));
+                sb.Append(string.Join(".", PreReleaseIdentifier));
             }
             if (BuildMetadata != null && BuildMetadata.Count > 0)
             {
