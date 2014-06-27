@@ -44,7 +44,7 @@
     <DocumentationFile>bin\Distribution40\NTH.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>NTH-Key.pfx</AssemblyOriginatorKeyFile>
@@ -91,6 +91,7 @@
     <Compile Include="Runtime\InteropServices\MarshalEx.cs" />
     <Compile Include="Security\Cryptography\Crc32.cs" />
     <Compile Include="Security\Cryptography\RSACryptoServiceProviderExtensions.cs" />
+    <Compile Include="SemanticVersion.cs" />
     <Compile Include="Text\CharExtensions.cs" />
     <Compile Include="Text\DamerauLevenshteinDistanceMetric.cs" />
     <Compile Include="Text\EnumerableExtensions.cs" />
@@ -110,6 +111,22 @@
     copy "$(TargetDir)$(TargetName).xml" "$(SolutionDir)..\..\dist\lib\net40\$(TargetName).xml"
 )
 </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>set keysource=T:\Static\NTH-Key.pfx
+set keydest=$(ProjectDir)NTH-Key.pfx
+If Not Exist %25keydest%25 (
+	If "$(ConfigurationName)" == "Distribution" (
+		If Exist %25keysource%25 (
+			copy %25keysource%25 %25keydest%25
+		) else (
+			echo Key file not existent.
+		)
+	) else (
+		echo Not on distribution build.
+	)
+)
+</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

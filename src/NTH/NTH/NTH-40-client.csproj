@@ -43,7 +43,7 @@
     <DocumentationFile>bin\Distribution40-client\NTH.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>NTH-Key.pfx</AssemblyOriginatorKeyFile>
@@ -102,15 +102,25 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>IF "$(ConfigurationName)" == "Distribution" (
+    <PostBuildEvent>If "$(ConfigurationName)" == "Distribution" (
     copy "$(TargetPath)" "$(SolutionDir)..\..\dist\lib\net40-client\$(TargetFileName)"
     copy "$(TargetDir)$(TargetName).xml" "$(SolutionDir)..\..\dist\lib\net40-client\$(TargetName).xml"
 )
 </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>If Not Exist "$(ProjectDir)NTH-Key.pfx" (
-    copy "T:\Static\NTH-Key.pfx" "$(ProjectDir)NTH-Key.pfx"
+    <PreBuildEvent>set keysource=T:\Static\NTH-Key.pfx
+set keydest=$(ProjectDir)NTH-Key.pfx
+If Not Exist %25keydest%25 (
+	If "$(ConfigurationName)" == "Distribution" (
+		If Exist %25keysource%25 (
+			copy %25keysource%25 %25keydest%25
+		) else (
+			echo Key file not existent.
+		)
+	) else (
+		echo Not on distribution build.
+	)
 )</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
