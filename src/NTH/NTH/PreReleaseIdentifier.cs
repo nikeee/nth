@@ -45,14 +45,14 @@ namespace NTH
         }
 
 
-        public int GetIntegerValue()
+        public int GetDigitValue()
         {
             if (!IsDigitValue)
                 throw new InvalidOperationException();
             return int.Parse(Value);
         }
 
-        public string GetStringValue()
+        public string GetRawValue()
         {
             return _value;
         }
@@ -67,7 +67,7 @@ namespace NTH
             bool isBDigit = b.IsDigitValue;
             if (isADigit && isBDigit)
             {
-                return a.GetIntegerValue() > b.GetIntegerValue();
+                return a.GetDigitValue() > b.GetDigitValue();
             }
 
             // Numeric identifiers always have lower precedence than non-numeric identifiers
@@ -76,8 +76,8 @@ namespace NTH
             if (isBDigit)
                 return true;
             
-            var valueA = a.GetStringValue();
-            var valueB = b.GetStringValue();
+            var valueA = a.GetRawValue();
+            var valueB = b.GetRawValue();
 
             // taking a short one here
             if (valueA == valueB)
@@ -113,7 +113,7 @@ namespace NTH
             bool isBDigit = b.IsDigitValue;
             if (isADigit && isBDigit)
             {
-                return a.GetIntegerValue() < b.GetIntegerValue();
+                return a.GetDigitValue() < b.GetDigitValue();
             }
 
             // Numeric identifiers always have lower precedence than non-numeric identifiers
@@ -122,8 +122,8 @@ namespace NTH
             if (isBDigit)
                 return false;
             
-            var valueA = a.GetStringValue();
-            var valueB = b.GetStringValue();
+            var valueA = a.GetRawValue();
+            var valueB = b.GetRawValue();
 
             // taking a short one here
             if (valueA == valueB)

@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace NTH
 {
-    public class PreReleaseIdentifierList : List<PreReleaseIdentifier>
+    public class PreReleaseIdentifierList : Collection<PreReleaseIdentifier>
     {
         public PreReleaseIdentifierList(IEnumerable<PreReleaseIdentifier> collection)
-            : base(collection)
+            : base(collection.ToList())
         { }
         public PreReleaseIdentifierList()
         { }
