@@ -382,6 +382,7 @@ namespace NTH
 
         public int CompareTo(SemanticVersion other)
         {
+            // TODO: Tests
             if (this == other)
                 return 0;
             if (this < other)
