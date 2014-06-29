@@ -44,7 +44,7 @@
     <DocumentationFile>bin\Distribution40\NTH.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>NTH-Key.pfx</AssemblyOriginatorKeyFile>
@@ -64,6 +64,7 @@
     <Compile Include="Analysis\Rendering\ConsoleDiffRenderer.cs" />
     <Compile Include="Analysis\Rendering\GenericConsoleDiffRenderer.cs" />
     <Compile Include="Analysis\Rendering\IDiffRenderer.cs" />
+    <Compile Include="BuildMetadata.cs" />
     <Compile Include="ByteSizeUnit.cs" />
     <Compile Include="ByteSize.cs" />
     <Compile Include="Collections\Generic\EnumerableExtensions.cs" />
@@ -87,10 +88,13 @@
     <Compile Include="NativeTypes\CryptStringFlags.cs" />
     <Compile Include="NativeTypes\PublicKeyCertInfo.cs" />
     <Compile Include="PrefixType.cs" />
+    <Compile Include="PreReleaseIdentifier.cs" />
+    <Compile Include="PreReleaseIdentifierCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runtime\InteropServices\MarshalEx.cs" />
     <Compile Include="Security\Cryptography\Crc32.cs" />
     <Compile Include="Security\Cryptography\RSACryptoServiceProviderExtensions.cs" />
+    <Compile Include="SemanticVersion.cs" />
     <Compile Include="Text\CharExtensions.cs" />
     <Compile Include="Text\DamerauLevenshteinDistanceMetric.cs" />
     <Compile Include="Text\EnumerableExtensions.cs" />
@@ -105,11 +109,32 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>IF "$(ConfigurationName)" == "Distribution" (
-    copy "$(TargetPath)" "$(SolutionDir)..\..\dist\lib\net40\$(TargetFileName)"
-    copy "$(TargetDir)$(TargetName).xml" "$(SolutionDir)..\..\dist\lib\net40\$(TargetName).xml"
+    <PostBuildEvent>set configname=Distribution
+set dlldestination=$(SolutionDir)..\..\dist\lib\net40\$(TargetFileName)
+set xmldestination=$(SolutionDir)..\..\dist\lib\net40\$(TargetName).xml
+If "$(ConfigurationName)" == %25configname%25 (
+	copy "$(TargetPath)" %25dlldestination%25
+	copy "$(TargetDir)$(TargetName).xml" %25xmldestination%25
+) else (
+	echo [build copy job] Not on distribution build
 )
 </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>set keysource=T:\Static\NTH-Key.pfx
+set keydest=$(ProjectDir)NTH-Key.pfx
+If Not Exist %25keydest%25 (
+	If "$(ConfigurationName)" == "Distribution" (
+		If Exist %25keysource%25 (
+			copy %25keysource%25 %25keydest%25
+		) else (
+			echo [pfx copy job] Key file not existent.
+		)
+	) else (
+		echo [pfx copy job] Not on distribution build.
+	)
+)
+</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
