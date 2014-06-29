@@ -90,6 +90,10 @@ namespace NTH.Tests
             // From: https://github.com/mojombo/semver/blob/master/semver.md
             // "Example: 1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0."
 
+            var t1 = SemanticVersion.Parse("1.0.0-1");
+            var t2 = SemanticVersion.Parse("1.0.0-2");
+            Assert.IsTrue(t1 < t2);
+
             var alpha = SemanticVersion.Parse("1.0.0-alpha");
             var alpha1 = SemanticVersion.Parse("1.0.0-alpha.1");
             Assert.IsTrue(alpha < alpha1);
