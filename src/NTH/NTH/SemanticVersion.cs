@@ -10,7 +10,7 @@ namespace NTH
     /// <summary>
     /// Represents a semantic version 2.0.0 as described in <a href="http://semver.org/spec/v2.0.0.html">the SemVer specification</a>.
     /// </summary>
-    public class SemanticVersion
+    public class SemanticVersion : IComparable<SemanticVersion>
     {
         public int Major { get; set; }
         public int Minor { get; set; }
@@ -59,7 +59,7 @@ namespace NTH
                 throw new ArgumentNullException("version");
 
             result = null;
-            
+
             var res = Regex.Match(version, SemanticVersionPattern);
 
             int major, minor, patch;
@@ -92,7 +92,7 @@ namespace NTH
         {
             if (string.IsNullOrWhiteSpace(version))
                 throw new ArgumentNullException("version");
-            
+
             var res = Regex.Match(version, SemanticVersionPattern);
 
             int major = int.Parse(res.Groups["major"].Value);
@@ -375,6 +375,20 @@ namespace NTH
         }
 
         #endregion
+
+        #endregion
+
+        #region IComparable
+
+        public int CompareTo(SemanticVersion other)
+        {
+            if (this == other)
+                return 0;
+            if (this < other)
+                return -1;
+            // if (this > other)
+            return 1; // must be greater.
+        }
 
         #endregion
 
