@@ -75,9 +75,7 @@ namespace NTH
                 return false;
             if (isBDigit)
                 return true;
-
-            // TODO: what if a is a digit value and b not?
-
+            
             var valueA = a.GetStringValue();
             var valueB = b.GetStringValue();
 
@@ -123,9 +121,7 @@ namespace NTH
                 return true;
             if (isBDigit)
                 return false;
-
-            // TODO: what if a is a digit value and b not?
-
+            
             var valueA = a.GetStringValue();
             var valueB = b.GetStringValue();
 
