@@ -48,12 +48,10 @@ namespace NTH
 
         #region Parsing
 
-        private const string end = "$";
-        private const string optional = "?";
-        private const string versionCore = @"^((?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+))";
-        private const string preRelease = @"(-(?<pre>[a-zA-Z0-9-.]+))" + optional;
-        private const string buildMetadata = @"(\+(?<build>[a-zA-Z0-9-.]+))" + optional;
-        private const string semVer = versionCore + preRelease + buildMetadata + end;
+        private const string SemanticVersionCorePattern = @"^((?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+))";
+        private const string PreReleasePattern = @"(-(?<pre>[a-zA-Z0-9-.]+))?";
+        private const string BuildMetadataPattern = @"(\+(?<build>[a-zA-Z0-9-.]+))?";
+        private const string SemanticVersionPattern = SemanticVersionCorePattern + PreReleasePattern + BuildMetadataPattern + "$";
 
         public static bool TryParse(string version, out SemanticVersion result)
         {
@@ -62,7 +60,7 @@ namespace NTH
 
             result = null;
             
-            var res = Regex.Match(version, semVer);
+            var res = Regex.Match(version, SemanticVersionPattern);
             int major, minor, patch;
             
             if (!int.TryParse(res.Groups["major"].Value, out major))
@@ -95,7 +93,7 @@ namespace NTH
             if (string.IsNullOrWhiteSpace(version))
                 throw new ArgumentNullException("version");
             
-            var res = Regex.Match(version, semVer);
+            var res = Regex.Match(version, SemanticVersionPattern);
 
             int major = int.Parse(res.Groups["major"].Value);
             int minor = int.Parse(res.Groups["minor"].Value);
