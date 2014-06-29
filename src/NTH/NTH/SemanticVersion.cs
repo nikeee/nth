@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -17,13 +18,13 @@ namespace NTH
         public int Minor { get; set; }
         public int Patch { get; set; }
 
-        public IList<PreReleaseIdentifier> PreReleaseIdentifier { get; set; }
+        public PreReleaseIdentifierList PreReleaseIdentifier { get; set; }
         public IList<BuildMetadata> BuildMetadata { get; set; }
 
         public SemanticVersion(int major, int minor, int patch)
             : this(major, minor, patch, null, null)
         { }
-        public SemanticVersion(int major, int minor, int patch, IList<PreReleaseIdentifier> preRelease, IList<BuildMetadata> build)
+        public SemanticVersion(int major, int minor, int patch, IEnumerable<PreReleaseIdentifier> preRelease, IList<BuildMetadata> build)
         {
             if (major < 0)
                 throw new ArgumentException("major must be greater or equal to zero");
@@ -36,7 +37,7 @@ namespace NTH
             Minor = minor;
             Patch = patch;
 
-            PreReleaseIdentifier = preRelease;
+            PreReleaseIdentifier = new PreReleaseIdentifierList(preRelease);
             BuildMetadata = build;
         }
 
@@ -284,6 +285,39 @@ namespace NTH
                 sb.Append(string.Join(".", BuildMetadata));
             }
             return sb.ToString();
+        }
+    }
+
+    public class PreReleaseIdentifierList : List<PreReleaseIdentifier>
+    {
+        public PreReleaseIdentifierList(IEnumerable<PreReleaseIdentifier> collection)
+            : base(collection)
+        { }
+
+
+        public static bool operator >(PreReleaseIdentifierList a, PreReleaseIdentifierList b)
+        {
+            var max = Math.Min(a.Count, b.Count);
+            for (int i = 0; i < max; ++i)
+            {
+                if (a[i] > b[i])
+                    return true;
+                if (a[i] < b[i])
+                    return false;
+            }
+            return false;
+        }
+        public static bool operator <(PreReleaseIdentifierList a, PreReleaseIdentifierList b)
+        {
+            var max = Math.Min(a.Count, b.Count);
+            for (int i = 0; i < max; ++i)
+            {
+                if (a[i] < b[i])
+                    return true;
+                if (a[i] > b[i])
+                    return false;
+            }
+            return false;
         }
     }
 }
