@@ -79,7 +79,7 @@ namespace NTH.Security.Cryptography
             if (provider == null)
                 throw new NullReferenceException();
             if (derData == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("derData");
             var privateKeyBlob = GetPrivateKeyDer(derData);
             provider.ImportCspBlob(privateKeyBlob);
         }

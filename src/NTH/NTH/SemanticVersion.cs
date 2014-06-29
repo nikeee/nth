@@ -17,8 +17,12 @@ namespace NTH
         public int Minor { get; set; }
         public int Patch { get; set; }
 
-        public PreReleaseIdentifierList PreReleaseIdentifier { get; set; }
-        public IList<BuildMetadata> BuildMetadata { get; set; }
+
+        private readonly PreReleaseIdentifierList _preReleaseIdentifier;
+        public PreReleaseIdentifierList PreReleaseIdentifier { get { return _preReleaseIdentifier; } }
+
+        private readonly IList<BuildMetadata> _buildMetadata;
+        public IList<BuildMetadata> BuildMetadata { get { return _buildMetadata; } }
 
         public SemanticVersion(int major, int minor, int patch)
             : this(major, minor, patch, null)
@@ -39,16 +43,16 @@ namespace NTH
             Minor = minor;
             Patch = patch;
 
-            PreReleaseIdentifier = preRelease != null ? new PreReleaseIdentifierList(preRelease) : new PreReleaseIdentifierList();
-            BuildMetadata = build ?? new List<BuildMetadata>();
+            _preReleaseIdentifier = preRelease != null ? new PreReleaseIdentifierList(preRelease) : new PreReleaseIdentifierList();
+            _buildMetadata = build ?? new List<BuildMetadata>();
         }
 
         #region Parsing
 
-        public static SemanticVersion Parse(string versionString)
+        public static SemanticVersion Parse(string version)
         {
-            if (string.IsNullOrWhiteSpace(versionString))
-                throw new ArgumentNullException("versionString is either null, empty or white space.");
+            if (string.IsNullOrWhiteSpace(version))
+                throw new ArgumentNullException("version");
 
             const string end = "$";
             const string optional = "?";
@@ -58,21 +62,21 @@ namespace NTH
 
             const string semVer = versionCore + preRelease + buildMetadata + end;
 
-            var res = Regex.Match(versionString, semVer);
+            var res = Regex.Match(version, semVer);
 
             int major = int.Parse(res.Groups["major"].Value);
             int minor = int.Parse(res.Groups["minor"].Value);
             int patch = int.Parse(res.Groups["patch"].Value);
 
             IList<PreReleaseIdentifier> pre = null;
-            if (res.Groups["pre"].Value != string.Empty)
+            if (res.Groups["pre"].Value.Length != 0)
             {
                 if (!TryParseDotSeparatedPreReleaseIdentifiers(res.Groups["pre"].Value, out pre))
                     throw new FormatException("Invalid pre-release identifier.");
             }
 
             IList<BuildMetadata> build = null;
-            if (res.Groups["build"].Value != string.Empty)
+            if (res.Groups["build"].Value.Length != 0)
             {
                 if (!TryParseDotSeparatedBuildMetadata(res.Groups["build"].Value, out build))
                     throw new FormatException("Invalid build metadata identifier.");
@@ -336,7 +340,7 @@ namespace NTH
 
         public override int GetHashCode()
         {
-            return base.GetHashCode(); // No immutable fields available, so just call the base?
+            return _preReleaseIdentifier.GetHashCode() ^ _buildMetadata.GetHashCode();
         }
 
         #endregion
