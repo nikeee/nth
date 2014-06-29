@@ -89,6 +89,7 @@
     <Compile Include="NativeTypes\PublicKeyCertInfo.cs" />
     <Compile Include="PrefixType.cs" />
     <Compile Include="PreReleaseIdentifier.cs" />
+    <Compile Include="PreReleaseIdentifierList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runtime\InteropServices\MarshalEx.cs" />
     <Compile Include="Security\Cryptography\Crc32.cs" />

@@ -37,8 +37,8 @@ namespace NTH
             Minor = minor;
             Patch = patch;
 
-            PreReleaseIdentifier = new PreReleaseIdentifierList(preRelease);
-            BuildMetadata = build;
+            PreReleaseIdentifier = preRelease != null ? new PreReleaseIdentifierList(preRelease) : new PreReleaseIdentifierList();
+            BuildMetadata = build ?? new List<BuildMetadata>();
         }
 
         #region Parsing
@@ -285,39 +285,6 @@ namespace NTH
                 sb.Append(string.Join(".", BuildMetadata));
             }
             return sb.ToString();
-        }
-    }
-
-    public class PreReleaseIdentifierList : List<PreReleaseIdentifier>
-    {
-        public PreReleaseIdentifierList(IEnumerable<PreReleaseIdentifier> collection)
-            : base(collection)
-        { }
-
-
-        public static bool operator >(PreReleaseIdentifierList a, PreReleaseIdentifierList b)
-        {
-            var max = Math.Min(a.Count, b.Count);
-            for (int i = 0; i < max; ++i)
-            {
-                if (a[i] > b[i])
-                    return true;
-                if (a[i] < b[i])
-                    return false;
-            }
-            return false;
-        }
-        public static bool operator <(PreReleaseIdentifierList a, PreReleaseIdentifierList b)
-        {
-            var max = Math.Min(a.Count, b.Count);
-            for (int i = 0; i < max; ++i)
-            {
-                if (a[i] < b[i])
-                    return true;
-                if (a[i] > b[i])
-                    return false;
-            }
-            return false;
         }
     }
 }
