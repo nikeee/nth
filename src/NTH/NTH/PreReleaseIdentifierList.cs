@@ -15,6 +15,15 @@ namespace NTH
 
         public static bool operator >(PreReleaseIdentifierList a, PreReleaseIdentifierList b)
         {
+            // if both lists are empty, one of them cant be more valuable.
+            if (a.Count == 0 && b.Count == 0)
+                return false;
+
+            if (a.Count == 0 && b.Count != 0)
+                return true;
+            if (a.Count != 0 && b.Count == 0)
+                return false;
+
             var max = Math.Min(a.Count, b.Count);
             for (int i = 0; i < max; ++i)
             {
@@ -36,6 +45,15 @@ namespace NTH
         }
         public static bool operator <(PreReleaseIdentifierList a, PreReleaseIdentifierList b)
         {
+            // if both lists are empty, one of them cant be more valuable.
+            if (a.Count == 0 && b.Count == 0)
+                return false;
+
+            if (a.Count == 0 && b.Count != 0)
+                return false;
+            if (a.Count != 0 && b.Count == 0)
+                return true;
+
             var max = Math.Min(a.Count, b.Count);
             for (int i = 0; i < max; ++i)
             {

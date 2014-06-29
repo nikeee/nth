@@ -243,6 +243,10 @@ namespace NTH
                 return false;
             // if getting here, Patch are the same
 
+            // they seem to be equal, if there are no further identifiers
+            if (a.PreReleaseIdentifier.Count == 0 && b.PreReleaseIdentifier.Count == 0)
+                return false;
+
             // it's up to the pre-release identifier
             return a.PreReleaseIdentifier > b.PreReleaseIdentifier;
         }
@@ -269,6 +273,10 @@ namespace NTH
             if (a.Patch != b.Patch) // patch of b is less than a
                 return false;
             // if getting here, Patch are the same
+
+            // they seem to be equal, if there are no further identifiers
+            if (a.PreReleaseIdentifier.Count == 0 && b.PreReleaseIdentifier.Count == 0)
+                return false;
 
             // it's up to the pre-release identifier
             return a.PreReleaseIdentifier < b.PreReleaseIdentifier;

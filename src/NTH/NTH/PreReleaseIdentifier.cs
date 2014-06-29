@@ -24,12 +24,12 @@ namespace NTH
         {
             get
             {
-                if (Value == null)
+                if (_value == null)
                     return false;
                 char c;
-                for (int i = 0; i < Value.Length; ++i)
+                for (int i = 0; i < _value.Length; ++i)
                 {
-                    c = Value[i];
+                    c = _value[i];
                     if (!('0' <= c && c <= '9'))
                         return false;
                 }
@@ -52,17 +52,58 @@ namespace NTH
             return int.Parse(Value);
         }
 
+        public string GetStringValue()
+        {
+            return _value;
+        }
+
         #region operators
 
         #region >
 
         public static bool operator >(PreReleaseIdentifier a, PreReleaseIdentifier b)
         {
-            if (a.IsDigitValue && b.IsDigitValue)
+            bool isADigit = a.IsDigitValue;
+            bool isBDigit = b.IsDigitValue;
+            if (isADigit && isBDigit)
             {
                 return a.GetIntegerValue() > b.GetIntegerValue();
             }
-            throw new NotImplementedException();
+
+            // Numeric identifiers always have lower precedence than non-numeric identifiers
+            if (isADigit)
+                return false;
+            if (isBDigit)
+                return true;
+
+            // TODO: what if a is a digit value and b not?
+
+            var valueA = a.GetStringValue();
+            var valueB = b.GetStringValue();
+
+            // taking a short one here
+            if (valueA == valueB)
+                return false;
+
+            var max = Math.Min(valueA.Length, valueB.Length);
+
+            for (int i = 0; i < max; ++i)
+            {
+                if (valueA[i] > valueB[i])
+                    return true;
+                if (valueA[i] < valueB[i])
+                    return false;
+            }
+
+            // all identifiers are equal, so take a look at the total count
+            if (max != Math.Max(valueA.Length, valueB.Length))
+            {
+                if (valueA.Length == max) // if a is the one with less identifiers
+                    return false; // so it must be less valuable
+                return true; // else, return false
+            }
+
+            return false; // essentially, a == b
         }
 
         #endregion
@@ -70,11 +111,47 @@ namespace NTH
 
         public static bool operator <(PreReleaseIdentifier a, PreReleaseIdentifier b)
         {
-            if (a.IsDigitValue && b.IsDigitValue)
+            bool isADigit = a.IsDigitValue;
+            bool isBDigit = b.IsDigitValue;
+            if (isADigit && isBDigit)
             {
                 return a.GetIntegerValue() < b.GetIntegerValue();
             }
-            throw new NotImplementedException();
+
+            // Numeric identifiers always have lower precedence than non-numeric identifiers
+            if (isADigit)
+                return true;
+            if (isBDigit)
+                return false;
+
+            // TODO: what if a is a digit value and b not?
+
+            var valueA = a.GetStringValue();
+            var valueB = b.GetStringValue();
+
+            // taking a short one here
+            if (valueA == valueB)
+                return false;
+
+            var max = Math.Min(valueA.Length, valueB.Length);
+
+            for (int i = 0; i < max; ++i)
+            {
+                if (valueA[i] < valueB[i])
+                    return true;
+                if (valueA[i] > valueB[i])
+                    return false;
+            }
+
+            // all identifiers are equal, so take a look at the total count
+            if (max != Math.Max(valueA.Length, valueB.Length))
+            {
+                if (valueA.Length == max) // if a is the one with less identifiers
+                    return true; // so it must be less valuable
+                return false; // else, return false
+            }
+
+            return false; // essentially, a == b
         }
 
         #endregion
