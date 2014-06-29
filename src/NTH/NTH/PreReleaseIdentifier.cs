@@ -122,5 +122,9 @@ namespace NTH
 
         #endregion
 
+        public override string ToString()
+        {
+            return _value;
+        }
     }
 }
