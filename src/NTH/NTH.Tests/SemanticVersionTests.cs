@@ -25,6 +25,34 @@ namespace NTH.Tests
         }
 
         [TestMethod]
+        public void ToStringTests()
+        {
+            var expected = "1.2.3";
+            var actual = SemanticVersion.Parse(expected);
+            Assert.AreEqual(expected, actual.ToString());
+
+            expected = "1.2.4";
+            actual = SemanticVersion.Parse(expected);
+            Assert.AreEqual(expected, actual.ToString());
+
+            expected = "1.2.4";
+            actual = SemanticVersion.Parse(expected);
+            Assert.AreEqual(expected, actual.ToString());
+
+            expected = "1.2.4-ap";
+            actual = SemanticVersion.Parse(expected);
+            Assert.AreEqual(expected, actual.ToString());
+
+            expected = "1.2.4-ap+aa";
+            actual = SemanticVersion.Parse(expected);
+            Assert.AreEqual(expected, actual.ToString());
+
+            expected = "1.2.4-ap.1+asdas.2";
+            actual = SemanticVersion.Parse(expected);
+            Assert.AreEqual(expected, actual.ToString());
+        }
+
+        [TestMethod]
         public void Parse()
         {
             var expected = new SemanticVersion(1, 2, 3);
@@ -39,11 +67,24 @@ namespace NTH.Tests
             expected = new SemanticVersion(1, 2, 3, actualReleases, null);
             t = "1.2.3-alpha";
             actual = SemanticVersion.Parse(t);
+
             Assert.AreEqual(expected.Major, actual.Major);
             Assert.AreEqual(expected.Minor, actual.Minor);
             Assert.AreEqual(expected.Patch, actual.Patch);
             Assert.AreEqual(actualReleases.Count, actual.PreReleaseIdentifier.Count);
-            Assert.AreEqual(expected.PreReleaseIdentifier.First().Value, actual.PreReleaseIdentifier.First().Value);
+            Assert.AreEqual(expected.PreReleaseIdentifier[0].Value, actual.PreReleaseIdentifier[0].Value);
+
+
+            actualReleases = new List<PreReleaseIdentifier> { new PreReleaseIdentifier("4") };
+            expected = new SemanticVersion(1, 2, 3, actualReleases, null);
+            t = "1.2.3-4";
+            actual = SemanticVersion.Parse(t);
+
+            Assert.AreEqual(expected.Major, actual.Major);
+            Assert.AreEqual(expected.Minor, actual.Minor);
+            Assert.AreEqual(expected.Patch, actual.Patch);
+            Assert.AreEqual(actualReleases.Count, actual.PreReleaseIdentifier.Count);
+            Assert.AreEqual(expected.PreReleaseIdentifier[0].Value, actual.PreReleaseIdentifier[0].Value);
         }
 
         [TestMethod]

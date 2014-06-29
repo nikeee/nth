@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace NTH
 {
@@ -53,6 +54,13 @@ namespace NTH
             }
 
             return false; // essentially, a == b
+        }
+
+        public override string ToString()
+        {
+            if (Count == 0)
+                return string.Empty;
+            return string.Join(".", this); // looks weird
         }
     }
 }

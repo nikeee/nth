@@ -293,10 +293,8 @@ namespace NTH
             sb.Append(Major).Append('.').Append(Minor).Append('.').Append(Patch);
 
             if (PreReleaseIdentifier != null && PreReleaseIdentifier.Count > 0)
-            {
-                sb.Append('-');
-                sb.Append(string.Join(".", PreReleaseIdentifier));
-            }
+                sb.Append('-').Append(PreReleaseIdentifier);
+
             if (BuildMetadata != null && BuildMetadata.Count > 0)
             {
                 sb.Append('+');
