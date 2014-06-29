@@ -186,10 +186,10 @@ namespace NTH
             return obj._value == _value; // TODO: case (in)sensitive?
         }
 
-        // public override int GetHashCode()
-        // {
-        //     return _value.GetHashCode();
-        // }
+        public override int GetHashCode()
+        {
+             return base.GetHashCode(); // No immutable fields available, so just call the base?
+        }
 
         #endregion
 

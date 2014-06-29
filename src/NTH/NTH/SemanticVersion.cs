@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -298,12 +299,44 @@ namespace NTH
             return a.Major == b.Major
                     && a.Minor == b.Minor
                     && a.Patch == b.Patch
-                    && a.PreReleaseIdentifier == b.PreReleaseIdentifier;
+                    && a.PreReleaseIdentifier == b.PreReleaseIdentifier
+                    && a.BuildMetadata == b.BuildMetadata; // TODO: May ignore build metadata on equality comparison?
         }
 
         public static bool operator !=(SemanticVersion a, SemanticVersion b)
         {
             return !(a == b);
+        }
+
+        #endregion
+        #region equals
+
+        public override bool Equals(object obj)
+        {
+            var p = obj as SemanticVersion;
+            if (p == null)
+                return false;
+            return p.Major == Major
+                   && p.Minor == Minor
+                   && p.Patch == Patch
+                   && p.PreReleaseIdentifier == PreReleaseIdentifier
+                   && p.BuildMetadata == BuildMetadata;
+        }
+
+        public bool Equals(SemanticVersion obj)
+        {
+            if (obj == null)
+                return false;
+            return obj.Major == Major
+                   && obj.Minor == Minor
+                   && obj.Patch == Patch
+                   && obj.PreReleaseIdentifier == PreReleaseIdentifier
+                   && obj.BuildMetadata == BuildMetadata; // TODO: May ignore build metadata on equality comparison?
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode(); // No immutable fields available, so just call the base?
         }
 
         #endregion
