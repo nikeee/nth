@@ -114,6 +114,22 @@ namespace NTH.Tests
             t1 = SemanticVersion.Parse("1.0.1");
             t2 = SemanticVersion.Parse("1.1.1");
             Assert.IsTrue(t1 < t2);
+
+            t1 = SemanticVersion.Parse("1.0.1");
+            t2 = SemanticVersion.Parse("1.0.10");
+            Assert.IsTrue(t1 < t2);
+
+            t1 = SemanticVersion.Parse("1.0.0");
+            t2 = SemanticVersion.Parse("2.0.0");
+            Assert.IsTrue(t1 < t2);
+
+            t1 = SemanticVersion.Parse("2.0.0");
+            t2 = SemanticVersion.Parse("2.1.0");
+            Assert.IsTrue(t1 < t2);
+
+            t1 = SemanticVersion.Parse("2.1.0");
+            t2 = SemanticVersion.Parse("2.1.1");
+            Assert.IsTrue(t1 < t2);
         }
 
         [TestMethod]
