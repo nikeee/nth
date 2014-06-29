@@ -76,6 +76,9 @@ namespace NTH
             return new SemanticVersion(major, minor, patch, pre, build);
         }
 
+        /// <remarks>
+        /// &lt;dot-separated build identifiers&lt; ::= &lt;build identifier&lt; | &lt;build identifier&lt; "." &lt;dot-separated build identifiers&lt;
+        /// </remarks>
         private static bool TryParseDotSeparatedBuildMetadata(string identifiers, out IList<BuildMetadata> result)
         {
             result = null;
@@ -110,6 +113,9 @@ namespace NTH
             return true;
         }
 
+        /// <remarks>
+        /// &lt;dot-separated pre-release identifiers&lt; ::= &lt;pre-release identifier&lt; | &lt;pre-release identifier&lt; "." &lt;dot-separated pre-release identifiers&lt;
+        /// </remarks>
         private static bool TryParseDotSeparatedPreReleaseIdentifiers(string identifiers, out IList<PreReleaseIdentifier> result)
         {
             result = null;
@@ -133,6 +139,9 @@ namespace NTH
             return list.Count > 0 && list.Count == ids.Length;
         }
 
+        /// <remarks>
+        /// &lt;pre-release identifier&lt; ::= &lt;alphanumeric identifier&lt;| &lt;numeric identifier&lt;
+        /// </remarks>
         private static bool TryParsePreReleaseIdentifier(string identifier, out PreReleaseIdentifier result)
         {
             result = null;
@@ -152,6 +161,9 @@ namespace NTH
         }
 
 
+        /// <remarks>
+        /// &lt;build identifier&lt; ::= &lt;alphanumeric identifier&lt; | &lt;digits&lt;
+        /// </remarks>
         private static bool TryParseNumericIdentifier(string identifier, out string result)
         {
             if (identifier.Length == 0)
@@ -183,6 +195,9 @@ namespace NTH
             return true;
         }
 
+        /// <remarks>
+        /// &lt;alphanumeric identifier&lt; ::= &lt;non-digit&lt; | &lt;non-digit&lt; &lt;identifier characters&lt; | &lt;identifier characters&lt; &lt;non-digit&lt; | &lt;identifier characters&lt; &lt;non-digit&lt; &lt;identifier characters&lt;
+        /// </remarks>
         private static bool TryParseAlphaNumericIdentifier(string identifier, out string result)
         {
             for (int i = 0; i < identifier.Length; ++i)
