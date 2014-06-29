@@ -27,7 +27,8 @@ namespace NTH
             for (int i = 0; i < value.Length; ++i)
             {
                 char c = value[i];
-                if ('0' <= c && c <= '9'
+                if (
+                    !('0' <= c && c <= '9')
                     && !('A' <= c && c <= 'Z')
                     && !('a' <= c && c <= 'z')
                     && c != '-')
