@@ -20,7 +20,10 @@ namespace NTH
         public IList<BuildMetadata> BuildMetadata { get; set; }
 
         public SemanticVersion(int major, int minor, int patch)
-            : this(major, minor, patch, null, null)
+            : this(major, minor, patch, null)
+        { }
+        public SemanticVersion(int major, int minor, int patch, IEnumerable<PreReleaseIdentifier> preRelease)
+            : this(major, minor, patch, preRelease, null)
         { }
         public SemanticVersion(int major, int minor, int patch, IEnumerable<PreReleaseIdentifier> preRelease, IList<BuildMetadata> build)
         {
