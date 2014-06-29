@@ -61,8 +61,8 @@ namespace NTH
             result = null;
             
             var res = Regex.Match(version, SemanticVersionPattern);
+
             int major, minor, patch;
-            
             if (!int.TryParse(res.Groups["major"].Value, out major))
                 return false;
             if (!int.TryParse(res.Groups["minor"].Value, out minor))
