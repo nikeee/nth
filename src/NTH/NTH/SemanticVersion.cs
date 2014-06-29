@@ -18,8 +18,8 @@ namespace NTH
         public int Patch { get; set; }
 
 
-        private readonly PreReleaseIdentifierList _preReleaseIdentifier;
-        public PreReleaseIdentifierList PreReleaseIdentifier { get { return _preReleaseIdentifier; } }
+        private readonly PreReleaseIdentifierCollection _preReleaseIdentifier;
+        public PreReleaseIdentifierCollection PreReleaseIdentifier { get { return _preReleaseIdentifier; } }
 
         private readonly IList<BuildMetadata> _buildMetadata;
         public IList<BuildMetadata> BuildMetadata { get { return _buildMetadata; } }
@@ -43,7 +43,7 @@ namespace NTH
             Minor = minor;
             Patch = patch;
 
-            _preReleaseIdentifier = preRelease != null ? new PreReleaseIdentifierList(preRelease) : new PreReleaseIdentifierList();
+            _preReleaseIdentifier = preRelease != null ? new PreReleaseIdentifierCollection(preRelease) : new PreReleaseIdentifierCollection();
             _buildMetadata = build ?? new List<BuildMetadata>();
         }
 
