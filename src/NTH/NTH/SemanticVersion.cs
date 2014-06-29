@@ -96,7 +96,7 @@ namespace NTH
                 Debug.Assert(currentMetadata != null);
                 list.Add(currentMetadata);
             }
-
+            result = list;
             return list.Count > 0 && list.Count == ids.Length;
         }
 
