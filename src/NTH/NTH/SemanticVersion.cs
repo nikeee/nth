@@ -48,19 +48,53 @@ namespace NTH
 
         #region Parsing
 
-        public static SemanticVersion Parse(string version)
+        private const string end = "$";
+        private const string optional = "?";
+        private const string versionCore = @"^((?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+))";
+        private const string preRelease = @"(-(?<pre>[a-zA-Z0-9-.]+))" + optional;
+        private const string buildMetadata = @"(\+(?<build>[a-zA-Z0-9-.]+))" + optional;
+        private const string semVer = versionCore + preRelease + buildMetadata + end;
+
+        public static bool TryParse(string version, out SemanticVersion result)
         {
             if (string.IsNullOrWhiteSpace(version))
                 throw new ArgumentNullException("version");
 
-            const string end = "$";
-            const string optional = "?";
-            const string versionCore = @"^((?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+))";
-            const string preRelease = @"(-(?<pre>[a-zA-Z0-9-.]+))" + optional;
-            const string buildMetadata = @"(\+(?<build>[a-zA-Z0-9-.]+))" + optional;
+            result = null;
+            
+            var res = Regex.Match(version, semVer);
+            int major, minor, patch;
+            
+            if (!int.TryParse(res.Groups["major"].Value, out major))
+                return false;
+            if (!int.TryParse(res.Groups["minor"].Value, out minor))
+                return false;
+            if (!int.TryParse(res.Groups["patch"].Value, out patch))
+                return false;
 
-            const string semVer = versionCore + preRelease + buildMetadata + end;
+            IList<PreReleaseIdentifier> pre = null;
+            if (res.Groups["pre"].Value.Length != 0)
+            {
+                if (!TryParseDotSeparatedPreReleaseIdentifiers(res.Groups["pre"].Value, out pre))
+                    return false;
+            }
 
+            IList<BuildMetadata> build = null;
+            if (res.Groups["build"].Value.Length != 0)
+            {
+                if (!TryParseDotSeparatedBuildMetadata(res.Groups["build"].Value, out build))
+                    return false;
+            }
+
+            result = new SemanticVersion(major, minor, patch, pre, build);
+            return true;
+        }
+
+        public static SemanticVersion Parse(string version)
+        {
+            if (string.IsNullOrWhiteSpace(version))
+                throw new ArgumentNullException("version");
+            
             var res = Regex.Match(version, semVer);
 
             int major = int.Parse(res.Groups["major"].Value);
