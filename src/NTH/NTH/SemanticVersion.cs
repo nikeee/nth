@@ -131,6 +131,7 @@ namespace NTH
                 Debug.Assert(currentIdentifier != null);
                 list.Add(currentIdentifier);
             }
+            result = list;
             return list.Count > 0 && list.Count == ids.Length;
         }
 
@@ -230,9 +231,7 @@ namespace NTH
             // if getting here, Patch are the same
 
             // it's up to the pre-release identifier
-
-            throw new NotImplementedException();
-            //return a.PreReleaseIdentifier > b.PreReleaseIdentifier;
+            return a.PreReleaseIdentifier > b.PreReleaseIdentifier;
         }
 
         #endregion
@@ -240,7 +239,26 @@ namespace NTH
 
         public static bool operator <(SemanticVersion a, SemanticVersion b)
         {
-            throw new NotImplementedException();
+            if (a.Major < b.Major)
+                return true;
+            if (a.Major != b.Major) // major of b is less than a
+                return false;
+            // if getting here, majors are the same
+
+            if (a.Minor < b.Minor)
+                return true;
+            if (a.Minor != b.Minor) // minor of b is less than a
+                return false;
+            // if getting here, minors are the same
+
+            if (a.Patch < b.Patch)
+                return true;
+            if (a.Patch != b.Patch) // patch of b is less than a
+                return false;
+            // if getting here, Patch are the same
+
+            // it's up to the pre-release identifier
+            return a.PreReleaseIdentifier < b.PreReleaseIdentifier;
         }
 
         #endregion

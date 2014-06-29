@@ -34,6 +34,16 @@ namespace NTH.Tests
             Assert.AreEqual(expected.Major, actual.Major);
             Assert.AreEqual(expected.Minor, actual.Minor);
             Assert.AreEqual(expected.Patch, actual.Patch);
+
+            var actualReleases = new List<PreReleaseIdentifier> { new PreReleaseIdentifier("alpha") };
+            expected = new SemanticVersion(1, 2, 3, actualReleases, null);
+            t = "1.2.3-alpha";
+            actual = SemanticVersion.Parse(t);
+            Assert.AreEqual(expected.Major, actual.Major);
+            Assert.AreEqual(expected.Minor, actual.Minor);
+            Assert.AreEqual(expected.Patch, actual.Patch);
+            Assert.AreEqual(actualReleases.Count, actual.PreReleaseIdentifier.Count);
+            Assert.AreEqual(expected.PreReleaseIdentifier.First().Value, actual.PreReleaseIdentifier.First().Value);
         }
 
         [TestMethod]
@@ -47,22 +57,22 @@ namespace NTH.Tests
             Assert.IsTrue(alpha < alpha1);
 
             var alphabeta = SemanticVersion.Parse("1.0.0-alpha.beta");
-            Assert.IsTrue(alpha1 < alphabeta);
+            Assert.IsTrue(alpha1 < alphabeta, "alpha1 < alphabeta");
 
             var beta = SemanticVersion.Parse("1.0.0-beta");
-            Assert.IsTrue(alphabeta < beta);
+            Assert.IsTrue(alphabeta < beta, "alphabeta < beta");
 
             var beta2 = SemanticVersion.Parse("1.0.0-beta.2");
-            Assert.IsTrue(beta < beta2);
+            Assert.IsTrue(beta < beta2, "beta < beta2");
 
             var beta11 = SemanticVersion.Parse("1.0.0-beta.11");
-            Assert.IsTrue(beta2 < beta11);
+            Assert.IsTrue(beta2 < beta11, "beta2 < beta11");
 
             var rc1 = SemanticVersion.Parse("1.0.0-rc.1");
-            Assert.IsTrue(beta11 < rc1);
+            Assert.IsTrue(beta11 < rc1, "beta11 < rc1");
 
             var final = SemanticVersion.Parse("1.0.0");
-            Assert.IsTrue(rc1 < final);
+            Assert.IsTrue(rc1 < final, "rc1 < final");
         }
     }
 }
