@@ -144,7 +144,7 @@ namespace NTH.Tests
 
             var alpha = SemanticVersion.Parse("1.0.0-alpha");
             var alpha1 = SemanticVersion.Parse("1.0.0-alpha.1");
-            Assert.IsTrue(alpha < alpha1);
+            Assert.IsTrue(alpha < alpha1, "alpha < alpha1");
 
             var alphabeta = SemanticVersion.Parse("1.0.0-alpha.beta");
             Assert.IsTrue(alpha1 < alphabeta, "alpha1 < alphabeta");
@@ -163,6 +163,39 @@ namespace NTH.Tests
 
             var final = SemanticVersion.Parse("1.0.0");
             Assert.IsTrue(rc1 < final, "rc1 < final");
+        }
+
+        [TestMethod]
+        public void Comparison3()
+        {
+            // From: https://github.com/mojombo/semver/blob/master/semver.md
+            // "Example: 1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0."
+
+            var t1 = SemanticVersion.Parse("1.0.0-1");
+            var t2 = SemanticVersion.Parse("1.0.0-2");
+            Assert.IsTrue(t2 > t1);
+
+            var alpha = SemanticVersion.Parse("1.0.0-alpha");
+            var alpha1 = SemanticVersion.Parse("1.0.0-alpha.1");
+            Assert.IsTrue(alpha1 > alpha, "alpha1 > alpha");
+
+            var alphabeta = SemanticVersion.Parse("1.0.0-alpha.beta");
+            Assert.IsTrue(alphabeta > alpha1, "alpha1 < alphabeta");
+
+            var beta = SemanticVersion.Parse("1.0.0-beta");
+            Assert.IsTrue(beta > alphabeta, "beta > alphabeta");
+
+            var beta2 = SemanticVersion.Parse("1.0.0-beta.2");
+            Assert.IsTrue(beta2 > beta, "beta2 > beta");
+
+            var beta11 = SemanticVersion.Parse("1.0.0-beta.11");
+            Assert.IsTrue(beta11 > beta2, "beta11 > beta2");
+
+            var rc1 = SemanticVersion.Parse("1.0.0-rc.1");
+            Assert.IsTrue(rc1 > beta11, "rc1 > beta11");
+
+            var final = SemanticVersion.Parse("1.0.0");
+            Assert.IsTrue(final > rc1, "final > rc1");
         }
     }
 }
