@@ -85,7 +85,39 @@ namespace NTH.Tests
         }
 
         [TestMethod]
-        public void Comparison()
+        public void Comparison1()
+        {
+            var t1 = SemanticVersion.Parse("1.0.0");
+            var t2 = SemanticVersion.Parse("2.0.0");
+            Assert.IsTrue(t1 < t2);
+
+            t1 = SemanticVersion.Parse("1.0.0");
+            t2 = SemanticVersion.Parse("1.1.0");
+            Assert.IsTrue(t1 < t2);
+
+            t1 = SemanticVersion.Parse("1.0.0");
+            t2 = SemanticVersion.Parse("1.0.1");
+            Assert.IsTrue(t1 < t2);
+
+            t1 = SemanticVersion.Parse("1.0.0");
+            t2 = SemanticVersion.Parse("1.1.0");
+            Assert.IsTrue(t1 < t2);
+
+            t1 = SemanticVersion.Parse("1.0.0");
+            t2 = SemanticVersion.Parse("1.1.1");
+            Assert.IsTrue(t1 < t2);
+
+            t1 = SemanticVersion.Parse("1.1.0");
+            t2 = SemanticVersion.Parse("1.1.1");
+            Assert.IsTrue(t1 < t2);
+
+            t1 = SemanticVersion.Parse("1.0.1");
+            t2 = SemanticVersion.Parse("1.1.1");
+            Assert.IsTrue(t1 < t2);
+        }
+
+        [TestMethod]
+        public void Comparison2()
         {
             // From: https://github.com/mojombo/semver/blob/master/semver.md
             // "Example: 1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0."
