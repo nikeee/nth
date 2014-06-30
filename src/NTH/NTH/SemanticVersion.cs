@@ -392,7 +392,6 @@ namespace NTH
             return _preReleaseIdentifier.GetHashCode() ^ _buildMetadata.GetHashCode();
         }
 
-
         #endregion
 
         #endregion
