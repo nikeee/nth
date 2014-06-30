@@ -10,6 +10,7 @@ namespace NTH
     /// <summary>
     /// Represents a semantic version 2.0.0 as described in <a href="http://semver.org/spec/v2.0.0.html">the SemVer specification</a>.
     /// </summary>
+    [Serializable]
     public class SemanticVersion : IComparable<SemanticVersion>
     {
         public int Major { get; set; }
