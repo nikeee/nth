@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.Serialization;
+using System.Security.Permissions;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -11,7 +13,7 @@ namespace NTH
     /// Represents a semantic version 2.0.0 as described in <a href="http://semver.org/spec/v2.0.0.html">the SemVer specification</a>.
     /// </summary>
     [Serializable]
-    public class SemanticVersion : IComparable<SemanticVersion>
+    public class SemanticVersion : IComparable<SemanticVersion>, ISerializable
     {
         public int Major { get; set; }
         public int Minor { get; set; }
@@ -45,6 +47,21 @@ namespace NTH
 
             _preReleaseIdentifier = preRelease != null ? new PreReleaseIdentifierCollection(preRelease) : new PreReleaseIdentifierCollection();
             _buildMetadata = build ?? new List<BuildMetadata>();
+        }
+
+        protected SemanticVersion(SerializationInfo info, StreamingContext context)
+        {
+            // TODO: Tests
+            if (info == null)
+                throw new ArgumentNullException("info");
+
+            var ver = Parse(info.GetString(SerializationField));
+            Major = ver.Major;
+            Minor = ver.Minor;
+            Patch = ver.Patch;
+
+            _preReleaseIdentifier = ver._preReleaseIdentifier ?? new PreReleaseIdentifierCollection();
+            _buildMetadata = ver._buildMetadata ?? new List<BuildMetadata>();
         }
 
         #region Parsing
@@ -375,10 +392,24 @@ namespace NTH
             return _preReleaseIdentifier.GetHashCode() ^ _buildMetadata.GetHashCode();
         }
 
-        #endregion
 
         #endregion
 
+        #endregion
+
+        #region ISerializable
+
+        private const string SerializationField = "SemanticVersion";
+        [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            // TODO: Tests
+            if (info == null)
+                throw new ArgumentNullException("info");
+            info.AddValue(SerializationField, ToString());
+        }
+
+        #endregion
         #region IComparable
 
         public int CompareTo(SemanticVersion other)
