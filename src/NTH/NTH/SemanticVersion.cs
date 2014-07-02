@@ -23,8 +23,8 @@ namespace NTH
         private readonly PreReleaseIdentifierCollection _preReleaseIdentifier;
         public PreReleaseIdentifierCollection PreReleaseIdentifier { get { return _preReleaseIdentifier; } }
 
-        private readonly IList<BuildMetadata> _buildMetadata;
-        public IList<BuildMetadata> BuildMetadata { get { return _buildMetadata; } }
+        private readonly BuildMetadataCollection _buildMetadata;
+        public BuildMetadataCollection BuildMetadata { get { return _buildMetadata; } }
 
         public SemanticVersion(int major, int minor, int patch)
             : this(major, minor, patch, null)
@@ -32,7 +32,7 @@ namespace NTH
         public SemanticVersion(int major, int minor, int patch, IEnumerable<PreReleaseIdentifier> preRelease)
             : this(major, minor, patch, preRelease, null)
         { }
-        public SemanticVersion(int major, int minor, int patch, IEnumerable<PreReleaseIdentifier> preRelease, IList<BuildMetadata> build)
+        public SemanticVersion(int major, int minor, int patch, IEnumerable<PreReleaseIdentifier> preRelease, IEnumerable<BuildMetadata> build)
         {
             if (major < 0)
                 throw new ArgumentException("major must be greater or equal to zero");
@@ -46,7 +46,7 @@ namespace NTH
             Patch = patch;
 
             _preReleaseIdentifier = preRelease != null ? new PreReleaseIdentifierCollection(preRelease) : new PreReleaseIdentifierCollection();
-            _buildMetadata = build ?? new List<BuildMetadata>();
+            _buildMetadata = build != null ? new BuildMetadataCollection(build) : new BuildMetadataCollection();
         }
 
         protected SemanticVersion(SerializationInfo info, StreamingContext context)
@@ -61,7 +61,7 @@ namespace NTH
             Patch = ver.Patch;
 
             _preReleaseIdentifier = ver._preReleaseIdentifier ?? new PreReleaseIdentifierCollection();
-            _buildMetadata = ver._buildMetadata ?? new List<BuildMetadata>();
+            _buildMetadata = ver._buildMetadata ?? new BuildMetadataCollection();
         }
 
         #region Parsing
