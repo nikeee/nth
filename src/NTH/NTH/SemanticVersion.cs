@@ -435,8 +435,7 @@ namespace NTH
 
             if (BuildMetadata != null && BuildMetadata.Count > 0)
             {
-                sb.Append('+');
-                sb.Append(string.Join(".", BuildMetadata));
+                sb.Append('+').Append(BuildMetadata);
             }
             return sb.ToString();
         }
