@@ -112,9 +112,9 @@
     <PostBuildEvent>set configname=Distribution
 set dlldestination=$(SolutionDir)..\..\dist\lib\net40\$(TargetFileName)
 set xmldestination=$(SolutionDir)..\..\dist\lib\net40\$(TargetName).xml
-If "$(ConfigurationName)" == %25configname%25 (
-	copy "$(TargetPath)" %25dlldestination%25
-	copy "$(TargetDir)$(TargetName).xml" %25xmldestination%25
+If "$(ConfigurationName)" == "%25configname%25" (
+	copy "$(TargetPath)" "%25dlldestination%25"
+	copy "$(TargetDir)$(TargetName).xml" "%25xmldestination%25"
 ) else (
 	echo [build copy job] Not on distribution build
 )
