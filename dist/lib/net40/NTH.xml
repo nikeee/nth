@@ -102,6 +102,36 @@
             It was published with the approval of the original author.
             </remarks>
         </member>
+        <member name="T:NTH.SemanticVersion">
+            <summary>
+            Represents a semantic version 2.0.0 as described in <a href="http://semver.org/spec/v2.0.0.html">the SemVer specification</a>.
+            </summary>
+        </member>
+        <member name="M:NTH.SemanticVersion.TryParseDotSeparatedBuildMetadata(System.String,System.Collections.Generic.IList{NTH.BuildMetadata}@)">
+            <remarks>
+            &lt;dot-separated build identifiers&lt; ::= &lt;build identifier&lt; | &lt;build identifier&lt; "." &lt;dot-separated build identifiers&lt;
+            </remarks>
+        </member>
+        <member name="M:NTH.SemanticVersion.TryParseDotSeparatedPreReleaseIdentifiers(System.String,System.Collections.Generic.IList{NTH.PreReleaseIdentifier}@)">
+            <remarks>
+            &lt;dot-separated pre-release identifiers&lt; ::= &lt;pre-release identifier&lt; | &lt;pre-release identifier&lt; "." &lt;dot-separated pre-release identifiers&lt;
+            </remarks>
+        </member>
+        <member name="M:NTH.SemanticVersion.TryParsePreReleaseIdentifier(System.String,NTH.PreReleaseIdentifier@)">
+            <remarks>
+            &lt;pre-release identifier&lt; ::= &lt;alphanumeric identifier&lt;| &lt;numeric identifier&lt;
+            </remarks>
+        </member>
+        <member name="M:NTH.SemanticVersion.TryParseNumericIdentifier(System.String,System.String@)">
+            <remarks>
+            &lt;build identifier&lt; ::= &lt;alphanumeric identifier&lt; | &lt;digits&lt;
+            </remarks>
+        </member>
+        <member name="M:NTH.SemanticVersion.TryParseAlphaNumericIdentifier(System.String,System.String@)">
+            <remarks>
+            &lt;alphanumeric identifier&lt; ::= &lt;non-digit&lt; | &lt;non-digit&lt; &lt;identifier characters&lt; | &lt;identifier characters&lt; &lt;non-digit&lt; | &lt;identifier characters&lt; &lt;non-digit&lt; &lt;identifier characters&lt;
+            </remarks>
+        </member>
         <member name="T:NTH.Text.Formatting.ByteSizeFormatter">
             <summary>Format a byte size long to a human readable format.</summary>
         </member>
