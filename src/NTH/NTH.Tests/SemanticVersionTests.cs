@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace NTH.Tests
@@ -196,6 +197,39 @@ namespace NTH.Tests
 
             var final = SemanticVersion.Parse("1.0.0");
             Assert.IsTrue(final > rc1, "final > rc1");
+        }
+
+        [TestMethod]
+        public void Serializable()
+        {
+            const bool expected = true;
+
+            bool actual = TestHelper.IsSerializable(new SemanticVersion(1, 2, 3));
+            Assert.AreEqual(expected, actual);
+
+            actual = TestHelper.IsSerializable(new SemanticVersion(1, 2, 3, null));
+            Assert.AreEqual(expected, actual);
+
+            actual = TestHelper.IsSerializable(new SemanticVersion(1, 2, 3, null, null));
+            Assert.AreEqual(expected, actual);
+
+            actual = TestHelper.IsSerializable(new SemanticVersion(1, 2, 3, null, new List<BuildMetadata>()));
+            Assert.AreEqual(expected, actual);
+
+            actual = TestHelper.IsSerializable(new SemanticVersion(1, 2, 3, new List<PreReleaseIdentifier>(), new List<BuildMetadata>()));
+            Assert.AreEqual(expected, actual);
+
+            actual = TestHelper.IsSerializable(new SemanticVersion(1, 2, 3, new List<PreReleaseIdentifier>(), null));
+            Assert.AreEqual(expected, actual);
+
+            actual = TestHelper.IsSerializable(SemanticVersion.Parse("1.2.3-pre.1+build.id.12"));
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SerializableAttribute()
+        {
+            TestHelper.HasAttribute<SemanticVersion, SerializableAttribute>();
         }
     }
 }
