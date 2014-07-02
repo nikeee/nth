@@ -5,16 +5,16 @@ namespace NTH
 {
     public static class ConsoleEx
     {
-        private const char DefaultPasswordChar = '*';
+        private const char DefaultMask = '*';
         private const bool DefaultUseMask = false;
 
         public static SecureString ReadLineMasked()
         {
-            return ReadLineMasked(DefaultUseMask, DefaultPasswordChar);
+            return ReadLineMasked(DefaultUseMask, DefaultMask);
         }
         public static SecureString ReadLineMasked(bool useMask)
         {
-            return ReadLineMasked(useMask, DefaultPasswordChar);
+            return ReadLineMasked(useMask, DefaultMask);
         }
         public static SecureString ReadLineMasked(bool useMask, char mask)
         {
