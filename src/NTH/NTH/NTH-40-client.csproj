@@ -62,6 +62,7 @@
     <Compile Include="Analysis\Rendering\ConsoleDiffRenderer.cs" />
     <Compile Include="Analysis\Rendering\GenericConsoleDiffRenderer.cs" />
     <Compile Include="Analysis\Rendering\IDiffRenderer.cs" />
+    <Compile Include="BitUtil.cs" />
     <Compile Include="BuildMetadata.cs" />
     <Compile Include="ByteSize.cs" />
     <Compile Include="ByteSizeUnit.cs" />
