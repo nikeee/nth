@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.Serialization;
+using System.Security.Permissions;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -10,7 +12,8 @@ namespace NTH
     /// <summary>
     /// Represents a semantic version 2.0.0 as described in <a href="http://semver.org/spec/v2.0.0.html">the SemVer specification</a>.
     /// </summary>
-    public class SemanticVersion
+    [Serializable]
+    public class SemanticVersion : IComparable<SemanticVersion>, ISerializable
     {
         public int Major { get; set; }
         public int Minor { get; set; }
@@ -20,8 +23,8 @@ namespace NTH
         private readonly PreReleaseIdentifierCollection _preReleaseIdentifier;
         public PreReleaseIdentifierCollection PreReleaseIdentifier { get { return _preReleaseIdentifier; } }
 
-        private readonly IList<BuildMetadata> _buildMetadata;
-        public IList<BuildMetadata> BuildMetadata { get { return _buildMetadata; } }
+        private readonly BuildMetadataCollection _buildMetadata;
+        public BuildMetadataCollection BuildMetadata { get { return _buildMetadata; } }
 
         public SemanticVersion(int major, int minor, int patch)
             : this(major, minor, patch, null)
@@ -29,7 +32,7 @@ namespace NTH
         public SemanticVersion(int major, int minor, int patch, IEnumerable<PreReleaseIdentifier> preRelease)
             : this(major, minor, patch, preRelease, null)
         { }
-        public SemanticVersion(int major, int minor, int patch, IEnumerable<PreReleaseIdentifier> preRelease, IList<BuildMetadata> build)
+        public SemanticVersion(int major, int minor, int patch, IEnumerable<PreReleaseIdentifier> preRelease, IEnumerable<BuildMetadata> build)
         {
             if (major < 0)
                 throw new ArgumentException("major must be greater or equal to zero");
@@ -43,7 +46,22 @@ namespace NTH
             Patch = patch;
 
             _preReleaseIdentifier = preRelease != null ? new PreReleaseIdentifierCollection(preRelease) : new PreReleaseIdentifierCollection();
-            _buildMetadata = build ?? new List<BuildMetadata>();
+            _buildMetadata = build != null ? new BuildMetadataCollection(build) : new BuildMetadataCollection();
+        }
+
+        protected SemanticVersion(SerializationInfo info, StreamingContext context)
+        {
+            // TODO: Tests
+            if (info == null)
+                throw new ArgumentNullException("info");
+
+            var ver = Parse(info.GetString(SerializationField));
+            Major = ver.Major;
+            Minor = ver.Minor;
+            Patch = ver.Patch;
+
+            _preReleaseIdentifier = ver._preReleaseIdentifier ?? new PreReleaseIdentifierCollection();
+            _buildMetadata = ver._buildMetadata ?? new BuildMetadataCollection();
         }
 
         #region Parsing
@@ -59,7 +77,7 @@ namespace NTH
                 throw new ArgumentNullException("version");
 
             result = null;
-            
+
             var res = Regex.Match(version, SemanticVersionPattern);
 
             int major, minor, patch;
@@ -92,7 +110,7 @@ namespace NTH
         {
             if (string.IsNullOrWhiteSpace(version))
                 throw new ArgumentNullException("version");
-            
+
             var res = Regex.Match(version, SemanticVersionPattern);
 
             int major = int.Parse(res.Groups["major"].Value);
@@ -378,6 +396,34 @@ namespace NTH
 
         #endregion
 
+        #region ISerializable
+
+        private const string SerializationField = "SemanticVersion";
+        [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            // TODO: Tests
+            if (info == null)
+                throw new ArgumentNullException("info");
+            info.AddValue(SerializationField, ToString());
+        }
+
+        #endregion
+        #region IComparable
+
+        public int CompareTo(SemanticVersion other)
+        {
+            // TODO: Tests
+            if (this == other)
+                return 0;
+            if (this < other)
+                return -1;
+            // if (this > other)
+            return 1; // must be greater.
+        }
+
+        #endregion
+
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -389,8 +435,7 @@ namespace NTH
 
             if (BuildMetadata != null && BuildMetadata.Count > 0)
             {
-                sb.Append('+');
-                sb.Append(string.Join(".", BuildMetadata));
+                sb.Append('+').Append(BuildMetadata);
             }
             return sb.ToString();
         }

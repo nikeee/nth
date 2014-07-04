@@ -81,6 +81,7 @@
     <Compile Include="Resources.cs" />
     <Compile Include="Security\Cryptography\RSACryptoServiceProviderExtensionsTests.cs" />
     <Compile Include="SemanticVersionTests.cs" />
+    <Compile Include="TestHelper.cs" />
     <Compile Include="Text\EnumerableExtensionsTests.cs" />
     <Compile Include="Text\Formatting\ByteSizeFormatProviderTests.cs" />
     <Compile Include="Text\StringExtensionsTests.cs" />

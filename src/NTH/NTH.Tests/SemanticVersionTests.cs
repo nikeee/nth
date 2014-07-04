@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace NTH.Tests
@@ -196,6 +197,121 @@ namespace NTH.Tests
 
             var final = SemanticVersion.Parse("1.0.0");
             Assert.IsTrue(final > rc1, "final > rc1");
+        }
+
+        [TestMethod]
+        public void Comparison4()
+        {
+            var t1 = SemanticVersion.Parse("1.0.0-1");
+            var t2 = SemanticVersion.Parse("1.0.0-2");
+            const int expected = -1;
+
+            Assert.AreEqual(expected, t1.CompareTo(t2));
+
+            var alpha = SemanticVersion.Parse("1.0.0-alpha");
+            var alpha1 = SemanticVersion.Parse("1.0.0-alpha.1");
+            Assert.AreEqual(expected, alpha.CompareTo(alpha1));
+
+            var alphabeta = SemanticVersion.Parse("1.0.0-alpha.beta");
+            Assert.AreEqual(expected, alpha1.CompareTo(alphabeta));
+
+            var beta = SemanticVersion.Parse("1.0.0-beta");
+            Assert.AreEqual(expected, alphabeta.CompareTo(beta));
+
+            var beta2 = SemanticVersion.Parse("1.0.0-beta.2");
+            Assert.AreEqual(expected, beta.CompareTo(beta2));
+
+            var beta11 = SemanticVersion.Parse("1.0.0-beta.11");
+            Assert.AreEqual(expected, beta2.CompareTo(beta11));
+
+            var rc1 = SemanticVersion.Parse("1.0.0-rc.1");
+            Assert.AreEqual(expected, beta11.CompareTo(rc1));
+
+            var final = SemanticVersion.Parse("1.0.0");
+            Assert.AreEqual(expected, rc1.CompareTo(final));
+        }
+
+        [TestMethod]
+        public void Comparison5()
+        {
+            var t1 = SemanticVersion.Parse("1.0.0-1");
+            var t2 = SemanticVersion.Parse("1.0.0-2");
+            const int expected = 1;
+
+            Assert.AreEqual(expected, t2.CompareTo(t1));
+
+            var alpha = SemanticVersion.Parse("1.0.0-alpha");
+            var alpha1 = SemanticVersion.Parse("1.0.0-alpha.1");
+            Assert.AreEqual(expected, alpha1.CompareTo(alpha));
+
+            var alphabeta = SemanticVersion.Parse("1.0.0-alpha.beta");
+            Assert.AreEqual(expected, alphabeta.CompareTo(alpha1));
+
+            var beta = SemanticVersion.Parse("1.0.0-beta");
+            Assert.AreEqual(expected, beta.CompareTo(alphabeta));
+
+            var beta2 = SemanticVersion.Parse("1.0.0-beta.2");
+            Assert.AreEqual(expected, beta2.CompareTo(beta));
+
+            var beta11 = SemanticVersion.Parse("1.0.0-beta.11");
+            Assert.AreEqual(expected, beta11.CompareTo(beta2));
+
+            var rc1 = SemanticVersion.Parse("1.0.0-rc.1");
+            Assert.AreEqual(expected, rc1.CompareTo(beta11));
+
+            var final = SemanticVersion.Parse("1.0.0");
+            Assert.AreEqual(expected, final.CompareTo(rc1));
+        }
+
+        [TestMethod]
+        public void Comparison6()
+        {
+            var t1 = SemanticVersion.Parse("1.0.0-1");
+            var t2 = SemanticVersion.Parse("1.0.0-1");
+            const int expected = 0;
+
+            Assert.AreEqual(expected, t2.CompareTo(t1));
+
+            var alpha = SemanticVersion.Parse("1.0.0-alpha.1");
+            var alpha2 = SemanticVersion.Parse("1.0.0-alpha.1");
+            Assert.AreEqual(expected, alpha.CompareTo(alpha2));
+
+            var alphabeta = SemanticVersion.Parse("1.0.0-alpha.beta");
+            var alphabeta2 = SemanticVersion.Parse("1.0.0-alpha.beta");
+            Assert.AreEqual(expected, alphabeta.CompareTo(alphabeta2));
+        }
+
+        [TestMethod]
+        public void Serializable()
+        {
+            const bool expected = true;
+
+            bool actual = TestHelper.IsSerializable(new SemanticVersion(1, 2, 3));
+            Assert.AreEqual(expected, actual);
+
+            actual = TestHelper.IsSerializable(new SemanticVersion(1, 2, 3, null));
+            Assert.AreEqual(expected, actual);
+
+            actual = TestHelper.IsSerializable(new SemanticVersion(1, 2, 3, null, null));
+            Assert.AreEqual(expected, actual);
+
+            actual = TestHelper.IsSerializable(new SemanticVersion(1, 2, 3, null, new List<BuildMetadata>()));
+            Assert.AreEqual(expected, actual);
+
+            actual = TestHelper.IsSerializable(new SemanticVersion(1, 2, 3, new List<PreReleaseIdentifier>(), new List<BuildMetadata>()));
+            Assert.AreEqual(expected, actual);
+
+            actual = TestHelper.IsSerializable(new SemanticVersion(1, 2, 3, new List<PreReleaseIdentifier>(), null));
+            Assert.AreEqual(expected, actual);
+
+            actual = TestHelper.IsSerializable(SemanticVersion.Parse("1.2.3-pre.1+build.id.12"));
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SerializableAttribute()
+        {
+            TestHelper.HasAttribute<SemanticVersion, SerializableAttribute>();
         }
     }
 }

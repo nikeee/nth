@@ -66,6 +66,7 @@
     <Compile Include="Analysis\Rendering\IDiffRenderer.cs" />
     <Compile Include="BitUtil.cs" />
     <Compile Include="BuildMetadata.cs" />
+    <Compile Include="BuildMetadataCollection.cs" />
     <Compile Include="ByteSizeUnit.cs" />
     <Compile Include="ByteSize.cs" />
     <Compile Include="Collections\Generic\EnumerableExtensions.cs" />
