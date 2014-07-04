@@ -12,7 +12,7 @@ namespace NTH.Tests
             const short expectedValue = 0x1234;
 
             int expected = value >> 16; // high = 0x1234
-            int actual = BitUtil.HiWord(value);
+            int actual = BitUtil.HighWord(value);
 
             Assert.AreEqual(expected, expectedValue);
             Assert.AreEqual(expected, actual);
@@ -25,7 +25,7 @@ namespace NTH.Tests
             const short expectedValue = 0x5678;
 
             int expected = value & 0xFFFF; // low = 0x5678
-            int actual = BitUtil.LoWord(value);
+            int actual = BitUtil.LowWord(value);
 
             Assert.AreEqual(expected, expectedValue);
             Assert.AreEqual(expected, actual);
@@ -39,7 +39,7 @@ namespace NTH.Tests
             const byte expectedValue = 0x34;
 
             int expected = value & 0xFF; // low = 0x34
-            int actual = BitUtil.LoByte(value);
+            int actual = BitUtil.LowByte(value);
 
             Assert.AreEqual(expected, expectedValue);
             Assert.AreEqual(expected, actual);
@@ -52,7 +52,7 @@ namespace NTH.Tests
             const byte expectedValue = 0x12;
 
             int expected = value >> 8; // low = 0x12
-            int actual = BitUtil.HiByte(value);
+            int actual = BitUtil.HighByte(value);
 
             Assert.AreEqual(expected, expectedValue);
             Assert.AreEqual(expected, actual);
