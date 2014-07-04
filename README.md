@@ -12,7 +12,8 @@ NTH library
     5. [.ConvertToStruct&lt;T&gt;()](#converttostructt)
     6. [ByteSize Class](#bytesize)
     7. [Levenshtein Distance](#levenshtein-distance)
-    8. [TODO](#todo)
+    8. [ConsoleEx](#consoleex)
+    9. [TODO](#todo)
 
 ## Documentation
 The NTH library is documented [here](https://nikeee.github.io/nth). Also you can find several code annotations in the [source code](https://github.com/nikeee/nth/tree/master/src) using C#'s XML documentation style.
@@ -188,6 +189,15 @@ var input = "biete";
 var bestMatch = dictionary.OrderByLevenshteinDistanceTo(input).FirstOrDefault();
 Console.WriteLine("Did you mean " + bestMatch + "?"); // Did you mean bitte?
 ```
+
+### ConsoleEx
+Further console functionality:
+```C#
+SecureString password = ConsoleEx.ReadLineMasked(); // The user can type in a hidden phrase. Nothing will appear in the stdout.
+password = ConsoleEx.ReadLineMasked(true); // Displays a mask character for each char entered (default: '*')
+password = ConsoleEx.ReadLineMasked(true; '?'); // Uses '?' as mask
+```
+
 
 ### TODO
 // TODO: More to come soon!
