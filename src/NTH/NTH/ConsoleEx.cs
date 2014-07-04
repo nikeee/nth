@@ -34,7 +34,8 @@ namespace NTH
                         if (securePassword.Length > 0)
                         {
                             securePassword.RemoveChar();
-                            Console.Write("\b \b");
+                            if(useMask)
+                                Console.Write("\b \b");
                         }
                         continue;
                     }
