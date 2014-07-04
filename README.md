@@ -196,7 +196,7 @@ Further console functionality:
 ```C#
 SecureString password = ConsoleEx.ReadLineMasked(); // The user can type in a hidden phrase. Nothing will appear in the stdout.
 password = ConsoleEx.ReadLineMasked(true); // Displays a mask character for each char entered (default: '*')
-password = ConsoleEx.ReadLineMasked(true; '?'); // Uses '?' as mask
+password = ConsoleEx.ReadLineMasked(true '?'); // Uses '?' as mask
 ```
 
 ### BitUtil
