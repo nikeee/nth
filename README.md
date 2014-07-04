@@ -13,7 +13,8 @@ NTH library
     6. [ByteSize Class](#bytesize)
     7. [Levenshtein Distance](#levenshtein-distance)
     8. [ConsoleEx](#consoleex)
-    9. [TODO](#todo)
+    9. [BitUtil](#bitutil)
+    10. [TODO](#todo)
 
 ## Documentation
 The NTH library is documented [here](https://nikeee.github.io/nth). Also you can find several code annotations in the [source code](https://github.com/nikeee/nth/tree/master/src) using C#'s XML documentation style.
@@ -198,6 +199,17 @@ password = ConsoleEx.ReadLineMasked(true); // Displays a mask character for each
 password = ConsoleEx.ReadLineMasked(true; '?'); // Uses '?' as mask
 ```
 
+### BitUtil
+Adding some C-Macro-style functionality.
+```C#
+
+int foo = 0x12345678;
+short bar = BitUtil.LowWord(foo); // bar == 0x5678
+bar = BitUtil.HighWord(foo); // bar == 0x1234
+
+// Also available for Short/Byte:
+// BitUtil.LowByte/HighByte
+```
 
 ### TODO
 // TODO: More to come soon!
