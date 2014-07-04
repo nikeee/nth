@@ -43,7 +43,7 @@
     <DocumentationFile>bin\Distribution40-client\NTH.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>NTH-Key.pfx</AssemblyOriginatorKeyFile>
