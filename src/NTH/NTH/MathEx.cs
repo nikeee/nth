@@ -304,6 +304,9 @@ namespace NTH
         
         #region Missing Tests
         
+        // The functions in this region are elevated from:
+        // https://github.com/ThuCommix/Sharpex2D/blob/1cbb70d97f6e1a3c506145f163b1f5fd3901fc91/Sharpex2D/Framework/Math/MathHelper.cs
+        
         /// <summary> π * 2 </summary>
         public const double TwoPI = Math.PI * 2;
 
