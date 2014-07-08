@@ -301,5 +301,141 @@ namespace NTH
         }
 
         #endregion
+        
+        #region Missing Tests
+        
+        /// <summary> π * 2 </summary>
+        public const double TwoPI = Math.PI * 2;
+
+        /// <summary> π / 2 </summary>
+        public const double PIOverTwo = Math.PI / 2;
+
+        /// <summary>Returns the Cartesian coordinate for one axis of a point that is defined by a given triangle and two normalized barycentric (areal) coordinates.</summary>
+        /// <param name="value1">The value1.</param>
+        /// <param name="value2">The value2.</param>
+        /// <param name="value3">The value3.</param>
+        /// <param name="amount1">The amount1.</param>
+        /// <param name="amount2">The amount2.</param>
+        public static float Barycentric(float value1, float value2, float value3, float amount1, float amount2)
+        {
+            return value1 + (value2 - value1) * amount1 + (value3 - value1) * amount2;
+        }
+
+        /// <summary>Returns the Cartesian coordinate for one axis of a point that is defined by a given triangle and two normalized barycentric (areal) coordinates.</summary>
+        /// <param name="value1">The value1.</param>
+        /// <param name="value2">The value2.</param>
+        /// <param name="value3">The value3.</param>
+        /// <param name="amount1">The amount1.</param>
+        /// <param name="amount2">The amount2.</param>
+        public static double Barycentric(double value1, double value2, double value3, double amount1, double amount2)
+        {
+            return value1 + (value2 - value1) * amount1 + (value3 - value1) * amount2;
+        }
+
+        /// <summary>Performs a Catmull-Rom interpolation using the specified positions.</summary>
+        /// <param name="value1">The value1.</param>
+        /// <param name="value2">The value2.</param>
+        /// <param name="value3">The value3.</param>
+        /// <param name="value4">The value4.</param>
+        /// <param name="amount">The amount.</param>
+        public static float CatmullRom(float value1, float value2, float value3, float value4, float amount)
+        {
+            // Using formula from http://www.mvps.org/directx/articles/catmull/
+
+            double amountSquared = amount * amount;
+            double amountCubed = amountSquared * amount;
+
+            return (float)(0.5 * (2.0 * value2 + (value3 - value1) * amount +
+                (2.0 * value1 - 5.0 * value2 + 4.0 * value3 - value4) * amountSquared +
+                (3.0 * value2 - value1 - 3.0 * value3 + value4) * amountCubed));
+        }
+
+        /// <summary>Performs a Catmull-Rom interpolation using the specified positions.</summary>
+        /// <param name="value1">The value1.</param>
+        /// <param name="value2">The value2.</param>
+        /// <param name="value3">The value3.</param>
+        /// <param name="value4">The value4.</param>
+        /// <param name="amount">The amount.</param>
+        public static double CatmullRom(double value1, double value2, double value3, double value4, double amount)
+        {
+            // Using formula from http://www.mvps.org/directx/articles/catmull/
+
+            double amountSquared = amount * amount;
+            double amountCubed = amountSquared * amount;
+
+            return (double)(0.5 * (2.0 * value2 + (value3 - value1) * amount +
+                (2.0 * value1 - 5.0 * value2 + 4.0 * value3 - value4) * amountSquared +
+                (3.0 * value2 - value1 - 3.0 * value3 + value4) * amountCubed));
+        }
+
+        /// <summary>Performs a Hermite spline interpolation.</summary>
+        /// <param name="value1">The value1.</param>
+        /// <param name="tangent1">The tangent1.</param>
+        /// <param name="value2">The value2.</param>
+        /// <param name="tangent2">The tangent2.</param>
+        /// <param name="amount">The amount.</param>
+        public static float Hermite(float value1, float tangent1, float value2, float tangent2, float amount)
+        {
+            float a2 = amount * amount;
+            float asqr3 = amount * a2;
+            float a3 = a2 + a2 + a2;
+
+            return (value1 * (((asqr3 + asqr3) - a3) + 1f)) +
+                   (value2 * ((-2f * asqr3) + a3)) +
+                   (tangent1 * ((asqr3 - (a2 + a2)) + amount)) +
+                   (tangent2 * (asqr3 - a2));
+        }
+
+        /// <summary>Performs a Hermite spline interpolation.</summary>
+        /// <param name="value1">The value1.</param>
+        /// <param name="tangent1">The tangent1.</param>
+        /// <param name="value2">The value2.</param>
+        /// <param name="tangent2">The tangent2.</param>
+        /// <param name="amount">The amount.</param>
+        public static double Hermite(double value1, double tangent1, double value2, double tangent2, double amount)
+        {
+            double a2 = amount * amount;
+            double asqr3 = amount * a2;
+            double a3 = a2 + a2 + a2;
+
+            return (value1 * (((asqr3 + asqr3) - a3) + 1.0)) +
+                   (value2 * ((-2.0 * asqr3) + a3)) +
+                   (tangent1 * ((asqr3 - (a2 + a2)) + amount)) +
+                   (tangent2 * (asqr3 - a2));
+        }
+
+        /// <summary>Linearly interpolates between two values.</summary>
+        /// <param name="value1">The value1.</param>
+        /// <param name="value2">The value2.</param>
+        /// <param name="amount">The amount.</param>
+        public static float Lerp(float value1, float value2, float amount)
+        {
+            return value1 + (value2 - value1) * amount;
+        }
+
+        /// <summary>Linearly interpolates between two values.</summary>
+        /// <param name="value1">The value1.</param>
+        /// <param name="value2">The value2.</param>
+        /// <param name="amount">The amount.</param>
+        public static double Lerp(double value1, double value2, double amount)
+        {
+            return value1 + (value2 - value1) * amount;
+        }
+
+        /// <summary>Reduces a given angle to a value between π and -π.</summary>
+        /// <param name="angle">The angle (radian).</param>
+        public static float WrapAngle(float angle)
+        {
+            return (float)Math.IEEERemainder(angle, TwoPi);
+        }
+
+        /// <summary>Reduces a given angle to a value between π and -π.</summary>
+        /// <param name="angle">The angle (radian).</param>
+        public static double WrapAngle(double angle)
+        {
+            return Math.IEEERemainder(angle, TwoPi);
+        }
+        
+        #endregion
     }
 }
