@@ -119,6 +119,210 @@ namespace NTH.Tests
         }
 
         [TestMethod]
+        public void Clamp2()
+        {
+            // ReSharper disable RedundantCast
+            var actual = MathEx.Clamp((long)1, (long)2, (long)3);
+            var expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((long)2, (long)1, (long)3);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((long)3, (long)1, (long)2);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((long)3, (long)1, (long)1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((long)1, (long)1, (long)1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((long)2, (long)4, (long)6);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((long)6, (long)0, (long)4);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+            // ReSharper restore RedundantCast
+        }
+
+        [TestMethod]
+        public void Clamp3()
+        {
+            // ReSharper disable RedundantCast
+            var actual = MathEx.Clamp((double)1, (double)2, (double)3);
+            var expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((double)2, (double)1, (double)3);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((double)3, (double)1, (double)2);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((double)3, (double)1, (double)1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((double)1, (double)1, (double)1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((double)2, (double)4, (double)6);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((double)6, (double)0, (double)4);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+            // ReSharper restore RedundantCast
+        }
+
+        [TestMethod]
+        public void Clamp4()
+        {
+            // ReSharper disable RedundantCast
+            var actual = MathEx.Clamp((decimal)1, (decimal)2, (decimal)3);
+            var expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((decimal)2, (decimal)1, (decimal)3);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((decimal)3, (decimal)1, (decimal)2);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((decimal)3, (decimal)1, (decimal)1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((decimal)1, (decimal)1, (decimal)1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((decimal)2, (decimal)4, (decimal)6);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((decimal)6, (decimal)0, (decimal)4);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+            // ReSharper restore RedundantCast
+        }
+
+        [TestMethod]
+        public void Clamp5()
+        {
+            // ReSharper disable RedundantCast
+            var actual = MathEx.Clamp((float)1, (float)2, (float)3);
+            var expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((float)2, (float)1, (float)3);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((float)3, (float)1, (float)2);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((float)3, (float)1, (float)1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((float)1, (float)1, (float)1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((float)2, (float)4, (float)6);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((float)6, (float)0, (float)4);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+            // ReSharper restore RedundantCast
+        }
+
+        [TestMethod]
+        public void Clamp6()
+        {
+            // ReSharper disable RedundantCast
+            var actual = MathEx.Clamp((byte)1, (byte)2, (byte)3);
+            var expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((byte)2, (byte)1, (byte)3);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((byte)3, (byte)1, (byte)2);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((byte)3, (byte)1, (byte)1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((byte)1, (byte)1, (byte)1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((byte)2, (byte)4, (byte)6);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((byte)6, (byte)0, (byte)4);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+            // ReSharper restore RedundantCast
+        }
+
+        [TestMethod]
+        public void Clamp7()
+        {
+            // ReSharper disable RedundantCast
+            var actual = MathEx.Clamp((short)1, (short)2, (short)3);
+            var expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((short)2, (short)1, (short)3);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((short)3, (short)1, (short)2);
+            expected = 2;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((short)3, (short)1, (short)1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((short)1, (short)1, (short)1);
+            expected = 1;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((short)2, (short)4, (short)6);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+
+            actual = MathEx.Clamp((short)6, (short)0, (short)4);
+            expected = 4;
+            Assert.AreEqual(expected, actual);
+            // ReSharper restore RedundantCast
+        }
+
+        [TestMethod]
         public void GCD()
         {
             // Generated, lol
