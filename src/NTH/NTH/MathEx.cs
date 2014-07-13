@@ -143,7 +143,6 @@ namespace NTH
 
         #endregion
 
-
         #region Min, 3 params
 
         /// <summary>Returns the smaller of three 32-bit signed integers.</summary>
