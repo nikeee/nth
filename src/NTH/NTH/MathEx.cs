@@ -301,12 +301,12 @@ namespace NTH
         }
 
         #endregion
-        
-        #region Missing Tests
-        
+
+        #region Missing Tests #0
+
         // The functions in this region are elevated from:
         // https://github.com/ThuCommix/Sharpex2D/blob/1cbb70d97f6e1a3c506145f163b1f5fd3901fc91/Sharpex2D/Framework/Math/MathHelper.cs
-        
+
         /// <summary> π * 2 </summary>
         public const double TwoPI = Math.PI * 2;
 
@@ -429,16 +429,53 @@ namespace NTH
         /// <param name="angle">The angle (radian).</param>
         public static float WrapAngle(float angle)
         {
-            return (float)Math.IEEERemainder(angle, TwoPi);
+            return (float)Math.IEEERemainder(angle, TwoPI);
         }
 
         /// <summary>Reduces a given angle to a value between π and -π.</summary>
         /// <param name="angle">The angle (radian).</param>
         public static double WrapAngle(double angle)
         {
-            return Math.IEEERemainder(angle, TwoPi);
+            return Math.IEEERemainder(angle, TwoPI);
         }
-        
+
+        #endregion
+        #region Missing Tests #1
+
+        public static int GreatestCommonDivisor(int a, int b)
+        {
+            return b == 0 ? a : GreatestCommonDivisor(b, a % b);
+        }
+
+        public static int GreatestCommonDivisor(params int[] values)
+        {
+            int gcd = 0;
+            int a = values[0];
+            for (int i = 1; i < values.Length; i++)
+            {
+                gcd = GreatestCommonDivisor(a, values[i]);
+                a = values[i];
+            }
+            return gcd;
+        }
+
+        public static long GreatestCommonDivisor(long a, long b)
+        {
+            return b == 0 ? a : GreatestCommonDivisor(b, a % b);
+        }
+
+        public static long GreatestCommonDivisor(params long[] values)
+        {
+            long gcd = 0;
+            long a = values[0];
+            for (long i = 1; i < values.Length; i++)
+            {
+                gcd = GreatestCommonDivisor(a, values[i]);
+                a = values[i];
+            }
+            return gcd;
+        }
+
         #endregion
     }
 }
