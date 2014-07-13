@@ -6,6 +6,8 @@ namespace NTH.Tests
     [TestClass]
     public class MathExTests
     {
+        #region Pow
+
         [TestMethod]
         public void Pow()
         {
@@ -42,11 +44,14 @@ namespace NTH.Tests
             }
         }
 
+        #endregion
+
         #region Min
 
         [TestMethod]
         public void Min()
         {
+            // ReSharper disable RedundantCast
             var res = MathEx.Min(-1, 0, 1);
             Assert.AreEqual(-1, res);
 
@@ -64,6 +69,7 @@ namespace NTH.Tests
 
             res = MathEx.Min(-300, -1, 0, 4, 13, 39, 42, 23, -4);
             Assert.AreEqual(-300, res);
+            // ReSharper restore RedundantCast
         }
 
         [TestMethod]
@@ -140,9 +146,12 @@ namespace NTH.Tests
 
         #endregion
 
+        #region Max
+
         [TestMethod]
         public void Max()
         {
+            // ReSharper disable RedundantCast
             var res = MathEx.Max(-1, 0, 1);
             Assert.AreEqual(1, res);
 
@@ -160,13 +169,89 @@ namespace NTH.Tests
 
             res = MathEx.Max(300, -1, 0, 4, 13, 39, 42, 23, -4);
             Assert.AreEqual(300, res);
+            // ReSharper restore RedundantCast
         }
+
+        [TestMethod]
+        public void Max2()
+        {
+            // ReSharper disable RedundantCast
+            var res = MathEx.Max((long)-1, (long)0, (long)1);
+            Assert.AreEqual((long)1, (long)res);
+
+            res = MathEx.Max((long)1, (long)0, (long)-1);
+            Assert.AreEqual((long)1, (long)res);
+
+            res = MathEx.Max((long)1, (long)-1, (long)0);
+            Assert.AreEqual((long)1, (long)res);
+
+            res = MathEx.Max((long)1, (long)-1, (long)0, (long)-2);
+            Assert.AreEqual((long)1, (long)res);
+
+            res = MathEx.Max((long)-3, (long)-1, (long)0, (long)4, (long)13, (long)39, (long)42, (long)23, (long)-4);
+            Assert.AreEqual((long)42, (long)res);
+
+            res = MathEx.Max((long)300, (long)-1, (long)0, (long)4, (long)13, (long)39, (long)42, (long)23, (long)-4);
+            Assert.AreEqual((long)300, (long)res);
+            // ReSharper restore RedundantCast
+        }
+
+        [TestMethod]
+        public void Max3()
+        {
+            // ReSharper disable RedundantCast
+            var res = MathEx.Max((float)-1, (float)0, (float)1);
+            Assert.AreEqual((float)1, (float)res);
+
+            res = MathEx.Max((float)1, (float)0, (float)-1);
+            Assert.AreEqual((float)1, (float)res);
+
+            res = MathEx.Max((float)1, (float)-1, (float)0);
+            Assert.AreEqual((float)1, (float)res);
+
+            res = MathEx.Max((float)1, (float)-1, (float)0, (float)-2);
+            Assert.AreEqual((float)1, (float)res);
+
+            res = MathEx.Max((float)-3, (float)-1, (float)0, (float)4, (float)13, (float)39, (float)42, (float)23, (float)-4);
+            Assert.AreEqual((float)42, (float)res);
+
+            res = MathEx.Max((float)300, (float)-1, (float)0, (float)4, (float)13, (float)39, (float)42, (float)23, (float)-4);
+            Assert.AreEqual((float)300, (float)res);
+            // ReSharper restore RedundantCast
+        }
+
+        [TestMethod]
+        public void Max4()
+        {
+            // ReSharper disable RedundantCast
+            var res = MathEx.Max((double)-1, (double)0, (double)1);
+            Assert.AreEqual((double)1, (double)res);
+
+            res = MathEx.Max((double)1, (double)0, (double)-1);
+            Assert.AreEqual((double)1, (double)res);
+
+            res = MathEx.Max((double)1, (double)-1, (double)0);
+            Assert.AreEqual((double)1, (double)res);
+
+            res = MathEx.Max((double)1, (double)-1, (double)0, (double)-2);
+            Assert.AreEqual((double)1, (double)res);
+
+            res = MathEx.Max((double)-3, (double)-1, (double)0, (double)4, (double)13, (double)39, (double)42, (double)23, (double)-4);
+            Assert.AreEqual((double)42, (double)res);
+
+            res = MathEx.Max((double)300, (double)-1, (double)0, (double)4, (double)13, (double)39, (double)42, (double)23, (double)-4);
+            Assert.AreEqual((double)300, (double)res);
+            // ReSharper restore RedundantCast
+        }
+
+        #endregion
 
         #region Clamp
 
         [TestMethod]
         public void Clamp()
         {
+            // ReSharper disable RedundantCast
             var actual = MathEx.Clamp(1, 2, 3);
             var expected = 2;
             Assert.AreEqual(expected, actual);
@@ -194,6 +279,7 @@ namespace NTH.Tests
             actual = MathEx.Clamp(6, 0, 4);
             expected = 4;
             Assert.AreEqual(expected, actual);
+            // ReSharper restore RedundantCast
         }
 
         [TestMethod]
