@@ -444,7 +444,11 @@ namespace NTH
 
         #region GCD
 
-        public static int GreatestCommonDivisor(int a, int b)
+        /// <summary>Calculates the greatest common divisor of two values.</summary>
+        /// <param name="a">The first value.</param>
+        /// <param name="b">The second value.</param>
+        /// <returns>Returns the greatest common divisor of the two values.</returns>
+        public static int GCD(int a, int b)
         {
 #if FEATURE_GCD_RECURSIVE
             return b == 0 ? a : GreatestCommonDivisor(b, a % b);
@@ -459,19 +463,32 @@ namespace NTH
 #endif
         }
 
-        public static int GreatestCommonDivisor(params int[] values)
+        /// <summary>Calculates the greatest common divisor of a set of integer values.</summary>
+        /// <param name="values">The set of values.</param>
+        /// <returns>Returns the greatest common divisor of the integer value set.</returns>
+        public static int GCD(params int[] values)
         {
+            if (values.Length <= 1)
+                throw new ArgumentException("There mus be at least two values for a GCD calculation.");
+
+            if (values.Length == 2)
+                return GCD(values[0], values[1]);
+
             int gcd = 0;
             int a = values[0];
             for (int i = 1; i < values.Length; i++)
             {
-                gcd = GreatestCommonDivisor(a, values[i]);
+                gcd = GCD(a, values[i]);
                 a = values[i];
             }
             return gcd;
         }
 
-        public static long GreatestCommonDivisor(long a, long b)
+        /// <summary>Calculates the greatest common divisor of two values.</summary>
+        /// <param name="a">The first value.</param>
+        /// <param name="b">The second value.</param>
+        /// <returns>Returns the greatest common divisor of the two values.</returns>
+        public static long GCD(long a, long b)
         {
 #if FEATURE_GCD_RECURSIVE
             return b == 0 ? a : GreatestCommonDivisor(b, a % b);
@@ -486,13 +503,22 @@ namespace NTH
 #endif
         }
 
-        public static long GreatestCommonDivisor(params long[] values)
+        /// <summary>Calculates the greatest common divisor of a set of integer values.</summary>
+        /// <param name="values">The set of values.</param>
+        /// <returns>Returns the greatest common divisor of the integer value set.</returns>
+        public static long GCD(params long[] values)
         {
+            if (values.Length <= 1)
+                throw new ArgumentException("There mus be at least two values for a GCD calculation.");
+
+            if (values.Length == 2)
+                return GCD(values[0], values[1]);
+
             long gcd = 0;
             long a = values[0];
             for (long i = 1; i < values.Length; i++)
             {
-                gcd = GreatestCommonDivisor(a, values[i]);
+                gcd = GCD(a, values[i]);
                 a = values[i];
             }
             return gcd;
@@ -502,13 +528,22 @@ namespace NTH
 
         #region LCM
 
-        public static int LeastCommonMultiple(int a, int b)
+        /// <summary>Calculates the least common multiple of two values.</summary>
+        /// <param name="a">The first value.</param>
+        /// <param name="b">The second value.</param>
+        /// <returns>Returns the least common multiple of the two values.</returns>
+        public static int LCM(int a, int b)
         {
-            return (a / GreatestCommonDivisor(a, b)) * b;
+            return (a / GCD(a, b)) * b;
         }
-        public static long LeastCommonMultiple(long a, long b)
+
+        /// <summary>Calculates the least common multiple of two values.</summary>
+        /// <param name="a">The first value.</param>
+        /// <param name="b">The second value.</param>
+        /// <returns>Returns the least common multiple of the two values.</returns>
+        public static long LCM(long a, long b)
         {
-            return (a / GreatestCommonDivisor(a, b)) * b;
+            return (a / GCD(a, b)) * b;
         }
 
         #endregion
