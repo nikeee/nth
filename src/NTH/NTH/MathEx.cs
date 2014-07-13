@@ -442,9 +442,21 @@ namespace NTH
         #endregion
         #region Missing Tests #1
 
+        #region GCD
+
         public static int GreatestCommonDivisor(int a, int b)
         {
+#if FEATURE_GCD_RECURSIVE
             return b == 0 ? a : GreatestCommonDivisor(b, a % b);
+#else
+            while (b != 0)
+            {
+                int temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+#endif
         }
 
         public static int GreatestCommonDivisor(params int[] values)
@@ -461,7 +473,17 @@ namespace NTH
 
         public static long GreatestCommonDivisor(long a, long b)
         {
+#if FEATURE_GCD_RECURSIVE
             return b == 0 ? a : GreatestCommonDivisor(b, a % b);
+#else
+            while (b != 0)
+            {
+                long temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+#endif
         }
 
         public static long GreatestCommonDivisor(params long[] values)
@@ -475,6 +497,21 @@ namespace NTH
             }
             return gcd;
         }
+
+        #endregion
+
+        #region LCM
+
+        public static int LeastCommonMultiple(int a, int b)
+        {
+            return (a / GreatestCommonDivisor(a, b)) * b;
+        }
+        public static long LeastCommonMultiple(long a, long b)
+        {
+            return (a / GreatestCommonDivisor(a, b)) * b;
+        }
+
+        #endregion
 
         #endregion
     }
