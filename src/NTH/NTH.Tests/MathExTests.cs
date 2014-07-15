@@ -11,6 +11,7 @@ namespace NTH.Tests
         [TestMethod]
         public void Pow()
         {
+            // ReSharper disable RedundantCast
             var res = MathEx.Pow(10, 1);
             Assert.AreEqual(10, res);
 
@@ -25,6 +26,28 @@ namespace NTH.Tests
 
             res = MathEx.Pow(10, 4);
             Assert.AreEqual(10 * 10 * 10 * 10, res);
+            // ReSharper restore RedundantCast
+        }
+
+        [TestMethod]
+        public void Pow2()
+        {
+            // ReSharper disable RedundantCast
+            var res = MathEx.Pow((long)10, (long)1);
+            Assert.AreEqual((long)10, res);
+
+            res = MathEx.Pow((long)10, (long)0);
+            Assert.AreEqual((long)1, res);
+
+            res = MathEx.Pow((long)10, (long)2);
+            Assert.AreEqual((long)10 * (long)10, res);
+
+            res = MathEx.Pow((long)10, (long)3);
+            Assert.AreEqual((long)10 * (long)10 * (long)10, res);
+
+            res = MathEx.Pow((long)10, (long)4);
+            Assert.AreEqual((long)10 * (long)10 * (long)10 * (long)10, res);
+            // ReSharper restore RedundantCast
         }
 
         [TestMethod]
@@ -45,6 +68,23 @@ namespace NTH.Tests
         }
 
         [TestMethod]
+        public void PowOptimization2()
+        {
+            // Test bit shifting optimization
+
+            var actual = MathEx.Pow((long)2, (long)1);
+            var expected = (long)Math.Pow((long)2, (long)1);
+            Assert.AreEqual(expected, actual);
+
+            for (long i = 0; i < 63; ++i)
+            {
+                actual = MathEx.Pow((long)2, i);
+                expected = (long)Math.Pow((long)2, i);
+                Assert.AreEqual(expected, actual);
+            }
+        }
+
+        [TestMethod]
         public void PowExceptions()
         {
             TestHelper.AssertException<ArgumentException>(() => MathEx.Pow(1, -1));
@@ -56,6 +96,7 @@ namespace NTH.Tests
             TestHelper.AssertException<ArgumentException>(() => MathEx.Pow(234, -24));
             TestHelper.AssertException<ArgumentException>(() => MathEx.Pow(564, -256));
         }
+
         #endregion
 
         #region Min
