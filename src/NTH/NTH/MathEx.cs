@@ -44,12 +44,12 @@ namespace NTH
             if (y < 0)
                 throw new ArgumentException("Invalid y");
             if (y == 0)
-                return 1;
-            if (y == 1)
+                return 1L;
+            if (y == 1L)
                 return x;
 
             if (x == 2 && y < sizeof(long) * 8)
-                return 1 << (int)y;
+                return 1L << (int)y;
 
             var res = 1L;
             while (y != 0)
