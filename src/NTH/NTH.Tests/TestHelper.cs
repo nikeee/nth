@@ -7,6 +7,23 @@ namespace NTH.Tests
 {
     internal static class TestHelper
     {
+        internal static void AssertException<T>(Action action)
+            where T : Exception
+        {
+            if (action == null)
+                throw new DivideByZeroException();
+            try
+            {
+                action();
+            }
+            catch (T e)
+            {
+                Assert.IsNotNull(e);
+                return;
+            }
+            Assert.Fail("No exception thrown.");
+        }
+
         internal static bool IsSerializable<T>(T instance)
         {
             Assert.IsNotNull(instance);

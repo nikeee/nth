@@ -44,6 +44,18 @@ namespace NTH.Tests
             }
         }
 
+        [TestMethod]
+        public void PowExceptions()
+        {
+            TestHelper.AssertException<ArgumentException>(() => MathEx.Pow(1, -1));
+            TestHelper.AssertException<ArgumentException>(() => MathEx.Pow(1, -2));
+
+            TestHelper.AssertException<ArgumentException>(() => MathEx.Pow(234, -1));
+            TestHelper.AssertException<ArgumentException>(() => MathEx.Pow(564, -2));
+
+            TestHelper.AssertException<ArgumentException>(() => MathEx.Pow(234, -24));
+            TestHelper.AssertException<ArgumentException>(() => MathEx.Pow(564, -256));
+        }
         #endregion
 
         #region Min
@@ -144,6 +156,22 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
+        [TestMethod]
+        public void MinExceptions()
+        {
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Min((int[])null));
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Min(new int[0]));
+
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Min((long[])null));
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Min(new long[0]));
+
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Min((float[])null));
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Min(new float[0]));
+
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Min((double[])null));
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Min(new double[0]));
+        }
+
         #endregion
 
         #region Max
@@ -242,6 +270,22 @@ namespace NTH.Tests
             res = MathEx.Max((double)300, (double)-1, (double)0, (double)4, (double)13, (double)39, (double)42, (double)23, (double)-4);
             Assert.AreEqual((double)300, (double)res);
             // ReSharper restore RedundantCast
+        }
+
+        [TestMethod]
+        public void MaxExceptions()
+        {
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Max((int[])null));
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Max(new int[0]));
+
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Max((long[])null));
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Max(new long[0]));
+
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Max((float[])null));
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Max(new float[0]));
+
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Max((double[])null));
+            TestHelper.AssertException<ArgumentNullException>(() => MathEx.Max(new double[0]));
         }
 
         #endregion
@@ -1327,6 +1371,22 @@ namespace NTH.Tests
             Assert.AreEqual((long)147, MathEx.LCM((long)147, (long)21));
             Assert.AreEqual((long)3404, MathEx.LCM((long)148, (long)92));
             // ReSharper restore RedundantCast
+        }
+
+        #endregion
+
+        #region Constants
+
+        [TestMethod]
+        public void TwoPI()
+        {
+            Assert.AreEqual(Math.PI * 2, MathEx.TwoPI);
+        }
+
+        [TestMethod]
+        public void PIOverTwo()
+        {
+            Assert.AreEqual(Math.PI / 2, MathEx.PIOverTwo);
         }
 
         #endregion

@@ -525,6 +525,9 @@ namespace NTH
 
         #endregion
 
+
+        #endregion
+
         #region LCM
 
         /// <summary>Calculates the least common multiple of two values.</summary>
@@ -544,8 +547,6 @@ namespace NTH
         {
             return (a / GCD(a, b)) * b;
         }
-
-        #endregion
 
         #endregion
     }
