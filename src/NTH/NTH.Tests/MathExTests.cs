@@ -87,6 +87,7 @@ namespace NTH.Tests
         [TestMethod]
         public void PowExceptions()
         {
+            // ReSharper disable RedundantCast
             TestHelper.AssertException<ArgumentException>(() => MathEx.Pow(1, -1));
             TestHelper.AssertException<ArgumentException>(() => MathEx.Pow(1, -2));
 
@@ -95,6 +96,23 @@ namespace NTH.Tests
 
             TestHelper.AssertException<ArgumentException>(() => MathEx.Pow(234, -24));
             TestHelper.AssertException<ArgumentException>(() => MathEx.Pow(564, -256));
+            // ReSharper restore RedundantCast
+        }
+
+
+        [TestMethod]
+        public void PowExceptions2()
+        {
+            // ReSharper disable RedundantCast
+            TestHelper.AssertException<ArgumentException>(() => MathEx.Pow((long)1, (long)-1));
+            TestHelper.AssertException<ArgumentException>(() => MathEx.Pow((long)1, (long)-2));
+
+            TestHelper.AssertException<ArgumentException>(() => MathEx.Pow((long)234, (long)-1));
+            TestHelper.AssertException<ArgumentException>(() => MathEx.Pow((long)564, (long)-2));
+
+            TestHelper.AssertException<ArgumentException>(() => MathEx.Pow((long)234, (long)-24));
+            TestHelper.AssertException<ArgumentException>(() => MathEx.Pow((long)564, (long)-256));
+            // ReSharper restore RedundantCast
         }
 
         #endregion
