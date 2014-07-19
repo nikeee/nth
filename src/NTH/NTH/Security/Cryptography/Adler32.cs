@@ -48,17 +48,38 @@ namespace NTH.Security.Cryptography
         #endregion
         #region Computations
 
-        public static uint Compute(byte[] buffer)
+        /// <summary>Computes the Adler32 checksum for the given data.</summary>
+        /// <param name="data">The data to compute the checksum of.</param>
+        public static uint Compute(byte[] data)
         {
-            return Compute(DefaultInitial, buffer);
+            return Compute(DefaultInitial, data);
         }
 
-        public static uint Compute(uint initialValue, byte[] buffer)
+        /// <summary>Computes the Adler32 checksum for the given data.</summary>
+        /// <param name="initialValue">Initial value or previous result. Use 1 for the first transformation.</param>
+        /// <param name="data">The data to compute the checksum of.</param>
+        public static uint Compute(byte[] data, uint initialValue)
         {
-            return CalculateHash(initialValue, buffer, 0, buffer.Length);
+            return CalculateHash(initialValue, data, 0, data.Length);
         }
 
-        private static uint CalculateHash(uint initialValue, byte[] data, int start, int size)
+        /// <summary>Computes the Adler32 checksum for the given data.</summary>
+        /// <param name="initialValue">Initial value or previous result. Use 1 for the first transformation.</param>
+        /// <param name="data">The data to compute the checksum of.</param>
+        /// <param name="start">Index of first byte to compute checksum for.</param>
+        /// <param name="length">Number of bytes to compute checksum for.</param>
+        public static uint Compute(byte[] data, uint initialValue, int start, int length)
+        {
+            return CalculateHash(initialValue, data, start, length);
+        }
+
+        /// <summary>Computes the Adler32 checksum for the given data.</summary>
+        /// <param name="initialValue">Initial value or previous result. Use 1 for the first transformation.</param>
+        /// <param name="buffer">The data to compute the checksum of.</param>
+        /// <param name="start">Index of first byte to compute checksum for.</param>
+        /// <param name="size">Number of bytes to compute checksum for.</param>
+        /// <returns>The checksum of the given data.</returns>
+        private static uint CalculateHash(uint initialValue, byte[] buffer, int start, int size)
         {
             uint a = (uint)(initialValue & 0xFFFF);
             uint b = (uint)((initialValue >> 16) & 0xFFFF);
@@ -72,9 +93,9 @@ namespace NTH.Security.Cryptography
                 k = (len < NMax) ? len : NMax;
                 len -= k;
 
-                for (int i=0; i < k; i++)
+                for (int i = 0; i < k; i++)
                 {
-                    a += data[index++];
+                    a += buffer[index++];
                     b += a;
                 }
                 a %= ModuloValue;
