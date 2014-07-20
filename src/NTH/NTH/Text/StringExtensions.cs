@@ -43,6 +43,8 @@ namespace NTH.Text
             return sb.ToString();
         }
 
+        #region Ensure
+
         public static string EnsureWrappingStrings(this string value, string prefix, string suffix)
         {
             return value.EnsurePrefix(prefix).EnsureSuffix(suffix);
@@ -53,6 +55,7 @@ namespace NTH.Text
             return value.EnsureWrappingStrings("\"", "\"");
         }
 
+        #region ensure prefix
 
         public static string EnsurePrefix(this string value, string prefix)
         {
@@ -67,6 +70,9 @@ namespace NTH.Text
             return value;
         }
 
+        #endregion
+        #region ensure suffix
+
         public static string EnsureSuffix(this string value, string suffix)
         {
             return value.EnsureSuffix(suffix, StringComparison.Ordinal);
@@ -79,6 +85,10 @@ namespace NTH.Text
                 return string.Concat(value, suffix);
             return value;
         }
+
+        #endregion
+
+        #endregion
 
         public static bool Contains(this string str, string value, StringComparison comparisonType)
         {
