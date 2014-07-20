@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 
 namespace NTH.Security.Cryptography
@@ -57,16 +56,16 @@ namespace NTH.Security.Cryptography
         }
 
         /// <summary>Computes the Adler32 checksum for the given data.</summary>
-        /// <param name="initialValue">Initial value or previous result. Use 1 for the first transformation.</param>
         /// <param name="data">The data to compute the checksum of.</param>
+        /// <param name="initialValue">Initial value or previous result. Use 1 for the first transformation.</param>
         public static uint Compute(byte[] data, uint initialValue)
         {
             return CalculateHash(data, initialValue, 0, data.Length);
         }
 
         /// <summary>Computes the Adler32 checksum for the given data.</summary>
-        /// <param name="initialValue">Initial value or previous result. Use 1 for the first transformation.</param>
         /// <param name="data">The data to compute the checksum of.</param>
+        /// <param name="initialValue">Initial value or previous result. Use 1 for the first transformation.</param>
         /// <param name="start">Index of first byte to compute checksum for.</param>
         /// <param name="length">Number of bytes to compute checksum for.</param>
         public static uint Compute(byte[] data, uint initialValue, int start, int length)
@@ -75,8 +74,8 @@ namespace NTH.Security.Cryptography
         }
 
         /// <summary>Computes the Adler32 checksum for the given data.</summary>
-        /// <param name="initialValue">Initial value or previous result. Use 1 for the first transformation.</param>
         /// <param name="buffer">The data to compute the checksum of.</param>
+        /// <param name="initialValue">Initial value or previous result. Use 1 for the first transformation.</param>
         /// <param name="start">Index of first byte to compute checksum for.</param>
         /// <param name="size">Number of bytes to compute checksum for.</param>
         /// <returns>The checksum of the given data.</returns>
