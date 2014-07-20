@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NTH.Tests.Properties
-{
-
-
+namespace NTH.Tests.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -57,6 +57,16 @@ namespace NTH.Tests.Properties
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] _5MB {
+            get {
+                object obj = ResourceManager.GetObject("_5MB", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
