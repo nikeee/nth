@@ -81,21 +81,20 @@ namespace NTH.Security.Cryptography
         /// <param name="buffer">The data to compute the checksum of.</param>
         /// <param name="initialValue">Initial value or previous result. Use 1 for the first transformation.</param>
         /// <param name="start">Index of first byte to compute checksum for.</param>
-        /// <param name="size">Number of bytes to compute checksum for.</param>
+        /// <param name="length">Number of bytes to compute checksum for.</param>
         /// <returns>The checksum of the given data.</returns>
-        private static uint CalculateHash(byte[] buffer, uint initialValue, int start, int size)
+        private static uint CalculateHash(byte[] buffer, uint initialValue, int start, int length)
         {
-            uint a = (uint)(initialValue & 0xFFFF);
-            uint b = (uint)((initialValue >> 16) & 0xFFFF);
+            uint a = initialValue & 0xFFFF;
+            uint b = (initialValue >> 16) & 0xFFFF;
 
             int index = start;
-            int len = size;
 
             int k;
-            while (len > 0)
+            while (length > 0)
             {
-                k = (len < NMax) ? len : NMax;
-                len -= k;
+                k = (length < NMax) ? length : NMax;
+                length -= k;
 
                 for (int i = 0; i < k; i++)
                 {
