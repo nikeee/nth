@@ -79,6 +79,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources.cs" />
+    <Compile Include="Security\Cryptography\Crc32Tests.cs" />
     <Compile Include="Security\Cryptography\Adler32Tests.cs" />
     <Compile Include="Security\Cryptography\RSACryptoServiceProviderExtensionsTests.cs" />
     <Compile Include="SemanticVersionTests.cs" />
