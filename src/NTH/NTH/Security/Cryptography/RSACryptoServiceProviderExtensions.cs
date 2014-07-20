@@ -162,7 +162,7 @@ namespace NTH.Security.Cryptography
 
             success = NativeMethods.CryptDecodeObject(
                     CryptEncodingFlags.X509AsnEncoding | CryptEncodingFlags.Pkcs7AsnEncoding,
-                    new IntPtr((int) CryptOutputTypes.PkcsRsaPrivateKey),
+                    new IntPtr((int)CryptOutputTypes.PkcsRsaPrivateKey),
                     derData, derData.Length, CryptDecodeFlags.None, data, ref dwRSAPrivateKeyBlobSize);
             if (!success)
                 throw new Win32Exception();
