@@ -5,6 +5,8 @@ namespace NTH.Text
 {
     public static class StringExtensions
     {
+        #region is-something
+
         public static bool IsNullOrEmpty(this string value)
         {
             return value == null || value.Length == 0;
@@ -29,6 +31,8 @@ namespace NTH.Text
 
             return value.GetTypeCode() == TypeCode.DBNull;
         }
+
+        #endregion
 
         public static string StripWhiteSpace(this string value)
         {
@@ -95,6 +99,8 @@ namespace NTH.Text
             return str.IndexOf(value, comparisonType) > -1;
         }
 
+        #region levenshtein
+
         public static int LevenshteinDistanceTo(this string source, string target)
         {
             return source.LevenshteinDistanceTo(target, LevenshteinMethod.Default);
@@ -115,5 +121,7 @@ namespace NTH.Text
                     throw new ArgumentException("Invalid method.");
             }
         }
+
+        #endregion
     }
 }
