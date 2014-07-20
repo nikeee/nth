@@ -14,9 +14,10 @@ namespace NTH.Security.Cryptography
         private const int DefaultInitial = 1;
 
         /// <summary>Base for modulo arithmetic</summary>
-        private const int ModuloValue = 65521
+        private const int ModuloValue = 65521;
+
         /// <summary>Number of iterations we can safely do before applying the modulo.</summary>
-        private const int NMax = 5552
+        private const int NMax = 5552;
 
         private uint _hash;
 
@@ -37,7 +38,7 @@ namespace NTH.Security.Cryptography
 
         protected override void HashCore(byte[] buffer, int start, int length)
         {
-            _hash = CalculateHash(DefaultInitial, buffer, start, length);
+            _hash = CalculateHash(buffer, DefaultInitial, start, length);
         }
 
         protected override byte[] HashFinal()
@@ -52,7 +53,7 @@ namespace NTH.Security.Cryptography
         /// <param name="data">The data to compute the checksum of.</param>
         public static uint Compute(byte[] data)
         {
-            return Compute(DefaultInitial, data);
+            return Compute(data, DefaultInitial);
         }
 
         /// <summary>Computes the Adler32 checksum for the given data.</summary>
@@ -60,7 +61,7 @@ namespace NTH.Security.Cryptography
         /// <param name="data">The data to compute the checksum of.</param>
         public static uint Compute(byte[] data, uint initialValue)
         {
-            return CalculateHash(initialValue, data, 0, data.Length);
+            return CalculateHash(data, initialValue, 0, data.Length);
         }
 
         /// <summary>Computes the Adler32 checksum for the given data.</summary>
@@ -70,7 +71,7 @@ namespace NTH.Security.Cryptography
         /// <param name="length">Number of bytes to compute checksum for.</param>
         public static uint Compute(byte[] data, uint initialValue, int start, int length)
         {
-            return CalculateHash(initialValue, data, start, length);
+            return CalculateHash(data, initialValue, start, length);
         }
 
         /// <summary>Computes the Adler32 checksum for the given data.</summary>
@@ -79,13 +80,13 @@ namespace NTH.Security.Cryptography
         /// <param name="start">Index of first byte to compute checksum for.</param>
         /// <param name="size">Number of bytes to compute checksum for.</param>
         /// <returns>The checksum of the given data.</returns>
-        private static uint CalculateHash(uint initialValue, byte[] buffer, int start, int size)
+        private static uint CalculateHash(byte[] buffer, uint initialValue, int start, int size)
         {
             uint a = (uint)(initialValue & 0xFFFF);
             uint b = (uint)((initialValue >> 16) & 0xFFFF);
 
             int index = start;
-            int len = length;
+            int len = size;
 
             int k;
             while (len > 0)
