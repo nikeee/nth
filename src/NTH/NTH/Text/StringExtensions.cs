@@ -47,7 +47,7 @@ namespace NTH.Text
             return sb.ToString();
         }
 
-        #region Ensure
+        #region ensure
 
         public static string EnsureWrappingStrings(this string value, string prefix, string suffix)
         {
