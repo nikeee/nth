@@ -79,6 +79,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources.cs" />
+    <Compile Include="Security\Cryptography\Adler32Tests.cs" />
     <Compile Include="Security\Cryptography\RSACryptoServiceProviderExtensionsTests.cs" />
     <Compile Include="SemanticVersionTests.cs" />
     <Compile Include="TestHelper.cs" />
@@ -107,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="NTH-Key.pfx" />
+    <EmbeddedResource Include="Resources\5MB.bin" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

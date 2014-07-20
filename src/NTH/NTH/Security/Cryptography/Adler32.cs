@@ -24,7 +24,9 @@ namespace NTH.Security.Cryptography
 
         /// <summary>Initializes a new instance of <see cref="NTH.Security.Cryptography.Adler32" />.</summary>
         public Adler32()
-        { }
+        {
+            _hash = DefaultInitial;
+        }
 
         #endregion
         #region Overrides
@@ -33,11 +35,13 @@ namespace NTH.Security.Cryptography
 
         /// <summary>Initializes <see cref="NTH.Security.Cryptography.Adler32" />.</summary>
         public override void Initialize()
-        { }
+        {
+            _hash = DefaultInitial;
+        }
 
         protected override void HashCore(byte[] buffer, int start, int length)
         {
-            _hash = CalculateHash(buffer, DefaultInitial, start, length);
+            _hash = CalculateHash(buffer, _hash, start, length);
         }
 
         protected override byte[] HashFinal()
