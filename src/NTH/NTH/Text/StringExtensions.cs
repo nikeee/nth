@@ -43,46 +43,39 @@ namespace NTH.Text
             return sb.ToString();
         }
 
-        public static string EnsureWrappingChars(this string value, char prefix, char suffix)
+        public static string EnsureWrappingStrings(this string value, string prefix, string suffix)
         {
             return value.EnsurePrefix(prefix).EnsureSuffix(suffix);
         }
 
         public static string EnsureQuotes(this string value)
         {
-            return value.EnsureWrappingChars('"', '"');
+            return value.EnsureWrappingStrings("\"", "\"");
         }
 
-        public static string EnsurePrefix(this string value, char prefix)
-        {
-            if (string.IsNullOrEmpty(value))
-                return prefix.ToString();
-            if (value[0] != prefix)
-                return string.Concat(prefix, value);
-            return value;
-        }
+
         public static string EnsurePrefix(this string value, string prefix)
+        {
+            return value.EnsurePrefix(prefix, StringComparison.Ordinal);
+        }
+        public static string EnsurePrefix(this string value, string prefix, StringComparison comparison)
         {
             if (string.IsNullOrEmpty(value))
                 return prefix;
-            if (value.IndexOf(prefix, StringComparison.Ordinal) != 0)
+            if (value.IndexOf(prefix, comparison) != 0)
                 return string.Concat(prefix, value);
             return value;
         }
 
-        public static string EnsureSuffix(this string value, char suffix)
-        {
-            if (string.IsNullOrEmpty(value))
-                return suffix.ToString();
-            if (value[value.Length] != suffix)
-                return string.Concat(value, suffix);
-            return value;
-        }
         public static string EnsureSuffix(this string value, string suffix)
+        {
+            return value.EnsureSuffix(suffix, StringComparison.Ordinal);
+        }
+        public static string EnsureSuffix(this string value, string suffix, StringComparison comparison)
         {
             if (string.IsNullOrEmpty(value))
                 return suffix;
-            if (!value.EndsWith(suffix, StringComparison.Ordinal))
+            if (!value.EndsWith(suffix, comparison))
                 return string.Concat(value, suffix);
             return value;
         }
