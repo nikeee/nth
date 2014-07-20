@@ -13,9 +13,9 @@ namespace NTH.Text
         {
             if (value == null)
                 return true;
-                
-            for(int i = 0; i < value.Length; ++i)
-                if(!char.IsWhiteSpace(value[i]))
+
+            for (int i = 0; i < value.Length; ++i)
+                if (!char.IsWhiteSpace(value[i]))
                     return false;
             return true;
         }
@@ -23,26 +23,70 @@ namespace NTH.Text
         {
             if (value == null)
                 return true;
-                
+
             if (DBNull.Value.Equals(value))
                 return true;
 
             return value.GetTypeCode() == TypeCode.DBNull;
         }
-        
+
         public static string StripWhiteSpace(this string value)
         {
-            if(value == null)
+            if (value == null)
                 return null;
-            if(value.Length == 0 || value.Trim().Length == 0)
+            if (value.Length == 0 || value.Trim().Length == 0)
                 return string.Empty;
             var sb = new StringBuilder(value.Length);
-            for(int i = 0; i < value.Length; ++i)
-                if(!char.IsWhiteSpace(value[i]))
+            for (int i = 0; i < value.Length; ++i)
+                if (!char.IsWhiteSpace(value[i]))
                     sb.Append(value[i]);
             return sb.ToString();
         }
-        
+
+        public static string EnsureWrappingChars(this string value, char prefix, char suffix)
+        {
+            return value.EnsurePrefix(prefix).EnsureSuffix(suffix);
+        }
+
+        public static string EnsureQuotes(this string value)
+        {
+            return value.EnsureWrappingChars('"', '"');
+        }
+
+        public static string EnsurePrefix(this string value, char prefix)
+        {
+            if (string.IsNullOrEmpty(value))
+                return prefix.ToString();
+            if (value[0] != prefix)
+                return string.Concat(prefix, value);
+            return value;
+        }
+        public static string EnsurePrefix(this string value, string prefix)
+        {
+            if (string.IsNullOrEmpty(value))
+                return prefix;
+            if (value.IndexOf(prefix, StringComparison.Ordinal) != 0)
+                return string.Concat(prefix, value);
+            return value;
+        }
+
+        public static string EnsureSuffix(this string value, char suffix)
+        {
+            if (string.IsNullOrEmpty(value))
+                return suffix.ToString();
+            if (value[value.Length] != suffix)
+                return string.Concat(value, suffix);
+            return value;
+        }
+        public static string EnsureSuffix(this string value, string suffix)
+        {
+            if (string.IsNullOrEmpty(value))
+                return suffix;
+            if (!value.EndsWith(suffix, StringComparison.Ordinal))
+                return string.Concat(value, suffix);
+            return value;
+        }
+
         public static bool Contains(this string str, string value, StringComparison comparisonType)
         {
             return str.IndexOf(value, comparisonType) > -1;
