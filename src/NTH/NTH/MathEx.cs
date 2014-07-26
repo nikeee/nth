@@ -410,6 +410,11 @@ namespace NTH
         /// <param name="value1">The value1.</param>
         /// <param name="value2">The value2.</param>
         /// <param name="amount">The amount.</param>
+        /// <remarks>
+        /// No Unit Tests necessary. See MSDN for XNA's Lerp: http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.mathhelper.lerp.aspx
+        /// Formula:
+        /// value1 + (value2 - value1) * amount
+        /// </remarks>
         public static float Lerp(float value1, float value2, float amount)
         {
             return value1 + (value2 - value1) * amount;
@@ -419,6 +424,11 @@ namespace NTH
         /// <param name="value1">The value1.</param>
         /// <param name="value2">The value2.</param>
         /// <param name="amount">The amount.</param>
+        /// <remarks>
+        /// No Unit Tests necessary. See MSDN for XNA's Lerp: http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.mathhelper.lerp.aspx
+        /// Formula:
+        /// value1 + (value2 - value1) * amount
+        /// </remarks>
         public static double Lerp(double value1, double value2, double amount)
         {
             return value1 + (value2 - value1) * amount;
@@ -428,14 +438,24 @@ namespace NTH
         /// <param name="angle">The angle (radian).</param>
         public static float WrapAngle(float angle)
         {
-            return (float)Math.IEEERemainder(angle, TwoPI);
+            angle = (float)Math.IEEERemainder(angle, TwoPI);
+            if (angle <= -Math.PI)
+                angle += (float)TwoPI;
+            else if (angle > Math.PI)
+                angle -= (float)TwoPI;
+            return angle;
         }
 
         /// <summary>Reduces a given angle to a value between π and -π.</summary>
         /// <param name="angle">The angle (radian).</param>
         public static double WrapAngle(double angle)
         {
-            return Math.IEEERemainder(angle, TwoPI);
+            angle = Math.IEEERemainder(angle, TwoPI);
+            if (angle <= -Math.PI)
+                angle += TwoPI;
+            else if (angle > Math.PI)
+                angle -= TwoPI;
+            return angle;
         }
 
         #endregion
