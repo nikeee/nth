@@ -9,10 +9,11 @@ namespace NTH
     {
         private const string Shlwapi = "Shlwapi.dll";
         private const string Crypt32 = "Crypt32.dll";
+        private const string Kernel32 = "Kernel32.dll";
 
         #region Shlwapi
 
-        [DllImport(Shlwapi, CharSet = CharSet.Auto, ThrowOnUnmappableChar=true)]
+        [DllImport(Shlwapi, CharSet = CharSet.Auto, ThrowOnUnmappableChar = true)]
         internal static extern IntPtr StrFormatByteSize(
                 long fileSize,
                 [MarshalAs(UnmanagedType.LPTStr)] StringBuilder buffer,
@@ -57,6 +58,22 @@ namespace NTH
                 [In, Out] byte[] pvStructInfo,
                 ref uint cbStructInfo
             );
+        #endregion
+        #region Kernel32
+
+        [DllImport(Kernel32, CharSet = CharSet.Auto, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool GlobalMemoryStatusEx([In, Out] NativeTypes.MemoryStatusEx data);
+        //Used to use ref with comment below
+        // but ref doesn't work.(Use of [In, Out] instead of ref
+        //causes access violation exception on windows xp
+        //comment: most probably caused by MEMORYSTATUSEX being declared as a class
+        //(at least at pinvoke.net). On Win7, ref and struct work.
+
+        [DllImport(Kernel32, CharSet = CharSet.Auto, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool GlobalMemoryStatus(ref NativeTypes.MemoryStatus lpBuffer);
+
         #endregion
     }
 }

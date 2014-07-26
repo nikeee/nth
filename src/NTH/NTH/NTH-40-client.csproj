@@ -82,11 +82,14 @@
     <Compile Include="IO\ByteExtensions.cs" />
     <Compile Include="IO\EndianUtil.cs" />
     <Compile Include="MathEx.cs" />
+    <Compile Include="MemoryStatus.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="NativeTypes\CryptDecodeFlags.cs" />
     <Compile Include="NativeTypes\CryptEncodingFlags.cs" />
     <Compile Include="NativeTypes\CryptOutputTypes.cs" />
     <Compile Include="NativeTypes\CryptStringFlags.cs" />
+    <Compile Include="NativeTypes\MemoryStatus.cs" />
+    <Compile Include="NativeTypes\MemoryStatusEx.cs" />
     <Compile Include="NativeTypes\PublicKeyCertInfo.cs" />
     <Compile Include="PrefixType.cs" />
     <Compile Include="PreReleaseIdentifier.cs" />
