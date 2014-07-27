@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.CodeDom;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NTH.Text;
 
 namespace NTH.Tests.Text
@@ -6,6 +8,8 @@ namespace NTH.Tests.Text
     [TestClass]
     public class StringExtensionsTests
     {
+        #region is-something
+
         [TestMethod]
         public void IsNullOrEmpty()
         {
@@ -39,6 +43,18 @@ namespace NTH.Tests.Text
             s = "null";
             Assert.AreEqual(string.IsNullOrWhiteSpace(s), s.IsNullOrWhiteSpace());
         }
+
+        [TestMethod]
+        public void IsNullOrDBNull()
+        {
+            string str = null;
+            Assert.IsTrue(str.IsNullOrDBNull());
+
+            // TODO
+        }
+
+        #endregion
+        #region levenshtein
 
         [TestMethod]
         public void LevenshteinDistanceTo()
@@ -129,5 +145,144 @@ namespace NTH.Tests.Text
             dist = "freshpak".LevenshteinDistanceTo("freshpack", method);
             Assert.AreEqual(1, dist);
         }
+
+        [TestMethod]
+        public void LevenshteinDistanceToExceptions()
+        {
+            TestHelper.AssertException<ArgumentException>(() => "nope".LevenshteinDistanceTo("nope2", (LevenshteinMethod)900));
+        }
+
+        #endregion
+        #region StripWhiteSpace
+
+        [TestMethod]
+        public void StripWhiteSpace()
+        {
+            const string input = " this is\n some text containing white space       \t ";
+            var actual = input.StripWhiteSpace();
+            const string expected = "thisissometextcontainingwhitespace";
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void StripWhiteSpace2()
+        {
+            const string input = null;
+            Assert.AreEqual(null, input.StripWhiteSpace());
+        }
+
+        [TestMethod]
+        public void StripWhiteSpace3()
+        {
+            const string input = "";
+            Assert.AreEqual(string.Empty, input.StripWhiteSpace());
+        }
+
+        [TestMethod]
+        public void StripWhiteSpace4()
+        {
+            const string input = "\n";
+            Assert.AreEqual(string.Empty, input.StripWhiteSpace());
+        }
+
+        #endregion
+        #region contains
+
+        [TestMethod]
+        public void Contains()
+        {
+            const string input = "hAll0";
+            const string input2 = "hall0";
+            Assert.IsTrue(input.Contains(input2, StringComparison.OrdinalIgnoreCase));
+        }
+
+        #endregion
+
+        #region ensure-something
+
+        [TestMethod]
+        public void EnsureQuotes()
+        {
+            const string expected = "\"some string\"";
+            string input = "\"some string";
+            var actual = input.EnsureQuotes();
+            Assert.AreEqual(expected, actual);
+
+            input = "some string";
+            actual = input.EnsureQuotes();
+            Assert.AreEqual(expected, actual);
+
+            input = "\"some string\"";
+            actual = input.EnsureQuotes();
+            Assert.AreEqual(expected, actual);
+
+            input = "\"some string\"";
+            actual = input.EnsureQuotes();
+            Assert.AreEqual(expected, actual);
+
+            input = "some string\"";
+            actual = input.EnsureQuotes();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void EnsureWrappingStrings()
+        {
+            const string expected = "\"some string'";
+            string input = "\"some string";
+            var actual = input.EnsureWrappingStrings("\"", "'");
+            Assert.AreEqual(expected, actual);
+
+            input = "some string";
+            actual = input.EnsureWrappingStrings("\"", "'");
+            Assert.AreEqual(expected, actual);
+
+            input = "\"some string";
+            actual = input.EnsureWrappingStrings("\"", "'");
+            Assert.AreEqual(expected, actual);
+
+            input = "some string'";
+            actual = input.EnsureWrappingStrings("\"", "'");
+            Assert.AreEqual(expected, actual);
+
+            input = "\"some string'";
+            actual = input.EnsureWrappingStrings("\"", "'");
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void EnsureSuffix()
+        {
+            const string expected = "some stringlol";
+            var input = "some string";
+            var actual = input.EnsureSuffix("lol");
+            Assert.AreEqual(expected, actual);
+
+            input = "some stringlol";
+            actual = input.EnsureSuffix("lol");
+            Assert.AreEqual(expected, actual);
+
+            Assert.AreEqual("lol", string.Empty.EnsureSuffix("lol"));
+            Assert.AreEqual("lol", ((string)null).EnsureSuffix("lol")); // type safe null. ;)
+        }
+
+        [TestMethod]
+        public void EnsurePrefix()
+        {
+            const string expected = "lolsome string";
+            var input = "some string";
+            var actual = input.EnsurePrefix("lol");
+            Assert.AreEqual(expected, actual);
+
+            input = "lolsome string";
+            actual = input.EnsurePrefix("lol");
+            Assert.AreEqual(expected, actual);
+
+            Assert.AreEqual("lol", string.Empty.EnsurePrefix("lol"));
+            Assert.AreEqual("lol", ((string)null).EnsurePrefix("lol")); // type safe null. ;)
+        }
+
+        #endregion
     }
 }
