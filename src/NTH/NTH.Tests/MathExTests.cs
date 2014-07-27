@@ -917,6 +917,42 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
+        [TestMethod]
+        public void GCD3()
+        {
+            Assert.AreEqual(8, MathEx.GCD(new int[] { 24, 16 }));
+            Assert.AreEqual(8, MathEx.GCD(new int[] { 16, 24 }));
+            Assert.AreEqual(16, MathEx.GCD(new int[] { 16, 16 }));
+            Assert.AreEqual(1, MathEx.GCD(new int[] { 13, 29 }));
+
+            Assert.AreEqual(41, MathEx.GCD(new int[] { 0, 41 }));
+            Assert.AreEqual(1, MathEx.GCD(new int[] { 1, 55 }));
+            Assert.AreEqual(1, MathEx.GCD(new int[] { 2, 129 }));
+            Assert.AreEqual(1, MathEx.GCD(new int[] { 3, 95 }));
+            Assert.AreEqual(1, MathEx.GCD(new int[] { 4, 125 }));
+        }
+        [TestMethod]
+        public void GCD4()
+        {
+            Assert.AreEqual(8, MathEx.GCD(new long[] { 24, 16 }));
+            Assert.AreEqual(8, MathEx.GCD(new long[] { 16, 24 }));
+            Assert.AreEqual(16, MathEx.GCD(new long[] { 16, 16 }));
+            Assert.AreEqual(1, MathEx.GCD(new long[] { 13, 29 }));
+
+            Assert.AreEqual(41, MathEx.GCD(new long[] { 0, 41 }));
+            Assert.AreEqual(1, MathEx.GCD(new long[] { 1, 55 }));
+            Assert.AreEqual(1, MathEx.GCD(new long[] { 2, 129 }));
+            Assert.AreEqual(1, MathEx.GCD(new long[] { 3, 95 }));
+            Assert.AreEqual(1, MathEx.GCD(new long[] { 4, 125 }));
+        }
+
+        [TestMethod]
+        public void GCDExceptions()
+        {
+            TestHelper.AssertException<ArgumentException>(() => MathEx.GCD(new int[0]));
+            TestHelper.AssertException<ArgumentException>(() => MathEx.GCD(new long[0]));
+        }
+
         #endregion
         #region LCM
 
