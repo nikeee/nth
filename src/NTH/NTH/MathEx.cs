@@ -312,6 +312,8 @@ namespace NTH
 
         #region Missing Tests #0
 
+        /*
+
         /// <summary>Returns the Cartesian coordinate for one axis of a point that is defined by a given triangle and two normalized barycentric (areal) coordinates.</summary>
         /// <param name="value1">The value1.</param>
         /// <param name="value2">The value2.</param>
@@ -406,6 +408,8 @@ namespace NTH
                    (tangent2 * (asqr3 - a2));
         }
 
+        */
+
         /// <summary>Calculates the greatest common divisor of a set of integer values.</summary>
         /// <param name="values">The set of values.</param>
         /// <returns>Returns the greatest common divisor of the integer value set.</returns>
@@ -447,6 +451,7 @@ namespace NTH
             }
             return gcd;
         }
+
 
         #endregion
 
