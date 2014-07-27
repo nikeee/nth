@@ -434,30 +434,6 @@ namespace NTH
             return value1 + (value2 - value1) * amount;
         }
 
-        /// <summary>Reduces a given angle to a value between π and -π.</summary>
-        /// <param name="angle">The angle (radian).</param>
-        public static float WrapAngle(float angle)
-        {
-            angle = (float)Math.IEEERemainder(angle, TwoPI);
-            if (angle <= -Math.PI)
-                angle += (float)TwoPI;
-            else if (angle > Math.PI)
-                angle -= (float)TwoPI;
-            return angle;
-        }
-
-        /// <summary>Reduces a given angle to a value between π and -π.</summary>
-        /// <param name="angle">The angle (radian).</param>
-        public static double WrapAngle(double angle)
-        {
-            angle = Math.IEEERemainder(angle, TwoPI);
-            if (angle <= -Math.PI)
-                angle += TwoPI;
-            else if (angle > Math.PI)
-                angle -= TwoPI;
-            return angle;
-        }
-
         #endregion
         #region Missing Tests #1
 
@@ -567,6 +543,76 @@ namespace NTH
         {
             return (a / GCD(a, b)) * b;
         }
+
+        #endregion
+
+        #region Angles
+
+        #region WrapAngle
+
+        /// <summary>Reduces a given angle to a value between π and -π.</summary>
+        /// <param name="angle">The angle (radian).</param>
+        public static float WrapAngle(float angle)
+        {
+            angle = (float)Math.IEEERemainder(angle, TwoPI);
+            if (angle <= -Math.PI)
+                angle += (float)TwoPI;
+            else if (angle > Math.PI)
+                angle -= (float)TwoPI;
+            return angle;
+        }
+
+        /// <summary>Reduces a given angle to a value between π and -π.</summary>
+        /// <param name="angle">The angle (radian).</param>
+        public static double WrapAngle(double angle)
+        {
+            angle = Math.IEEERemainder(angle, TwoPI);
+            if (angle <= -Math.PI)
+                angle += TwoPI;
+            else if (angle > Math.PI)
+                angle -= TwoPI;
+            return angle;
+        }
+
+        #endregion
+        #region ToDegrees
+
+        /// <summary>Converts radians to degrees.</summary>
+        /// <param name="radians">The angle in radians.</param>
+        /// <returns>The angle in degrees.</returns>
+        public static double ToDegrees(double radians)
+        {
+            return radians * (180 / Math.PI);
+        }
+
+        /// <summary>Converts radians to degrees.</summary>
+        /// <param name="radians">The angle in radians.</param>
+        /// <returns>The angle in degrees.</returns>
+        public static float ToDegrees(float radians)
+        {
+            return radians * (180 / (float)Math.PI);
+        }
+
+        #endregion
+        #region ToRadians
+
+        /// <summary>Converts degrees to radians.</summary>
+        /// <param name="degrees">The angle in degrees.</param>
+        /// <returns>The angle in radians.</returns>
+        public static double ToRadians(double degrees)
+        {
+            return degrees * (Math.PI / 180);
+        }
+
+        /// <summary>Converts degrees to radians.</summary>
+        /// <param name="degrees">The angle in degrees.</param>
+        /// <returns>The angle in radians.</returns>
+        public static float ToRadians(float degrees)
+        {
+            return degrees * ((float)Math.PI / 180);
+        }
+
+        #endregion
 
         #endregion
     }
