@@ -1,7 +1,7 @@
-﻿using System;
-using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NTH.Security.Cryptography;
+using System;
+using System.IO;
 
 namespace NTH.Tests.Security.Cryptography
 {
