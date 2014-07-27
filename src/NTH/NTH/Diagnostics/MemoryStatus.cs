@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NTH
+namespace NTH.Diagnostics
 {
     public class MemoryStatus
     {
