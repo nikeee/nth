@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mail;
 
 namespace NTH
 {
@@ -617,6 +618,41 @@ namespace NTH
         }
 
         #endregion
+
+        #endregion
+
+        #region Sugar Optimizations - Experimental
+
+        internal static double PowSum(double @base, double maxExponentInclusive)
+        {
+            if (maxExponentInclusive < 0)
+                throw new ArgumentException("Only exponents >= 0 supported.");
+
+            if (@base == 1.0)
+                return 1.0;
+
+            /*
+             * Optimized version of
+             *    sum(k=0, n, q^n)
+             * =
+             * (1-q^(n+1))/(1-q)
+             */
+
+            return (1 - Math.Pow(@base, maxExponentInclusive + 1)) / (1 - @base);
+        }
+
+        internal static int SumUntil(int maxInclusive)
+        {
+            /*
+             * Calculates the sum from 1 to n.
+             *
+             * SumUntil(5)
+             * -> 1 + 2 + 3 + 4 + 5 = 15
+             *
+             * Can be used instead of a large for loop to save time.
+             */
+            return (int)(0.5 * maxInclusive * (maxInclusive + 1));
+        }
 
         #endregion
     }
