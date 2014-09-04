@@ -416,7 +416,7 @@ namespace NTH
         public static int GCD(params int[] values)
         {
             if (values.Length <= 1)
-                throw new ArgumentException("There mus be at least two values for a GCD calculation.");
+                throw new ArgumentException("There must be at least two values for a GCD calculation.");
 
             if (values.Length == 2)
                 return GCD(values[0], values[1]);
@@ -437,7 +437,7 @@ namespace NTH
         public static long GCD(params long[] values)
         {
             if (values.Length <= 1)
-                throw new ArgumentException("There mus be at least two values for a GCD calculation.");
+                throw new ArgumentException("There must be at least two values for a GCD calculation.");
 
             if (values.Length == 2)
                 return GCD(values[0], values[1]);
