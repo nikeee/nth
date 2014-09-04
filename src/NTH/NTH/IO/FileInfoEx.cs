@@ -24,7 +24,6 @@ namespace NTH.IO
             return File.GetAttributes(file.FullName);
         }
 
-
         /// <summary>Sets the specified <see cref="T:System.IO.FileAttributes" /> of the file on the specified path.</summary>
         /// <param name="file">The file.</param>
         /// <param name="attributes">A bitwise combination of the enumeration values.</param>
