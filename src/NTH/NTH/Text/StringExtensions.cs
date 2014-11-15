@@ -135,5 +135,43 @@ namespace NTH.Text
         }
 
         #endregion
+
+        #region normalize
+
+        public static string NormalizeNewLines(this string value)
+        {
+            return value.NormalizeNewLines(Environment.NewLine);
+        }
+
+        public static string NormalizeNewLines(this string value, string newNewLine)
+        {
+            if (string.IsNullOrEmpty(value))
+                return string.Empty;
+
+            var sb = new StringBuilder(value.Length);
+            bool wasCr = false;
+
+            for (int i = 0; i < value.Length; ++i)
+            {
+                var chr = value[i];
+                switch (chr)
+                {
+                    case '\n':
+                        if (!wasCr) // if last char was no \r
+                            sb.Append(newNewLine);
+                        break;
+                    case '\r':
+                        wasCr = true; // Used to detect \r and \r\n
+                        sb.Append(newNewLine);
+                        break;
+                    default:
+                        wasCr = false;
+                        break;
+                }
+            }
+            return sb.ToString();
+        }
+
+        #endregion
     }
 }
