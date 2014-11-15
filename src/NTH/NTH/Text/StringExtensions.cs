@@ -166,6 +166,7 @@ namespace NTH.Text
                         break;
                     default:
                         wasCr = false;
+                        sb.Append(chr);
                         break;
                 }
             }
