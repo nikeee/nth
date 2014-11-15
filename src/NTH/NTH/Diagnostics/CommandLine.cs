@@ -57,6 +57,18 @@ namespace NTH.Diagnostics
 
         public static CommandLine Parse(string line)
         {
+            // Maybe use WinAPI for that?
+            // CommandLineToArgvW
+            // http://msdn.microsoft.com/en-us/library/windows/desktop/bb776391%28v=vs.85%29.aspx
+
+            // Pros:
+            //  Maybe fater (needs proof)
+            // Cons:
+            //  Platform limitation
+
+            // TODO: Test if the functionaliry is equavalent to this managed one
+            // TODO: Consider decision
+
             if (string.IsNullOrWhiteSpace(line))
                 return new CommandLine(string.Empty, null);
 
