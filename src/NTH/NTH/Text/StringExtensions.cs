@@ -145,6 +145,8 @@ namespace NTH.Text
 
         public static string NormalizeNewLines(this string value, string newNewLine)
         {
+            // TODO: Create a version that takes a stream to be able to handle a large amount of data
+
             if (string.IsNullOrEmpty(value))
                 return string.Empty;
 
