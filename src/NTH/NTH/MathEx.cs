@@ -625,6 +625,7 @@ namespace NTH
 
         internal static double PowSum(double @base, double maxExponentInclusive)
         {
+            // TODO: Tests
             if (maxExponentInclusive < 0)
                 throw new ArgumentException("Only exponents >= 0 supported.");
 
@@ -643,6 +644,7 @@ namespace NTH
 
         internal static int SumUntil(int maxInclusive)
         {
+            // TODO: Tests
             /*
              * Calculates the sum from 1 to n.
              *
