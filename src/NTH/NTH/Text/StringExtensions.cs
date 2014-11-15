@@ -32,6 +32,13 @@ namespace NTH.Text
             return value.GetTypeCode() == TypeCode.DBNull;
         }
 
+
+        /// <summary> Gets whether the specified string is a newline sequence.</summary>
+        public static bool IsNewLine(string value)
+        {
+            return value == "\r\n" || value == "\n" || value == "\r";
+        }
+
         #endregion
 
         public static string StripWhiteSpace(this string value)
