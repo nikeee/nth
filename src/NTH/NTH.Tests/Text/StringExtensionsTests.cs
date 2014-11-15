@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Globalization;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NTH.Text;
 using System;
 
@@ -291,6 +292,29 @@ namespace NTH.Tests.Text
 
             Assert.AreEqual("lol", string.Empty.EnsurePrefix("lol"));
             Assert.AreEqual("lol", ((string)null).EnsurePrefix("lol")); // type safe null. ;)
+        }
+
+        #endregion
+
+        #region normalize
+
+        [TestMethod]
+        public void NormalizeLines()
+        {
+            var data = "a\r\nc\nd";
+            var expected = "a\r\nc\r\nd";
+            var actual = data.NormalizeNewLines(Environment.NewLine);
+            Assert.AreEqual(expected, actual);
+
+            data = "a\rb\rc";
+            expected = "a\r\nb\r\nc";
+            actual = data.NormalizeNewLines(Environment.NewLine);
+            Assert.AreEqual(expected, actual);
+
+            data = "a\nb\r";
+            expected = "a\r\nb\r\n";
+            actual = data.NormalizeNewLines(Environment.NewLine);
+            Assert.AreEqual(expected, actual);
         }
 
         #endregion
