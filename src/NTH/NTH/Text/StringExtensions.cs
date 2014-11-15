@@ -7,10 +7,13 @@ namespace NTH.Text
     {
         #region is-something
 
+        [Obsolete("Consider using string.IsNullOrEmpty(string) again. This is counter-intuitive due to the missing null-reference exception.")]
         public static bool IsNullOrEmpty(this string value)
         {
             return value == null || value.Length == 0;
         }
+
+        [Obsolete("Consider using string.IsNullOrWhiteSpace(string) again. This is counter-intuitive due to the missing null-reference exception.")]
         public static bool IsNullOrWhiteSpace(this string value)
         {
             if (value == null)
@@ -21,6 +24,8 @@ namespace NTH.Text
                     return false;
             return true;
         }
+
+        [Obsolete("This is counter-intuitive due to the missing null-reference exception.")]
         public static bool IsNullOrDBNull(this string value)
         {
             if (value == null)
