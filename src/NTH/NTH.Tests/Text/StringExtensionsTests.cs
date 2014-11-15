@@ -52,6 +52,17 @@ namespace NTH.Tests.Text
             // TODO
         }
 
+        public void IsNewLine()
+        {
+            Assert.IsFalse("".IsNewLine());
+            Assert.IsFalse("\t".IsNewLine());
+            Assert.IsFalse(" ".IsNewLine());
+            Assert.IsTrue("\n".IsNewLine());
+            Assert.IsTrue("\r".IsNewLine());
+            Assert.IsTrue("\r\n".IsNewLine());
+            Assert.IsFalse("\n\r".IsNewLine());
+        }
+
         #endregion
         #region levenshtein
 
