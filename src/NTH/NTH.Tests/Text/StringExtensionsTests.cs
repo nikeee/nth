@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NTH.Text;
 using System;
 
