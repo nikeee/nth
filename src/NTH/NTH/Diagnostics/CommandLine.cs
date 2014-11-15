@@ -17,7 +17,7 @@ namespace NTH.Diagnostics
             FilePath = filePath;
             Arguments = arguments ?? new ArgumentList();
         }
-        
+
         private static CommandLine _current;
         public static CommandLine Current
         {
@@ -26,13 +26,13 @@ namespace NTH.Diagnostics
                 return _current ?? (_current = CreateCurrentCommandLine());
             }
         }
-        
+
         private static CommandLine CreateCurrentCommandLine()
         {
             var currentArgs = Environment.GetCommandLineArgs();
             System.Diagnostics.Debug.Assert(currentArgs != null);
             System.Diagnostics.Debug.Assert(currentArgs.Length > 0);
-            
+
             // first Argument is path to executable
             if(currentArgs.Length == 0)
                 throw new Exception();
