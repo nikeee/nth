@@ -14,7 +14,8 @@ NTH library
     7. [Levenshtein Distance](#levenshtein-distance)
     8. [ConsoleEx](#consoleex)
     9. [BitUtil](#bitutil)
-    10. [TODO](#todo)
+    10. [NewLine Operations](#newline-operations)
+    11. [TODO](#todo)
 
 ## Documentation
 The NTH library is documented [here](https://nikeee.github.io/nth). Also you can find several code annotations in the [source code](https://github.com/nikeee/nth/tree/master/src) using C#'s XML documentation style.
@@ -96,11 +97,11 @@ static void Main(string[] argv)
 	// Start demo.exe with following command line:
 	// C:\Demo.exe -n "some argument"
 	ProcessEx.Start(newCommandLine);
-	
+
 	string commandLineString = newCommandLine.ToString();
 	Console.WriteLine("Spawned process using command line:");
 	Console.WriteLine(commandLineString);
-	
+
 	var parsedCommandLine = CommandLine.Parse(commandLineString); // Parsing functionality available
 
 
@@ -209,6 +210,18 @@ bar = BitUtil.HighWord(foo); // bar == 0x1234
 
 // Also available for Short/Byte:
 // BitUtil.LowByte/HighByte
+```
+
+### NewLine Operations
+```C#
+string foo = "\r\n\n\n";
+string normalizedNewLines = foo.NormalizeNewLines("\n");
+// foo == "\n\n\n"
+
+string bar = "a";
+bool isNl = bar.IsNewLine(); // false
+bar = "\n";
+isNl = bar.IsNewLine(); // true
 ```
 
 ### TODO

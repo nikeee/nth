@@ -7,10 +7,13 @@ namespace NTH.Text
     {
         #region is-something
 
+        [Obsolete("Consider using string.IsNullOrEmpty(string) again. This is counter-intuitive due to the missing null-reference exception.")]
         public static bool IsNullOrEmpty(this string value)
         {
             return value == null || value.Length == 0;
         }
+
+        [Obsolete("Consider using string.IsNullOrWhiteSpace(string) again. This is counter-intuitive due to the missing null-reference exception.")]
         public static bool IsNullOrWhiteSpace(this string value)
         {
             if (value == null)
@@ -21,6 +24,8 @@ namespace NTH.Text
                     return false;
             return true;
         }
+
+        [Obsolete("This is counter-intuitive due to the missing null-reference exception.")]
         public static bool IsNullOrDBNull(this string value)
         {
             if (value == null)
@@ -30,6 +35,13 @@ namespace NTH.Text
                 return true;
 
             return value.GetTypeCode() == TypeCode.DBNull;
+        }
+
+
+        /// <summary> Gets whether the specified string is a newline sequence.</summary>
+        public static bool IsNewLine(this string value)
+        {
+            return value == "\r\n" || value == "\n" || value == "\r";
         }
 
         #endregion
@@ -120,6 +132,47 @@ namespace NTH.Text
                 default:
                     throw new ArgumentException("Invalid method.");
             }
+        }
+
+        #endregion
+
+        #region normalize
+
+        public static string NormalizeNewLines(this string value)
+        {
+            return value.NormalizeNewLines(Environment.NewLine);
+        }
+
+        public static string NormalizeNewLines(this string value, string newNewLine)
+        {
+            // TODO: Create a version that takes a stream to be able to handle a large amount of data
+
+            if (string.IsNullOrEmpty(value))
+                return string.Empty;
+
+            var sb = new StringBuilder(value.Length);
+            bool wasCr = false;
+
+            for (int i = 0; i < value.Length; ++i)
+            {
+                var chr = value[i];
+                switch (chr)
+                {
+                    case '\n':
+                        if (!wasCr) // if last char was no \r
+                            sb.Append(newNewLine);
+                        break;
+                    case '\r':
+                        wasCr = true; // Used to detect \r and \r\n
+                        sb.Append(newNewLine);
+                        break;
+                    default:
+                        wasCr = false;
+                        sb.Append(chr);
+                        break;
+                }
+            }
+            return sb.ToString();
         }
 
         #endregion
