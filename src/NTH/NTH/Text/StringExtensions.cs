@@ -34,7 +34,7 @@ namespace NTH.Text
 
 
         /// <summary> Gets whether the specified string is a newline sequence.</summary>
-        public static bool IsNewLine(string value)
+        public static bool IsNewLine(this string value)
         {
             return value == "\r\n" || value == "\n" || value == "\r";
         }
