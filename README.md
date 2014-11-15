@@ -96,11 +96,11 @@ static void Main(string[] argv)
 	// Start demo.exe with following command line:
 	// C:\Demo.exe -n "some argument"
 	ProcessEx.Start(newCommandLine);
-	
+
 	string commandLineString = newCommandLine.ToString();
 	Console.WriteLine("Spawned process using command line:");
 	Console.WriteLine(commandLineString);
-	
+
 	var parsedCommandLine = CommandLine.Parse(commandLineString); // Parsing functionality available
 
 
