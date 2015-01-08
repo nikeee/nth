@@ -12,10 +12,10 @@ namespace NTH
 
         #region Shlwapi
 
-        [DllImport(Shlwapi, CharSet = CharSet.Auto, ThrowOnUnmappableChar=true)]
+        [DllImport(Shlwapi, CharSet = CharSet.Auto, ThrowOnUnmappableChar = true)]
         internal static extern IntPtr StrFormatByteSize(
                 long fileSize,
-                [MarshalAs(UnmanagedType.LPTStr)] StringBuilder buffer,
+                [MarshalAs(UnmanagedType.LPWStr)] StringBuilder buffer,
                 int bufferSize
             );
 
