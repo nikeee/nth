@@ -28,5 +28,21 @@ namespace NTH.Collections.Generic
             foreach (var item in source)
                 action(item);
         }
+
+        public static IEnumerable<IEnumerable<T>> Batch<T>(this IEnumerable<T> source, int batchSize)
+        {
+            var currentBatch = new List<T>(batchSize);
+            foreach (var current in source)
+            {
+                currentBatch.Add(current);
+                if (currentBatch.Count == batchSize)
+                {
+                    yield return new List<T>(currentBatch);
+                    currentBatch.Clear();
+                }
+            }
+            if (currentBatch.Count != 0)
+                yield return new List<T>(currentBatch);
+        }
     }
 }

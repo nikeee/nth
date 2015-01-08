@@ -16,7 +16,8 @@ NTH library
     9. [BitUtil](#bitutil)
     10. [NewLine Operations](#newline-operations)
     11. [Unix Time Extensions](#unix-time-extensions)
-    12. [TODO](#todo)
+    12. [IEnumerable Extensions](#ienumerable-extensions)
+    13. [TODO](#todo)
 
 ## Documentation
 The NTH library is documented [here](https://nikeee.github.io/nth). Also you can find several code annotations in the [source code](https://github.com/nikeee/nth/tree/master/src) using C#'s XML documentation style.
@@ -235,6 +236,34 @@ long unixTime = demDate.ToUnixTime(); // 1234567890
 
 demDate = DateTimeEx.FromUnixToUtcDateTime(unixTime); // Also available: FromUnixToLocalTime
 ```
+
+### IEnumerable Extensions
+
+A ForEach for IEnumerable:
+`IEnumerable<T>.ForEach(action)`
+
+Easier pagination:
+```C#
+var someSource = //any IEnumerable
+var page4 = someSource.GetPageItems(0, 10); // page with index 0 and 10 items per page
+// Beware: Uses Skip and Take of LINQ, so it enumerates.
+```
+
+Batching of items. Can be used to create item batches of a certain size of any IEnumerable. Useful for Tasks and stuff.
+```C#
+var someTaskSource = // something that returns a lot of awaitable tasks
+// To await alsways 5 at once, you can use:
+foreach(var batch in someTaskSource.Batch(5))
+{
+  // batch now has 5 (or less at the end of the IEnumerable) items
+  await Task.WhenAll(batch); // await 5 tasks of the someTaskSource at once
+  // Do something that will be done after 5 tasks are finished
+  SomeWork();
+  // then go on to the next batch
+}
+```
+
+
 
 ### TODO
 // TODO: More to come soon!
