@@ -21,7 +21,7 @@ namespace NTH.Collections.Generic
         /// <typeparam name="T">The type of the items.</typeparam>
         /// <param name="source">The items to interate through.</param>
         /// <param name="action">The Action delegate to perform on each element of the IEnumerable.</param>
-        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
+        public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
             if (source == null)
                 throw new ArgumentNullException("source");
@@ -41,6 +41,7 @@ namespace NTH.Collections.Generic
                 foreach (var item in source)
                     action(item);
             }
+            return source;
         }
 
         public static IEnumerable<IEnumerable<T>> Batch<T>(this IEnumerable<T> source, int batchSize)
