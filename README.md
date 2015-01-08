@@ -15,7 +15,8 @@ NTH library
     8. [ConsoleEx](#consoleex)
     9. [BitUtil](#bitutil)
     10. [NewLine Operations](#newline-operations)
-    11. [TODO](#todo)
+    11. [Unix Time Extensions](#unix-time-extensions)
+    12. [TODO](#todo)
 
 ## Documentation
 The NTH library is documented [here](https://nikeee.github.io/nth). Also you can find several code annotations in the [source code](https://github.com/nikeee/nth/tree/master/src) using C#'s XML documentation style.
@@ -222,6 +223,17 @@ string bar = "a";
 bool isNl = bar.IsNewLine(); // false
 bar = "\n";
 isNl = bar.IsNewLine(); // true
+```
+
+### Unix Time Extensions
+```C#
+// "At 23:31:30 UTC on 13 February 2009, the decimal representation of Unix time reached 1,234,567,890 seconds"
+var demDate = new DateTime(2009, 2, 13, 23, 31, 30, DateTimeKind.Utc);
+long unixTime = demDate.ToUnixTime(); // 1234567890
+
+//..and the other way round
+
+demDate = DateTimeEx.FromUnixToUtcDateTime(unixTime); // Also available: FromUnixToLocalTime
 ```
 
 ### TODO
