@@ -64,5 +64,46 @@ namespace NTH.Tests
             actual = test5.ToUnixTime();
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void FromUnixTime()
+        {
+            // Same dates taken than in ToUnixTime
+
+            var expected = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            long value = 0;
+            var actual = DateTimeEx.FromUnixToUtcDateTime(value);
+            Assert.AreEqual(expected, actual);
+
+            expected = new DateTime(1970, 1, 1, 0, 0, 1, DateTimeKind.Utc);
+            value = 1;
+            actual = DateTimeEx.FromUnixToUtcDateTime(value);
+            Assert.AreEqual(expected, actual);
+
+            expected = new DateTime(1969, 12, 31, 23, 59, 59, DateTimeKind.Utc);
+            value = -1;
+            actual = DateTimeEx.FromUnixToUtcDateTime(value);
+            Assert.AreEqual(expected, actual);
+
+            expected = new DateTime(2001, 9, 9, 1, 46, 40, DateTimeKind.Utc);
+            value = 1000000000;
+            actual = DateTimeEx.FromUnixToUtcDateTime(value);
+            Assert.AreEqual(expected, actual);
+
+            expected = new DateTime(2009, 2, 13, 23, 31, 30, DateTimeKind.Utc);
+            value = 1234567890;
+            actual = DateTimeEx.FromUnixToUtcDateTime(value);
+            Assert.AreEqual(expected, actual);
+
+            expected = new DateTime(2106, 2, 7, 06, 28, 15, DateTimeKind.Utc);
+            value = 0xFFFFFFFF;
+            actual = DateTimeEx.FromUnixToUtcDateTime(value);
+            Assert.AreEqual(expected, actual);
+
+            expected = new DateTime(2014, 5, 13, 16, 53, 20, DateTimeKind.Utc);
+            value = 1400000000;
+            actual = DateTimeEx.FromUnixToUtcDateTime(value);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

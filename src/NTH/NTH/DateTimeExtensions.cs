@@ -11,17 +11,28 @@ namespace NTH
         }
     }
 
-    // TODO: Tests
     public static class DateTimeEx
     {
         internal static readonly DateTime UnixStart = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-        public static DateTime FromUnixDateTime(int unixTime)
+
+        public static DateTime FromUnixToUtcDateTime(int unixTime)
         {
-            return FromUnixDateTime((long)unixTime);
+            return FromUnixToUtcDateTime((long)unixTime);
         }
-        public static DateTime FromUnixDateTime(long unixTime)
+        public static DateTime FromUnixToUtcDateTime(long unixTime)
         {
-            return UnixStart.AddSeconds(unixTime).ToLocalTime();
+            return UnixStart.AddSeconds(unixTime);
+        }
+
+
+        // TODO: Tests
+        public static DateTime FromUnixToLocalTime(int unixTime)
+        {
+            return FromUnixToLocalTime((long)unixTime);
+        }
+        public static DateTime FromUnixToLocalTime(long unixTime)
+        {
+            return FromUnixToUtcDateTime(unixTime).ToLocalTime();
         }
     }
 }
