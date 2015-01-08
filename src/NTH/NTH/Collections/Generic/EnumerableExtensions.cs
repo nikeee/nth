@@ -25,6 +25,9 @@ namespace NTH.Collections.Generic
         {
             if (source == null)
                 throw new ArgumentNullException("source");
+            if (action == null)
+                throw new ArgumentNullException("action");
+
             foreach (var item in source)
                 action(item);
         }
