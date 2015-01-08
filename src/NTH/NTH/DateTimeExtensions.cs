@@ -2,7 +2,6 @@
 
 namespace NTH
 {
-    // TODO: Tests
     public static class DateTimeExtensions
     {
         public static long ToUnixTime(this DateTime value)
