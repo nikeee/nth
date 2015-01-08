@@ -28,8 +28,19 @@ namespace NTH.Collections.Generic
             if (action == null)
                 throw new ArgumentNullException("action");
 
-            foreach (var item in source)
-                action(item);
+            // Optimization
+            var list = source as IList<T>;
+            if (list != null)
+            {
+                //do not use enumerator (if possible)
+                for (int i = 0; i < list.Count; ++i)
+                    action(list[i]);
+            }
+            else
+            {
+                foreach (var item in source)
+                    action(item);
+            }
         }
 
         public static IEnumerable<IEnumerable<T>> Batch<T>(this IEnumerable<T> source, int batchSize)
