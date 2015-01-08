@@ -85,11 +85,14 @@
     <Compile Include="IO\FileInfoEx.cs" />
     <Compile Include="IO\PathEx.cs" />
     <Compile Include="MathEx.cs" />
+    <Compile Include="Diagnostics\MemoryStatus.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="NativeTypes\CryptDecodeFlags.cs" />
     <Compile Include="NativeTypes\CryptEncodingFlags.cs" />
     <Compile Include="NativeTypes\CryptOutputTypes.cs" />
     <Compile Include="NativeTypes\CryptStringFlags.cs" />
+    <Compile Include="NativeTypes\MemoryStatus.cs" />
+    <Compile Include="NativeTypes\MemoryStatusEx.cs" />
     <Compile Include="NativeTypes\PublicKeyCertInfo.cs" />
     <Compile Include="PrefixType.cs" />
     <Compile Include="PreReleaseIdentifier.cs" />

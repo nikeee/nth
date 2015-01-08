@@ -75,6 +75,7 @@
     <Compile Include="Diagnostics\ArgumentList.cs" />
     <Compile Include="Diagnostics\CommandLine.cs" />
     <Compile Include="Diagnostics\CommandLineUtil.cs" />
+    <Compile Include="Diagnostics\MemoryStatus.cs" />
     <Compile Include="Diagnostics\ProcessEx.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -87,6 +88,8 @@
     <Compile Include="IO\FileInfoEx.cs" />
     <Compile Include="IO\PathEx.cs" />
     <Compile Include="MathEx.cs" />
+    <Compile Include="NativeTypes\MemoryStatus.cs" />
+    <Compile Include="NativeTypes\MemoryStatusEx.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="NativeTypes\CryptDecodeFlags.cs" />
     <Compile Include="NativeTypes\CryptEncodingFlags.cs" />
