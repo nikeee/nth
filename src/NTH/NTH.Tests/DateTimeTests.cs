@@ -6,7 +6,6 @@ namespace NTH.Tests
     [TestClass]
     public class DateTimeTests
     {
-
         [TestMethod]
         public void ToUnixTime()
         {
