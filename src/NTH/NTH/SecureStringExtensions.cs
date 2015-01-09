@@ -3,6 +3,7 @@ using System.Security;
 
 namespace NTH
 {
+    /// <summary>Some utility extensions on <typeparam name="System.Security.SecureString"/>.</summary>
     internal static class SecureStringExtensions
     {
         internal static void RemoveChar(this SecureString value)

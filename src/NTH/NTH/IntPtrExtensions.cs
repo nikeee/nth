@@ -2,6 +2,7 @@
 
 namespace NTH
 {
+    /// <summary>Some utility extensions on <typeparam name="IntPtr"/>.</summary>
     public static class IntPtrExtensions
     {
         private const string Prefix = "0x";
