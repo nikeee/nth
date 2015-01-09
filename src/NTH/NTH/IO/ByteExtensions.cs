@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace NTH.IO
 {
+    /// <summary>Some utility extensions on <typeparam name="Byte"/>.</summary>
     public static class ByteExtensions
     {
         private static readonly byte[] BitReverseTable =
