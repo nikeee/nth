@@ -38,21 +38,12 @@ Let's come to the good stuff, shall we?
 
 Extension methods help to reduce code noise.
 ```C#
-string foo = "bar";
-if(foo.IsNullOrEmpty())
-// ...
-// instead of
-if(string.IsNullOrEmpty(foo))
-// ...
-
 string baz = " this is\n some text containing white space    	\t ";
 var baz2 = baz.StripWhiteSpace(); // baz2 == "thisissometextcontainingwhitespace"
 ```
 
 Also available:
 ```C#
-foo.IsNullOrWhiteSpace();
-foo.IsNullOrDBNull();
 someChar.IsWhiteSpace();
 ```
 
