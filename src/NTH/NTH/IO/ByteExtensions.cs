@@ -86,7 +86,7 @@ namespace NTH.IO
             }
         }
 
-        public static string ToString(this byte[] bytes)
+        public static string ToHexString(this byte[] bytes)
         {
             char[] chars = new char[bytes.Length * 2];
             for (int i = 0, byteIndex = 0; i < chars.Length; i += 2)
