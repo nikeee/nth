@@ -16,7 +16,7 @@ NTH library
     9. [BitUtil](#bitutil)
     10. [NewLine Operations](#newline-operations)
     11. [Unix Time Extensions](#unix-time-extensions)
-    12. [TODO](#todo)
+    12. [Hashing Shortcuts](#hashing-shortcuts)
 
 ## Documentation
 The NTH library is documented [here](https://nikeee.github.io/nth). Also you can find several code annotations in the [source code](https://github.com/nikeee/nth/tree/master/src) using C#'s XML documentation style.
@@ -225,6 +225,11 @@ long unixTime = demDate.ToUnixTime(); // 1234567890
 //..and the other way round
 
 demDate = DateTimeEx.FromUnixToUtcDateTime(unixTime); // Also available: FromUnixToLocalTime
+```
+
+### Hashing Shortcuts
+```C#
+string sha1Hash = FileEx.ComputeHashSha1(fileName).ToHexString();
 ```
 
 ### TODO
