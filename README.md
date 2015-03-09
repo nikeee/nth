@@ -211,5 +211,10 @@ bar = BitUtil.HighWord(foo); // bar == 0x1234
 // BitUtil.LowByte/HighByte
 ```
 
+### Hashing Shortcuts
+```C#
+string sha1Hash = FileEx.ComputeHashSha1(fileName).ToHexString();
+```
+
 ### TODO
 // TODO: More to come soon!
