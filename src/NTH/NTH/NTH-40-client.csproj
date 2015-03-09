@@ -81,6 +81,7 @@
     <Compile Include="IO\BigEndianBinaryWriter.cs" />
     <Compile Include="IO\ByteExtensions.cs" />
     <Compile Include="IO\EndianUtil.cs" />
+    <Compile Include="IO\FileEx.cs" />
     <Compile Include="IO\FileInfoExtensions.cs" />
     <Compile Include="IO\PathEx.cs" />
     <Compile Include="MathEx.cs" />

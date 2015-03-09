@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace NTH.IO
 {
@@ -40,6 +41,13 @@ namespace NTH.IO
             if (file == null)
                 throw new NullReferenceException();
             File.SetAttributes(file.FullName, attributes);
+        }
+
+        public static byte[] ComputeHash(this FileInfo file, HashAlgorithm hashAlgorithm)
+        {
+            if (file == null)
+                throw new NullReferenceException();
+            return FileEx.ComputeHash(file.FullName, hashAlgorithm);
         }
     }
 }
