@@ -40,7 +40,7 @@ namespace NTH.IO
             return false;
         }
 
-        public static bool IsUnixHiddenFileName(string fileName)
+        internal static bool IsUnixHiddenFileName(string fileName)
         {
             var fileNameOnly = Path.GetFileName(fileName);
             if (string.IsNullOrEmpty(fileNameOnly))
