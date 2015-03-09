@@ -3,7 +3,7 @@ using System.IO;
 
 namespace NTH.IO
 {
-    public static class FileInfoEx
+    public static class FileInfoExtensions
     {
         /// <summary>Gets the <see cref="T:System.IO.FileAttributes" /> of the file on the path.</summary>
         /// <returns>The <see cref="T:System.IO.FileAttributes" /> of the file on the path.</returns>
