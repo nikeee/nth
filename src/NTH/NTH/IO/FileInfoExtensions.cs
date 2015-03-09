@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace NTH.IO
 {
-    public static class FileInfoEx
+    public static class FileInfoExtensions
     {
         /// <summary>Gets the <see cref="T:System.IO.FileAttributes" /> of the file on the path.</summary>
         /// <returns>The <see cref="T:System.IO.FileAttributes" /> of the file on the path.</returns>
@@ -40,6 +41,13 @@ namespace NTH.IO
             if (file == null)
                 throw new NullReferenceException();
             File.SetAttributes(file.FullName, attributes);
+        }
+
+        public static byte[] ComputeHash(this FileInfo file, HashAlgorithm hashAlgorithm)
+        {
+            if (file == null)
+                throw new NullReferenceException();
+            return FileEx.ComputeHash(file.FullName, hashAlgorithm);
         }
     }
 }

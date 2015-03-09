@@ -3,6 +3,7 @@ using System.Text;
 
 namespace NTH.Text
 {
+    /// <summary>Some utility extensions on <typeparam name="String"/>.</summary>
     public static class StringExtensions
     {
         #region is-something

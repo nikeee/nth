@@ -2,6 +2,7 @@
 
 namespace NTH
 {
+    /// <summary>Some utility extensions on <typeparam name="DateTime"/>.</summary>
     public static class DateTimeExtensions
     {
         public static long ToUnixTime(this DateTime value)

@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace NTH.Collections.Generic
 {
+    /// <summary>Some utility extensions on <typeparam name="IEnumerable{T}"/> to suppliment those available from Linq.</summary>
     public static class EnumerableExtensions
     {
         public static IEnumerable<T> GetPageItems<T>(this IEnumerable<T> items, int page, int itemsPerPage)

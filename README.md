@@ -17,7 +17,7 @@ NTH library
     10. [NewLine Operations](#newline-operations)
     11. [Unix Time Extensions](#unix-time-extensions)
     12. [IEnumerable Extensions](#ienumerable-extensions)
-    13. [TODO](#todo)
+    13. [Hashing Shortcuts](#hashing-shortcuts)
 
 ## Documentation
 The NTH library is documented [here](https://nikeee.github.io/nth). Also you can find several code annotations in the [source code](https://github.com/nikeee/nth/tree/master/src) using C#'s XML documentation style.
@@ -39,21 +39,12 @@ Let's come to the good stuff, shall we?
 
 Extension methods help to reduce code noise.
 ```C#
-string foo = "bar";
-if(foo.IsNullOrEmpty())
-// ...
-// instead of
-if(string.IsNullOrEmpty(foo))
-// ...
-
 string baz = " this is\n some text containing white space    	\t ";
 var baz2 = baz.StripWhiteSpace(); // baz2 == "thisissometextcontainingwhitespace"
 ```
 
 Also available:
 ```C#
-foo.IsNullOrWhiteSpace();
-foo.IsNullOrDBNull();
 someChar.IsWhiteSpace();
 ```
 
@@ -263,7 +254,10 @@ foreach(var batch in someTaskSource.Batch(5))
 }
 ```
 
-
+### Hashing Shortcuts
+```C#
+string sha1Hash = FileEx.ComputeHashSha1(fileName).ToHexString();
+```
 
 ### TODO
 // TODO: More to come soon!

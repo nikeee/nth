@@ -1,8 +1,11 @@
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace NTH.IO
 {
+    /// <summary>Some utility extensions on <typeparam name="Byte"/>.</summary>
     public static class ByteExtensions
     {
         private static readonly byte[] BitReverseTable =
@@ -82,6 +85,27 @@ namespace NTH.IO
             {
                 handle.Free();
             }
+        }
+
+        public static string ToHexString(this byte[] bytes)
+        {
+            char[] chars = new char[bytes.Length * 2];
+            for (int i = 0, byteIndex = 0; i < chars.Length; i += 2)
+            {
+                var b = bytes[byteIndex++];
+                chars[i] = GetHexValue(b / 0x10);
+                chars[i + 1] = GetHexValue(b % 0x10);
+            }
+
+            return new String(chars, 0, chars.Length);
+        }
+
+        private static char GetHexValue(int i)
+        {
+            Debug.Assert(i >= 0 && i < 16, "i is out of range.");
+            if (i < 10)
+                return (char)(i + '0');
+            return (char)(i - 10 + 'A');
         }
     }
 }
