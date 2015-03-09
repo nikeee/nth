@@ -400,7 +400,7 @@ namespace NTH
 
         private const string SerializationField = "SemanticVersion";
         [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             // TODO: Tests
             if (info == null)

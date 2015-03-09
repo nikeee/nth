@@ -14,7 +14,9 @@ NTH library
     7. [Levenshtein Distance](#levenshtein-distance)
     8. [ConsoleEx](#consoleex)
     9. [BitUtil](#bitutil)
-    10. [TODO](#todo)
+    10. [NewLine Operations](#newline-operations)
+    11. [Unix Time Extensions](#unix-time-extensions)
+    12. [Hashing Shortcuts](#hashing-shortcuts)
 
 ## Documentation
 The NTH library is documented [here](https://nikeee.github.io/nth). Also you can find several code annotations in the [source code](https://github.com/nikeee/nth/tree/master/src) using C#'s XML documentation style.
@@ -36,21 +38,12 @@ Let's come to the good stuff, shall we?
 
 Extension methods help to reduce code noise.
 ```C#
-string foo = "bar";
-if(foo.IsNullOrEmpty())
-// ...
-// instead of
-if(string.IsNullOrEmpty(foo))
-// ...
-
 string baz = " this is\n some text containing white space    	\t ";
 var baz2 = baz.StripWhiteSpace(); // baz2 == "thisissometextcontainingwhitespace"
 ```
 
 Also available:
 ```C#
-foo.IsNullOrWhiteSpace();
-foo.IsNullOrDBNull();
 someChar.IsWhiteSpace();
 ```
 
@@ -96,11 +89,11 @@ static void Main(string[] argv)
 	// Start demo.exe with following command line:
 	// C:\Demo.exe -n "some argument"
 	ProcessEx.Start(newCommandLine);
-	
+
 	string commandLineString = newCommandLine.ToString();
 	Console.WriteLine("Spawned process using command line:");
 	Console.WriteLine(commandLineString);
-	
+
 	var parsedCommandLine = CommandLine.Parse(commandLineString); // Parsing functionality available
 
 
@@ -209,6 +202,29 @@ bar = BitUtil.HighWord(foo); // bar == 0x1234
 
 // Also available for Short/Byte:
 // BitUtil.LowByte/HighByte
+```
+
+### NewLine Operations
+```C#
+string foo = "\r\n\n\n";
+string normalizedNewLines = foo.NormalizeNewLines("\n");
+// foo == "\n\n\n"
+
+string bar = "a";
+bool isNl = bar.IsNewLine(); // false
+bar = "\n";
+isNl = bar.IsNewLine(); // true
+```
+
+### Unix Time Extensions
+```C#
+// "At 23:31:30 UTC on 13 February 2009, the decimal representation of Unix time reached 1,234,567,890 seconds"
+var demDate = new DateTime(2009, 2, 13, 23, 31, 30, DateTimeKind.Utc);
+long unixTime = demDate.ToUnixTime(); // 1234567890
+
+//..and the other way round
+
+demDate = DateTimeEx.FromUnixToUtcDateTime(unixTime); // Also available: FromUnixToLocalTime
 ```
 
 ### Hashing Shortcuts

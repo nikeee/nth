@@ -52,6 +52,17 @@ namespace NTH.Tests.Text
             // TODO
         }
 
+        public void IsNewLine()
+        {
+            Assert.IsFalse("".IsNewLine());
+            Assert.IsFalse("\t".IsNewLine());
+            Assert.IsFalse(" ".IsNewLine());
+            Assert.IsTrue("\n".IsNewLine());
+            Assert.IsTrue("\r".IsNewLine());
+            Assert.IsTrue("\r\n".IsNewLine());
+            Assert.IsFalse("\n\r".IsNewLine());
+        }
+
         #endregion
         #region levenshtein
 
@@ -280,6 +291,29 @@ namespace NTH.Tests.Text
 
             Assert.AreEqual("lol", string.Empty.EnsurePrefix("lol"));
             Assert.AreEqual("lol", ((string)null).EnsurePrefix("lol")); // type safe null. ;)
+        }
+
+        #endregion
+
+        #region normalize
+
+        [TestMethod]
+        public void NormalizeLines()
+        {
+            var data = "a\r\nc\nd";
+            var expected = "a\r\nc\r\nd";
+            var actual = data.NormalizeNewLines(Environment.NewLine);
+            Assert.AreEqual(expected, actual);
+
+            data = "a\rb\rc";
+            expected = "a\r\nb\r\nc";
+            actual = data.NormalizeNewLines(Environment.NewLine);
+            Assert.AreEqual(expected, actual);
+
+            data = "a\nb\r";
+            expected = "a\r\nb\r\n";
+            actual = data.NormalizeNewLines(Environment.NewLine);
+            Assert.AreEqual(expected, actual);
         }
 
         #endregion

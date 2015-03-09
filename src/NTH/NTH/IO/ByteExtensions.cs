@@ -5,6 +5,7 @@ using System.Text;
 
 namespace NTH.IO
 {
+    /// <summary>Some utility extensions on <typeparam name="Byte"/>.</summary>
     public static class ByteExtensions
     {
         private static readonly byte[] BitReverseTable =
