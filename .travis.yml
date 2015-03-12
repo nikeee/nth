@@ -1,2 +1,4 @@
 language: csharp
 solution: ./src/NTH/NTH.sln
+script:
+  - xbuild /p:Configuration=Release /p:PostBuildEventUseInBuild=false ./src/NTH/NTH.sln
