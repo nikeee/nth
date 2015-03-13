@@ -300,19 +300,20 @@ namespace NTH.Tests.Text
         [Test]
         public void NormalizeLines()
         {
+            var nl = Environment.NewLine;
             var data = "a\r\nc\nd";
-            var expected = "a\r\nc\r\nd";
-            var actual = data.NormalizeNewLines(Environment.NewLine);
+            var expected = string.Format("a{0}c{0}d", nl);
+            var actual = data.NormalizeNewLines(nl);
             Assert.AreEqual(expected, actual);
 
             data = "a\rb\rc";
-            expected = "a\r\nb\r\nc";
-            actual = data.NormalizeNewLines(Environment.NewLine);
+            expected = string.Format("a{0}b{0}c", nl);
+            actual = data.NormalizeNewLines(nl);
             Assert.AreEqual(expected, actual);
 
             data = "a\nb\r";
-            expected = "a\r\nb\r\n";
-            actual = data.NormalizeNewLines(Environment.NewLine);
+            expected = string.Format("a{0}b{0}", nl);
+            actual = data.NormalizeNewLines(nl);
             Assert.AreEqual(expected, actual);
         }
 
