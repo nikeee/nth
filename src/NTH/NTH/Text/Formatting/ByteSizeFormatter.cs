@@ -24,6 +24,7 @@ namespace NTH.Text.Formatting
         /// <returns>Formatted string.</returns>
         public static string FormatBytes(long byteCount, bool useBinaryPrefix)
         {
+            // TODO: Conditional compilation for mono compability
             var win = WindowsInternal(byteCount);
             if (useBinaryPrefix)
                 FixDecimalPrefix(ref win);

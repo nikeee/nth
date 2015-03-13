@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace NTH.Tests.Analysis
 {
-    [TestClass]
+    [TestFixture]
     public class DiffFinderTests
     {
         /*
-        [TestMethod]
+        [Test]
         public void GetCommonPrefixLengthTest()
         {
             var p = new PrivateType(typeof(DiffFinder<string>));
