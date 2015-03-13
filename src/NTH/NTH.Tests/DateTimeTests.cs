@@ -1,12 +1,12 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace NTH.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class DateTimeTests
     {
-        [TestMethod]
+        [Test]
         public void ToUnixTime()
         {
             /*
@@ -64,7 +64,7 @@ namespace NTH.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void FromUnixTime()
         {
             // Same dates taken than in ToUnixTime

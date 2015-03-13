@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using NTH.Text;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace NTH.Tests.Text
 {
-    [TestClass]
+    [TestFixture]
     public class EnumerableExtensionsTests
     {
-        [TestMethod]
+        [Test]
         public void OrderByLevenshteinDistanceTo()
         {
             var l = new List<string>

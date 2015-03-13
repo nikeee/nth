@@ -1,15 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using NTH.Text;
 using System;
 
 namespace NTH.Tests.Text
 {
-    [TestClass]
+    [TestFixture]
     public class StringExtensionsTests
     {
         #region is-something
 
-        [TestMethod]
+        [Test]
         public void IsNullOrEmpty()
         {
             string s = null;
@@ -26,7 +26,7 @@ namespace NTH.Tests.Text
             Assert.AreEqual(string.IsNullOrEmpty(s), s.IsNullOrEmpty());
         }
 
-        [TestMethod]
+        [Test]
         public void IsNullOrWhiteSpace()
         {
             string s = null;
@@ -43,7 +43,7 @@ namespace NTH.Tests.Text
             Assert.AreEqual(string.IsNullOrWhiteSpace(s), s.IsNullOrWhiteSpace());
         }
 
-        [TestMethod]
+        [Test]
         public void IsNullOrDBNull()
         {
             string str = null;
@@ -66,7 +66,7 @@ namespace NTH.Tests.Text
         #endregion
         #region levenshtein
 
-        [TestMethod]
+        [Test]
         public void LevenshteinDistanceTo()
         {
             // Grabbed from: http://awk.freeshell.org/LevenshteinEditDistance
@@ -156,7 +156,7 @@ namespace NTH.Tests.Text
             Assert.AreEqual(1, dist);
         }
 
-        [TestMethod]
+        [Test]
         public void LevenshteinDistanceToExceptions()
         {
             TestHelper.AssertException<ArgumentException>(() => "nope".LevenshteinDistanceTo("nope2", (LevenshteinMethod)900));
@@ -165,7 +165,7 @@ namespace NTH.Tests.Text
         #endregion
         #region StripWhiteSpace
 
-        [TestMethod]
+        [Test]
         public void StripWhiteSpace()
         {
             const string input = " this is\n some text containing white space       \t ";
@@ -175,21 +175,21 @@ namespace NTH.Tests.Text
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void StripWhiteSpace2()
         {
             const string input = null;
             Assert.AreEqual(null, input.StripWhiteSpace());
         }
 
-        [TestMethod]
+        [Test]
         public void StripWhiteSpace3()
         {
             const string input = "";
             Assert.AreEqual(string.Empty, input.StripWhiteSpace());
         }
 
-        [TestMethod]
+        [Test]
         public void StripWhiteSpace4()
         {
             const string input = "\n";
@@ -199,7 +199,7 @@ namespace NTH.Tests.Text
         #endregion
         #region contains
 
-        [TestMethod]
+        [Test]
         public void Contains()
         {
             const string input = "hAll0";
@@ -211,7 +211,7 @@ namespace NTH.Tests.Text
 
         #region ensure-something
 
-        [TestMethod]
+        [Test]
         public void EnsureQuotes()
         {
             const string expected = "\"some string\"";
@@ -236,7 +236,7 @@ namespace NTH.Tests.Text
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void EnsureWrappingStrings()
         {
             const string expected = "\"some string'";
@@ -261,7 +261,7 @@ namespace NTH.Tests.Text
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void EnsureSuffix()
         {
             const string expected = "some stringlol";
@@ -277,7 +277,7 @@ namespace NTH.Tests.Text
             Assert.AreEqual("lol", ((string)null).EnsureSuffix("lol")); // type safe null. ;)
         }
 
-        [TestMethod]
+        [Test]
         public void EnsurePrefix()
         {
             const string expected = "lolsome string";
@@ -297,7 +297,7 @@ namespace NTH.Tests.Text
 
         #region normalize
 
-        [TestMethod]
+        [Test]
         public void NormalizeLines()
         {
             var data = "a\r\nc\nd";

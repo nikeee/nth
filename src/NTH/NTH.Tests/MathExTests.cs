@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 
 namespace NTH.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class MathExTests
     {
         #region Pow
 
-        [TestMethod]
+        [Test]
         public void Pow()
         {
             // ReSharper disable RedundantCast
@@ -29,7 +29,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void Pow2()
         {
             // ReSharper disable RedundantCast
@@ -50,7 +50,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void PowOptimization()
         {
             // Test bit shifting optimization
@@ -67,7 +67,7 @@ namespace NTH.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void PowOptimization2()
         {
             // Test bit shifting optimization
@@ -84,7 +84,7 @@ namespace NTH.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void PowExceptions()
         {
             // ReSharper disable RedundantCast
@@ -100,7 +100,7 @@ namespace NTH.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void PowExceptions2()
         {
             // ReSharper disable RedundantCast
@@ -119,7 +119,7 @@ namespace NTH.Tests
 
         #region Min
 
-        [TestMethod]
+        [Test]
         public void Min()
         {
             // ReSharper disable RedundantCast
@@ -143,7 +143,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void Min2()
         {
             // ReSharper disable RedundantCast
@@ -167,7 +167,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void Min3()
         {
             // ReSharper disable RedundantCast
@@ -191,7 +191,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void Min4()
         {
             // ReSharper disable RedundantCast
@@ -215,7 +215,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void MinExceptions()
         {
             TestHelper.AssertException<ArgumentNullException>(() => MathEx.Min((int[])null));
@@ -235,7 +235,7 @@ namespace NTH.Tests
 
         #region Max
 
-        [TestMethod]
+        [Test]
         public void Max()
         {
             // ReSharper disable RedundantCast
@@ -259,7 +259,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void Max2()
         {
             // ReSharper disable RedundantCast
@@ -283,7 +283,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void Max3()
         {
             // ReSharper disable RedundantCast
@@ -307,7 +307,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void Max4()
         {
             // ReSharper disable RedundantCast
@@ -331,7 +331,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void MaxExceptions()
         {
             TestHelper.AssertException<ArgumentNullException>(() => MathEx.Max((int[])null));
@@ -351,7 +351,7 @@ namespace NTH.Tests
 
         #region Clamp
 
-        [TestMethod]
+        [Test]
         public void Clamp()
         {
             // ReSharper disable RedundantCast
@@ -385,7 +385,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void Clamp2()
         {
             // ReSharper disable RedundantCast
@@ -419,7 +419,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void Clamp3()
         {
             // ReSharper disable RedundantCast
@@ -453,7 +453,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void Clamp4()
         {
             // ReSharper disable RedundantCast
@@ -487,7 +487,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void Clamp5()
         {
             // ReSharper disable RedundantCast
@@ -521,7 +521,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void Clamp6()
         {
             // ReSharper disable RedundantCast
@@ -555,7 +555,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void Clamp7()
         {
             // ReSharper disable RedundantCast
@@ -593,7 +593,7 @@ namespace NTH.Tests
 
         #region GCD
 
-        [TestMethod]
+        [Test]
         public void GCD()
         {
             // Generated, lol
@@ -756,7 +756,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void GCD2()
         {
             // ReSharper disable RedundantCast
@@ -917,7 +917,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void GCD3()
         {
             Assert.AreEqual(8, MathEx.GCD(new int[] { 24, 16 }));
@@ -931,7 +931,7 @@ namespace NTH.Tests
             Assert.AreEqual(1, MathEx.GCD(new int[] { 3, 95 }));
             Assert.AreEqual(1, MathEx.GCD(new int[] { 4, 125 }));
         }
-        [TestMethod]
+        [Test]
         public void GCD4()
         {
             Assert.AreEqual(8, MathEx.GCD(new long[] { 24, 16 }));
@@ -946,7 +946,7 @@ namespace NTH.Tests
             Assert.AreEqual(1, MathEx.GCD(new long[] { 4, 125 }));
         }
 
-        [TestMethod]
+        [Test]
         public void GCDExceptions()
         {
             TestHelper.AssertException<ArgumentException>(() => MathEx.GCD(new int[0]));
@@ -956,7 +956,7 @@ namespace NTH.Tests
         #endregion
         #region LCM
 
-        [TestMethod]
+        [Test]
         public void LCM()
         {
             // Generated, lol
@@ -1212,7 +1212,7 @@ namespace NTH.Tests
             // ReSharper restore RedundantCast
         }
 
-        [TestMethod]
+        [Test]
         public void LCM2()
         {
             // Generated, lol
@@ -1472,13 +1472,13 @@ namespace NTH.Tests
 
         #region Constants
 
-        [TestMethod]
+        [Test]
         public void TwoPI()
         {
             Assert.AreEqual(Math.PI * 2, MathEx.TwoPI);
         }
 
-        [TestMethod]
+        [Test]
         public void PIOverTwo()
         {
             Assert.AreEqual(Math.PI / 2, MathEx.PIOverTwo);

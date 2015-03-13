@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using NTH.Security.Cryptography;
 using System;
 using System.Security.Cryptography;
@@ -6,7 +6,7 @@ using System.Text;
 
 namespace NTH.Tests.Security.Cryptography
 {
-    [TestClass]
+    [TestFixture]
     public class RSACryptoServiceProviderExtensionsTests
     {
         private const string dataToSignString =
@@ -22,7 +22,7 @@ namespace NTH.Tests.Security.Cryptography
 
         private static readonly byte[] DataToSign = Encoding.Default.GetBytes(dataToSignString);
 
-        [TestMethod]
+        [Test]
         public void Der()
         {
             byte[] publicKeyDER = Resources.GetResource("RSACryptoServiceProviderExtensionPublicKey.der");
@@ -59,7 +59,7 @@ namespace NTH.Tests.Security.Cryptography
             }
         }
 
-        [TestMethod]
+        [Test]
         public void Pem()
         {
             string publicKeyPem = Encoding.ASCII.GetString(Resources.GetResource("RSACryptoServiceProviderExtensionPublicKey.pem"));
