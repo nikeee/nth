@@ -1,4 +1,4 @@
-NTH library
+NTH library [![Build Status](https://travis-ci.org/nikeee/nth.svg?branch=master)](https://travis-ci.org/nikeee/nth)
 ===========
 ## Contents
 1. [Documentation](#documentation)
