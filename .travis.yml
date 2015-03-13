@@ -1,4 +1,8 @@
 language: csharp
 solution: ./src/NTH/NTH.sln
+nstall:
+  - nuget restore ./src/NTH/NTH.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
-  - xbuild /p:Configuration=Release /p:PostBuildEventUseInBuild=false /p:PreBuildEvent="" /p:PostBuildEvent="" ./src/NTH/NTH.sln
+  - xbuild /p:Configuration=Release /p:PostBuildEventUseInBuild=false /p:PreBuildEvent="" /p:PostBuildEvent="" /p:TargetFrameworkProfile="" ./src/NTH/NTH.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./src/NTH/NTH.Tests/bin/Release/WakeOnLan.dll
