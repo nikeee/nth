@@ -5,4 +5,5 @@ install:
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release /p:PostBuildEventUseInBuild=false /p:PreBuildEvent="" /p:PostBuildEvent="" /p:TargetFrameworkProfile="" ./src/NTH/NTH.sln
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./src/NTH/NTH.Tests/bin/Release/NTH.Tests.dll
+  - cd ./src/NTH/NTH.Tests/bin/Release/
+  - mono ../../../../../testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe NTH.Tests.dll
