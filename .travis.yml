@@ -1,6 +1,6 @@
 language: csharp
 solution: ./src/NTH/NTH.sln
-nstall:
+install:
   - nuget restore ./src/NTH/NTH.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
