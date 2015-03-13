@@ -51,6 +51,12 @@ namespace NTH.Tests.Security.Cryptography
                 Assert.AreEqual(expected[i], actual[i]);
         }
 
+        private static readonly string DirectorySeparator = System.IO.Path.DirectorySeparatorChar.ToString();
+        private static string GetResourcePath(string resource)
+        {
+            return string.Format("..{0}..{0}Resources{0}{1}", DirectorySeparator, resource);
+        }
+
         [Test]
         public void ComputeHash2()
         {
@@ -60,7 +66,7 @@ namespace NTH.Tests.Security.Cryptography
             var data = Resources.GetResource(resource);
             byte[] actual;
 
-            using (var fs = File.OpenRead(@"..\..\Resources\" + resource))
+            using (var fs = File.OpenRead(GetResourcePath(resource)))
                 actual = adler.ComputeHash(fs);
 
             Assert.AreEqual(expected.Length, actual.Length);
@@ -77,7 +83,7 @@ namespace NTH.Tests.Security.Cryptography
             var data = Resources.GetResource(resource);
             byte[] actual;
 
-            using (var fs = File.OpenRead(@"..\..\Resources\" + resource))
+            using (var fs = File.OpenRead(GetResourcePath(resource)))
                 actual = adler.ComputeHash(fs);
 
             Assert.AreEqual(expected.Length, actual.Length);
