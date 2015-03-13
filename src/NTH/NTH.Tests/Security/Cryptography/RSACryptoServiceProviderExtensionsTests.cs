@@ -25,6 +25,10 @@ namespace NTH.Tests.Security.Cryptography
         [Test]
         public void Der()
         {
+            if (Environment.OSVersion.Platform == PlatformID.Unix)
+                return; // No DLLs on Unix
+            // TODO: Conditional compilation for mono compability
+
             byte[] publicKeyDER = Resources.GetResource("RSACryptoServiceProviderExtensionPublicKey.der");
             byte[] privateKeyDER = Resources.GetResource("RSACryptoServiceProviderExtensionPrivateKey.der");
 
@@ -62,6 +66,10 @@ namespace NTH.Tests.Security.Cryptography
         [Test]
         public void Pem()
         {
+            if (Environment.OSVersion.Platform == PlatformID.Unix)
+                return; // No DLLs on Unix
+            // TODO: Conditional compilation for mono compability
+
             string publicKeyPem = Encoding.ASCII.GetString(Resources.GetResource("RSACryptoServiceProviderExtensionPublicKey.pem"));
             string privateKeyPem = Encoding.ASCII.GetString(Resources.GetResource("RSACryptoServiceProviderExtensionPrivateKey.pem"));
 
