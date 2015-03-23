@@ -1,4 +1,4 @@
-NTH library [![Build Status](https://travis-ci.org/nikeee/nth.svg?branch=master)](https://travis-ci.org/nikeee/nth)
+NTH library [![Build Status](https://travis-ci.org/nikeee/nth.svg?branch=master)](https://travis-ci.org/nikeee/nth) [![NuGet version](https://img.shields.io/nuget/v/NTH.svg)](https://www.nuget.org/packages/NTH)
 ===========
 ## Contents
 1. [Documentation](#documentation)
