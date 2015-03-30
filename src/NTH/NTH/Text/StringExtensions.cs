@@ -3,50 +3,116 @@ using System.Text;
 
 namespace NTH.Text
 {
+    /// <summary>Some utility extensions on <typeparam name="String"/>.</summary>
     public static class StringExtensions
     {
+        #region is-something
+
+        [Obsolete("Consider using string.IsNullOrEmpty(string) again. This is counter-intuitive due to the missing null-reference exception.")]
         public static bool IsNullOrEmpty(this string value)
         {
             return value == null || value.Length == 0;
         }
+
+        [Obsolete("Consider using string.IsNullOrWhiteSpace(string) again. This is counter-intuitive due to the missing null-reference exception.")]
         public static bool IsNullOrWhiteSpace(this string value)
         {
             if (value == null)
                 return true;
-                
-            for(int i = 0; i < value.Length; ++i)
-                if(!char.IsWhiteSpace(value[i]))
+
+            for (int i = 0; i < value.Length; ++i)
+                if (!char.IsWhiteSpace(value[i]))
                     return false;
             return true;
         }
+
+        [Obsolete("This is counter-intuitive due to the missing null-reference exception.")]
         public static bool IsNullOrDBNull(this string value)
         {
             if (value == null)
                 return true;
-                
+
             if (DBNull.Value.Equals(value))
                 return true;
 
             return value.GetTypeCode() == TypeCode.DBNull;
         }
-        
+
+
+        /// <summary> Gets whether the specified string is a newline sequence.</summary>
+        public static bool IsNewLine(this string value)
+        {
+            return value == "\r\n" || value == "\n" || value == "\r";
+        }
+
+        #endregion
+
         public static string StripWhiteSpace(this string value)
         {
-            if(value == null)
+            if (value == null)
                 return null;
-            if(value.Length == 0 || value.Trim().Length == 0)
+            if (value.Length == 0 || value.Trim().Length == 0)
                 return string.Empty;
             var sb = new StringBuilder(value.Length);
-            for(int i = 0; i < value.Length; ++i)
-                if(!char.IsWhiteSpace(value[i]))
+            for (int i = 0; i < value.Length; ++i)
+                if (!char.IsWhiteSpace(value[i]))
                     sb.Append(value[i]);
             return sb.ToString();
         }
-        
+
+        #region ensure
+
+        public static string EnsureWrappingStrings(this string value, string prefix, string suffix)
+        {
+            return value.EnsurePrefix(prefix).EnsureSuffix(suffix);
+        }
+
+        public static string EnsureQuotes(this string value)
+        {
+            return value.EnsureWrappingStrings("\"", "\"");
+        }
+
+        #region ensure prefix
+
+        public static string EnsurePrefix(this string value, string prefix)
+        {
+            return value.EnsurePrefix(prefix, StringComparison.Ordinal);
+        }
+        public static string EnsurePrefix(this string value, string prefix, StringComparison comparison)
+        {
+            if (string.IsNullOrEmpty(value))
+                return prefix;
+            if (value.IndexOf(prefix, comparison) != 0)
+                return string.Concat(prefix, value);
+            return value;
+        }
+
+        #endregion
+        #region ensure suffix
+
+        public static string EnsureSuffix(this string value, string suffix)
+        {
+            return value.EnsureSuffix(suffix, StringComparison.Ordinal);
+        }
+        public static string EnsureSuffix(this string value, string suffix, StringComparison comparison)
+        {
+            if (string.IsNullOrEmpty(value))
+                return suffix;
+            if (!value.EndsWith(suffix, comparison))
+                return string.Concat(value, suffix);
+            return value;
+        }
+
+        #endregion
+
+        #endregion
+
         public static bool Contains(this string str, string value, StringComparison comparisonType)
         {
             return str.IndexOf(value, comparisonType) > -1;
         }
+
+        #region levenshtein
 
         public static int LevenshteinDistanceTo(this string source, string target)
         {
@@ -68,5 +134,48 @@ namespace NTH.Text
                     throw new ArgumentException("Invalid method.");
             }
         }
+
+        #endregion
+
+        #region normalize
+
+        public static string NormalizeNewLines(this string value)
+        {
+            return value.NormalizeNewLines(Environment.NewLine);
+        }
+
+        public static string NormalizeNewLines(this string value, string newNewLine)
+        {
+            // TODO: Create a version that takes a stream to be able to handle a large amount of data
+
+            if (string.IsNullOrEmpty(value))
+                return string.Empty;
+
+            var sb = new StringBuilder(value.Length);
+            bool wasCr = false;
+
+            for (int i = 0; i < value.Length; ++i)
+            {
+                var chr = value[i];
+                switch (chr)
+                {
+                    case '\n':
+                        if (!wasCr) // if last char was no \r
+                            sb.Append(newNewLine);
+                        break;
+                    case '\r':
+                        wasCr = true; // Used to detect \r and \r\n
+                        sb.Append(newNewLine);
+                        break;
+                    default:
+                        wasCr = false;
+                        sb.Append(chr);
+                        break;
+                }
+            }
+            return sb.ToString();
+        }
+
+        #endregion
     }
 }

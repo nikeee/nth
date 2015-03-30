@@ -26,6 +26,10 @@ namespace NTH.Diagnostics
 
         internal static StringBuilder FormatItem(this StringBuilder sb, string item)
         {
+            // TODO: Chars that need escaping using a backslash:
+            // { ' ', '\t', '\n', '\v', '"' }
+            // Check whether this is needed.
+
             if (item.Contains(" "))
                 sb.Append('"').Append(item).Append('"');
             else

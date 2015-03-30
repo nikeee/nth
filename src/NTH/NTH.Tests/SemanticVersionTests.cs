@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
 namespace NTH.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class SemanticVersionTests
     {
 
-        [TestMethod]
+        [Test]
         public void Constructor()
         {
             var actual = new SemanticVersion(1, 2, 3);
@@ -22,7 +22,7 @@ namespace NTH.Tests
             Assert.AreEqual(expectedPatch, actual.Patch);
         }
 
-        [TestMethod]
+        [Test]
         public void ToStringTests()
         {
             var expected = "1.2.3";
@@ -50,7 +50,7 @@ namespace NTH.Tests
             Assert.AreEqual(expected, actual.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void Parse()
         {
             var expected = new SemanticVersion(1, 2, 3);
@@ -85,7 +85,7 @@ namespace NTH.Tests
             Assert.AreEqual(expected.PreReleaseIdentifier[0].Value, actual.PreReleaseIdentifier[0].Value);
         }
 
-        [TestMethod]
+        [Test]
         public void Comparison1()
         {
             var t1 = SemanticVersion.Parse("1.0.0");
@@ -133,7 +133,7 @@ namespace NTH.Tests
             Assert.IsTrue(t1 < t2);
         }
 
-        [TestMethod]
+        [Test]
         public void Comparison2()
         {
             // From: https://github.com/mojombo/semver/blob/master/semver.md
@@ -166,7 +166,7 @@ namespace NTH.Tests
             Assert.IsTrue(rc1 < final, "rc1 < final");
         }
 
-        [TestMethod]
+        [Test]
         public void Comparison3()
         {
             // From: https://github.com/mojombo/semver/blob/master/semver.md
@@ -199,7 +199,7 @@ namespace NTH.Tests
             Assert.IsTrue(final > rc1, "final > rc1");
         }
 
-        [TestMethod]
+        [Test]
         public void Comparison4()
         {
             var t1 = SemanticVersion.Parse("1.0.0-1");
@@ -231,7 +231,7 @@ namespace NTH.Tests
             Assert.AreEqual(expected, rc1.CompareTo(final));
         }
 
-        [TestMethod]
+        [Test]
         public void Comparison5()
         {
             var t1 = SemanticVersion.Parse("1.0.0-1");
@@ -263,7 +263,7 @@ namespace NTH.Tests
             Assert.AreEqual(expected, final.CompareTo(rc1));
         }
 
-        [TestMethod]
+        [Test]
         public void Comparison6()
         {
             var t1 = SemanticVersion.Parse("1.0.0-1");
@@ -281,7 +281,7 @@ namespace NTH.Tests
             Assert.AreEqual(expected, alphabeta.CompareTo(alphabeta2));
         }
 
-        [TestMethod]
+        [Test]
         public void Serializable()
         {
             const bool expected = true;
@@ -308,7 +308,7 @@ namespace NTH.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void SerializableAttribute()
         {
             TestHelper.HasAttribute<SemanticVersion, SerializableAttribute>();
