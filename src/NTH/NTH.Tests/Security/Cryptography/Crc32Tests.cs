@@ -64,10 +64,9 @@ namespace NTH.Tests.Security.Cryptography
             Array.Reverse(expected); // Big endian?
 
             const string resource = "5MB.bin";
-            var data = Resources.GetResource(resource);
             byte[] actual;
 
-            using (var fs = File.OpenRead(@"..\..\Resources\" + resource))
+            using (var fs = File.OpenRead(Resources.GetResourcePath(resource)))
                 actual = crc.ComputeHash(fs);
 
             Assert.That(actual, Is.Not.Null);
@@ -86,10 +85,9 @@ namespace NTH.Tests.Security.Cryptography
             Array.Reverse(expected); // Big endian?
 
             const string resource = "RSACryptoServiceProviderExtensionPublicKey.der";
-            var data = Resources.GetResource(resource);
             byte[] actual;
 
-            using (var fs = File.OpenRead(@"..\..\Resources\" + resource))
+            using (var fs = File.OpenRead(Resources.GetResourcePath(resource)))
                 actual = crc.ComputeHash(fs);
 
             Assert.That(actual, Is.Not.Null);

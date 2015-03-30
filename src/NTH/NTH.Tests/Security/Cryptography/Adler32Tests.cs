@@ -51,11 +51,6 @@ namespace NTH.Tests.Security.Cryptography
                 Assert.AreEqual(expected[i], actual[i]);
         }
 
-        private static readonly string DirectorySeparator = System.IO.Path.DirectorySeparatorChar.ToString();
-        private static string GetResourcePath(string resource)
-        {
-            return string.Format("..{0}..{0}Resources{0}{1}", DirectorySeparator, resource);
-        }
 
         [Test]
         public void ComputeHash2()
@@ -63,10 +58,9 @@ namespace NTH.Tests.Security.Cryptography
             var adler = new Adler32();
             var expected = BitConverter.GetBytes(0x22D5A89A);
             const string resource = "5MB.bin";
-            var data = Resources.GetResource(resource);
             byte[] actual;
 
-            using (var fs = File.OpenRead(GetResourcePath(resource)))
+            using (var fs = File.OpenRead(Resources.GetResourcePath(resource)))
                 actual = adler.ComputeHash(fs);
 
             Assert.AreEqual(expected.Length, actual.Length);
@@ -80,10 +74,9 @@ namespace NTH.Tests.Security.Cryptography
             var adler = new Adler32();
             var expected = BitConverter.GetBytes(0xF3B3481F);
             const string resource = "RSACryptoServiceProviderExtensionPublicKey.der";
-            var data = Resources.GetResource(resource);
             byte[] actual;
 
-            using (var fs = File.OpenRead(GetResourcePath(resource)))
+            using (var fs = File.OpenRead(Resources.GetResourcePath(resource)))
                 actual = adler.ComputeHash(fs);
 
             Assert.AreEqual(expected.Length, actual.Length);
