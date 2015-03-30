@@ -70,6 +70,7 @@
     <Compile Include="Analysis\DiffFinderTests.cs" />
     <Compile Include="BitUtilTests.cs" />
     <Compile Include="ByteSizeTests.cs" />
+    <Compile Include="ConvertExTests.cs" />
     <Compile Include="DateTimeTests.cs" />
     <Compile Include="EnumExtensionsTest.cs" />
     <Compile Include="MathExTests.cs" />
