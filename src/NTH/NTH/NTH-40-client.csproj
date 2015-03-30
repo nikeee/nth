@@ -105,6 +105,7 @@
     <Compile Include="Security\Cryptography\Adler32.cs" />
     <Compile Include="Security\Cryptography\Crc32.cs" />
     <Compile Include="SemanticVersion.cs" />
+    <Compile Include="StringExtensions.cs" />
     <Compile Include="Text\CharExtensions.cs" />
     <Compile Include="Text\DamerauLevenshteinDistanceMetric.cs" />
     <Compile Include="Text\EnumerableExtensions.cs" />
@@ -112,7 +113,6 @@
     <Compile Include="Text\Formatting\ByteSizeFormatter.cs" />
     <Compile Include="Text\LevenshteinCalculator.cs" />
     <Compile Include="Text\LevenshteinMethod.cs" />
-    <Compile Include="Text\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NTH-Key.pfx" />

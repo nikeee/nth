@@ -115,7 +115,7 @@
     <Compile Include="Text\Formatting\ByteSizeFormatter.cs" />
     <Compile Include="Text\LevenshteinCalculator.cs" />
     <Compile Include="Text\LevenshteinMethod.cs" />
-    <Compile Include="Text\StringExtensions.cs" />
+    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NTH-Key.pfx" />
