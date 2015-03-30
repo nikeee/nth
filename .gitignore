@@ -20,8 +20,8 @@
 *.user
 *.dotsettings
 
-# Include dlls if they're in the NuGet packages directory
-!/packages/*/lib/*/*.dll
+# Exclude packages
+**/packages/
 
 
 # Include dlls if they're in the CommonReferences directory

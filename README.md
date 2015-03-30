@@ -8,16 +8,17 @@ NTH library [![Build Status](https://travis-ci.org/nikeee/nth.svg?branch=master)
     1. [Reduce Noise](#reduce-noise)
     2. [CommandLine Class](#commandline)
     3. [.ToHexString()](#tohexstring)
-    4. [.ReverseBits()](#reversebits)
-    5. [.ConvertToStruct&lt;T&gt;()](#converttostructt)
-    6. [ByteSize Class](#bytesize)
-    7. [Levenshtein Distance](#levenshtein-distance)
-    8. [ConsoleEx](#consoleex)
-    9. [BitUtil](#bitutil)
-    10. [NewLine Operations](#newline-operations)
-    11. [Unix Time Extensions](#unix-time-extensions)
-    12. [IEnumerable Extensions](#ienumerable-extensions)
-    13. [Hashing Shortcuts](#hashing-shortcuts)
+    4. [ConvertEx.FromHexString()](#convertex-fromhexstring)
+    5. [.ReverseBits()](#reversebits)
+    6. [.ConvertToStruct&lt;T&gt;()](#converttostructt)
+    7. [ByteSize Class](#bytesize)
+    8. [Levenshtein Distance](#levenshtein-distance)
+    9. [ConsoleEx](#consoleex)
+    10. [BitUtil](#bitutil)
+    11. [NewLine Operations](#newline-operations)
+    12. [Unix Time Extensions](#unix-time-extensions)
+    13. [IEnumerable Extensions](#ienumerable-extensions)
+    14. [Hashing Shortcuts](#hashing-shortcuts)
 
 ## Documentation
 The NTH library is documented [here](https://nikeee.github.io/nth). Also you can find several code annotations in the [source code](https://github.com/nikeee/nth/tree/master/src) using C#'s XML documentation style.
@@ -113,6 +114,12 @@ var str = pointer.ToHexString(); // "0x0000ABCD" (if current application is runn
 // The prefix can be excluded using an overload
 // If You want a specific padding (e.g. for a 64 bit pointer), you can do this explicitly using an overload:
 str = pointer.ToHexString(false, 8); // "000000000000ABCD"
+```
+
+### ConvertEx.FromHexString
+Convert back using:
+```C#
+byte[] bytes = ConvertEx.FromHexString("DEAFBEEF");
 ```
 
 ### .ReverseBits()

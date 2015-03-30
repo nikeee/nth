@@ -71,6 +71,7 @@
     <Compile Include="ByteSize.cs" />
     <Compile Include="Collections\Generic\EnumerableExtensions.cs" />
     <Compile Include="ConsoleEx.cs" />
+    <Compile Include="ConvertEx.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Diagnostics\ArgumentList.cs" />
     <Compile Include="Diagnostics\CommandLine.cs" />
