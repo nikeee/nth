@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using NUnit.Framework;
 
 namespace NTH.Tests
 {

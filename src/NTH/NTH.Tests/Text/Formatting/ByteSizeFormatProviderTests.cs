@@ -1,6 +1,5 @@
-﻿using System;
+﻿using NTH.Text.Formatting;
 using NUnit.Framework;
-using NTH.Text.Formatting;
 
 namespace NTH.Tests.Text.Formatting
 {

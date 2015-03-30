@@ -1,7 +1,8 @@
-﻿using System;
+﻿using NTH.Text;
+using System;
 using System.Text;
 
-namespace NTH.Text
+namespace NTH
 {
     /// <summary>Some utility extensions on <typeparam name="String"/>.</summary>
     public static class StringExtensions
