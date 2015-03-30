@@ -19,5 +19,12 @@ namespace NTH.Tests
                 return ms.ToArray();
             }
         }
+
+
+        private static readonly string DirectorySeparator = System.IO.Path.DirectorySeparatorChar.ToString();
+        internal static string GetResourcePath(string resource)
+        {
+            return string.Format("..{0}..{0}Resources{0}{1}", DirectorySeparator, resource);
+        }
     }
 }
