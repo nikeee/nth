@@ -8,37 +8,6 @@ namespace NTH.Text
     {
         #region is-something
 
-        [Obsolete("Consider using string.IsNullOrEmpty(string) again. This is counter-intuitive due to the missing null-reference exception.")]
-        public static bool IsNullOrEmpty(this string value)
-        {
-            return value == null || value.Length == 0;
-        }
-
-        [Obsolete("Consider using string.IsNullOrWhiteSpace(string) again. This is counter-intuitive due to the missing null-reference exception.")]
-        public static bool IsNullOrWhiteSpace(this string value)
-        {
-            if (value == null)
-                return true;
-
-            for (int i = 0; i < value.Length; ++i)
-                if (!char.IsWhiteSpace(value[i]))
-                    return false;
-            return true;
-        }
-
-        [Obsolete("This is counter-intuitive due to the missing null-reference exception.")]
-        public static bool IsNullOrDBNull(this string value)
-        {
-            if (value == null)
-                return true;
-
-            if (DBNull.Value.Equals(value))
-                return true;
-
-            return value.GetTypeCode() == TypeCode.DBNull;
-        }
-
-
         /// <summary> Gets whether the specified string is a newline sequence.</summary>
         public static bool IsNewLine(this string value)
         {

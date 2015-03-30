@@ -9,49 +9,6 @@ namespace NTH.Tests.Text
     {
         #region is-something
 
-        [Test]
-        public void IsNullOrEmpty()
-        {
-            string s = null;
-            Assert.AreEqual(string.IsNullOrEmpty(s), s.IsNullOrEmpty());
-            s = "";
-            Assert.AreEqual(string.IsNullOrEmpty(s), s.IsNullOrEmpty());
-            s = string.Empty;
-            Assert.AreEqual(string.IsNullOrEmpty(s), s.IsNullOrEmpty());
-            s = " ";
-            Assert.AreEqual(string.IsNullOrEmpty(s), s.IsNullOrEmpty());
-            s = "a";
-            Assert.AreEqual(string.IsNullOrEmpty(s), s.IsNullOrEmpty());
-            s = "null";
-            Assert.AreEqual(string.IsNullOrEmpty(s), s.IsNullOrEmpty());
-        }
-
-        [Test]
-        public void IsNullOrWhiteSpace()
-        {
-            string s = null;
-            Assert.AreEqual(string.IsNullOrWhiteSpace(s), s.IsNullOrWhiteSpace());
-            s = "";
-            Assert.AreEqual(string.IsNullOrWhiteSpace(s), s.IsNullOrWhiteSpace());
-            s = string.Empty;
-            Assert.AreEqual(string.IsNullOrWhiteSpace(s), s.IsNullOrWhiteSpace());
-            s = " ";
-            Assert.AreEqual(string.IsNullOrWhiteSpace(s), s.IsNullOrWhiteSpace());
-            s = "a";
-            Assert.AreEqual(string.IsNullOrWhiteSpace(s), s.IsNullOrWhiteSpace());
-            s = "null";
-            Assert.AreEqual(string.IsNullOrWhiteSpace(s), s.IsNullOrWhiteSpace());
-        }
-
-        [Test]
-        public void IsNullOrDBNull()
-        {
-            string str = null;
-            Assert.IsTrue(str.IsNullOrDBNull());
-
-            // TODO
-        }
-
         public void IsNewLine()
         {
             Assert.IsFalse("".IsNewLine());
