@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using NTH.Text;
+﻿using NTH.Text;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 

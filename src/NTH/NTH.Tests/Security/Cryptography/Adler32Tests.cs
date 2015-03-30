@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using NTH.Security.Cryptography;
+﻿using NTH.Security.Cryptography;
+using NUnit.Framework;
 using System;
 using System.IO;
 
