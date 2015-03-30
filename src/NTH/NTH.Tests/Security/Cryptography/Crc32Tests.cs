@@ -1,14 +1,14 @@
 ﻿using System;
 using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NTH.Security.Cryptography;
+using NUnit.Framework;
 
 namespace NTH.Tests.Security.Cryptography
 {
-    [TestClass]
+    [TestFixture]
     public class Crc32Tests
     {
-        [TestMethod]
+        [Test]
         public void Compute()
         {
             const uint expected = 0x99C4571D;
@@ -19,10 +19,10 @@ namespace NTH.Tests.Security.Cryptography
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Compute2()
         {
-            const uint expected = 0x3E05CFC9;
+            const uint expected = 0x80961D89; // Computed by 7-zip
             const string resource = "5MB.bin";
             var data = Resources.GetResource(resource);
 
@@ -30,11 +30,11 @@ namespace NTH.Tests.Security.Cryptography
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ComputeHash()
         {
             var crc = new Crc32();
-            var expected = BitConverter.GetBytes(0x3E05CFC9);
+            var expected = BitConverter.GetBytes(0x80961D89); // Computed by 7-zip
             const string resource = "5MB.bin";
 
             Array.Reverse(expected); // Big endian?
@@ -48,17 +48,18 @@ namespace NTH.Tests.Security.Cryptography
                 actual = crc.ComputeHash(ms);
             }
 
+            Assert.That(actual, Is.Not.Null);
+            Assert.That(actual, Is.Not.Empty);
 
-            Assert.AreEqual(expected.Length, actual.Length);
-            for (var i = 0; i < expected.Length; ++i)
-                Assert.AreEqual(expected[i], actual[i]);
+            Assert.That(actual.Length, Is.EqualTo(expected.Length));
+            Assert.That(actual, Is.EquivalentTo(expected));
         }
 
-        [TestMethod]
+        [Test]
         public void ComputeHash2()
         {
             var crc = new Crc32();
-            var expected = BitConverter.GetBytes(0x3E05CFC9);
+            var expected = BitConverter.GetBytes(0x80961D89); // Computed by 7-zip
 
             Array.Reverse(expected); // Big endian?
 
@@ -69,12 +70,14 @@ namespace NTH.Tests.Security.Cryptography
             using (var fs = File.OpenRead(@"..\..\Resources\" + resource))
                 actual = crc.ComputeHash(fs);
 
-            Assert.AreEqual(expected.Length, actual.Length);
-            for (var i = 0; i < expected.Length; ++i)
-                Assert.AreEqual(expected[i], actual[i]);
+            Assert.That(actual, Is.Not.Null);
+            Assert.That(actual, Is.Not.Empty);
+
+            Assert.That(actual.Length, Is.EqualTo(expected.Length));
+            Assert.That(actual, Is.EquivalentTo(expected));
         }
 
-        [TestMethod]
+        [Test]
         public void ComputeHash3()
         {
             var crc = new Crc32();
@@ -89,16 +92,18 @@ namespace NTH.Tests.Security.Cryptography
             using (var fs = File.OpenRead(@"..\..\Resources\" + resource))
                 actual = crc.ComputeHash(fs);
 
-            Assert.AreEqual(expected.Length, actual.Length);
-            for (var i = 0; i < expected.Length; ++i)
-                Assert.AreEqual(expected[i], actual[i]);
+            Assert.That(actual, Is.Not.Null);
+            Assert.That(actual, Is.Not.Empty);
+
+            Assert.That(actual.Length, Is.EqualTo(expected.Length));
+            Assert.That(actual, Is.EquivalentTo(expected));
         }
 
-        [TestMethod]
+        [Test]
         public void ComputeHash4()
         {
             var crc = new Crc32();
-            var expected = BitConverter.GetBytes(0x3E05CFC9);
+            var expected = BitConverter.GetBytes(0x80961D89); // Computed by 7-zip
 
             Array.Reverse(expected); // Big endian?
 
@@ -106,12 +111,14 @@ namespace NTH.Tests.Security.Cryptography
             var data = Resources.GetResource(resource);
             byte[] actual = crc.ComputeHash(data);
 
-            Assert.AreEqual(expected.Length, actual.Length);
-            for (var i = 0; i < expected.Length; ++i)
-                Assert.AreEqual(expected[i], actual[i]);
+            Assert.That(actual, Is.Not.Null);
+            Assert.That(actual, Is.Not.Empty);
+
+            Assert.That(actual.Length, Is.EqualTo(expected.Length));
+            Assert.That(actual, Is.EquivalentTo(expected));
         }
 
-        [TestMethod]
+        [Test]
         public void ComputeHash5()
         {
             var crc = new Crc32();
@@ -123,9 +130,11 @@ namespace NTH.Tests.Security.Cryptography
             var data = Resources.GetResource(resource);
             byte[] actual = crc.ComputeHash(data);
 
-            Assert.AreEqual(expected.Length, actual.Length);
-            for (var i = 0; i < expected.Length; ++i)
-                Assert.AreEqual(expected[i], actual[i]);
+            Assert.That(actual, Is.Not.Null);
+            Assert.That(actual, Is.Not.Empty);
+
+            Assert.That(actual.Length, Is.EqualTo(expected.Length));
+            Assert.That(actual, Is.EquivalentTo(expected));
         }
     }
 }
