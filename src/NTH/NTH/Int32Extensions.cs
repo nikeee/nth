@@ -1,5 +1,6 @@
 ﻿namespace NTH
 {
+    /// <summary>Some utility extensions on <typeparam name="Int32"/>.</summary>
     public static class Int32Extensions
     {
         private const string Prefix = "0x";

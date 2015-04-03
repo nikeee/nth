@@ -22,9 +22,9 @@ namespace NTH.Text
 
         public int GetDistance(string a, string b, int max)
         {
-            if (a.IsNullOrEmpty())
-                return b.IsNullOrEmpty() ? 0 : b.Length;
-            if (b.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(a))
+                return string.IsNullOrEmpty(b) ? 0 : b.Length;
+            if (string.IsNullOrEmpty(b))
                 return a.Length;
 
             if (a.Length > b.Length)

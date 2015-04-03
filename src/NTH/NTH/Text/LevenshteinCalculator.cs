@@ -4,9 +4,9 @@
     {
         internal static int CalculateMatrix(string a, string b)
         {
-            if (a.IsNullOrEmpty())
-                return b.IsNullOrEmpty() ? 0 : b.Length;
-            if (b.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(a))
+                return string.IsNullOrEmpty(b) ? 0 : b.Length;
+            if (string.IsNullOrEmpty(b))
                 return a.Length;
 
             int n = a.Length;
@@ -41,9 +41,9 @@
 
         internal static int CalculateVector(string a, string b)
         {
-            if (a.IsNullOrEmpty())
-                return b.IsNullOrEmpty() ? 0 : b.Length;
-            if (b.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(a))
+                return string.IsNullOrEmpty(b) ? 0 : b.Length;
+            if (string.IsNullOrEmpty(b))
                 return a.Length;
 
             if (a.Length > b.Length)
@@ -81,9 +81,9 @@
 
         internal static int CalculateRecursive(string a, string b)
         {
-            if (a.IsNullOrEmpty())
-                return b.IsNullOrEmpty() ? 0 : b.Length;
-            if (b.IsNullOrEmpty())
+            if (string.IsNullOrEmpty(a))
+                return string.IsNullOrEmpty(b) ? 0 : b.Length;
+            if (string.IsNullOrEmpty(b))
                 return a.Length;
             return CalculateRecursive(a, b, a.Length, b.Length);
         }

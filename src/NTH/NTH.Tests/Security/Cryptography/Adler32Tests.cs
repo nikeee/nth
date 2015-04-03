@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NTH.Security.Cryptography;
+﻿using NTH.Security.Cryptography;
+using NUnit.Framework;
 using System;
 using System.IO;
 
 namespace NTH.Tests.Security.Cryptography
 {
-    [TestClass]
+    [TestFixture]
     public class Adler32Tests
     {
-        [TestMethod]
+        [Test]
         public void Compute()
         {
             const uint expected = 0xF3B3481F;
@@ -19,7 +19,7 @@ namespace NTH.Tests.Security.Cryptography
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Compute2()
         {
             const uint expected = 0x22D5A89A;
@@ -30,7 +30,7 @@ namespace NTH.Tests.Security.Cryptography
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ComputeHash()
         {
             var adler = new Adler32();
@@ -51,16 +51,16 @@ namespace NTH.Tests.Security.Cryptography
                 Assert.AreEqual(expected[i], actual[i]);
         }
 
-        [TestMethod]
+
+        [Test]
         public void ComputeHash2()
         {
             var adler = new Adler32();
             var expected = BitConverter.GetBytes(0x22D5A89A);
             const string resource = "5MB.bin";
-            var data = Resources.GetResource(resource);
             byte[] actual;
 
-            using (var fs = File.OpenRead(@"..\..\Resources\" + resource))
+            using (var fs = File.OpenRead(Resources.GetResourcePath(resource)))
                 actual = adler.ComputeHash(fs);
 
             Assert.AreEqual(expected.Length, actual.Length);
@@ -68,16 +68,15 @@ namespace NTH.Tests.Security.Cryptography
                 Assert.AreEqual(expected[i], actual[i]);
         }
 
-        [TestMethod]
+        [Test]
         public void ComputeHash3()
         {
             var adler = new Adler32();
             var expected = BitConverter.GetBytes(0xF3B3481F);
             const string resource = "RSACryptoServiceProviderExtensionPublicKey.der";
-            var data = Resources.GetResource(resource);
             byte[] actual;
 
-            using (var fs = File.OpenRead(@"..\..\Resources\" + resource))
+            using (var fs = File.OpenRead(Resources.GetResourcePath(resource)))
                 actual = adler.ComputeHash(fs);
 
             Assert.AreEqual(expected.Length, actual.Length);
@@ -85,7 +84,7 @@ namespace NTH.Tests.Security.Cryptography
                 Assert.AreEqual(expected[i], actual[i]);
         }
 
-        [TestMethod]
+        [Test]
         public void ComputeHash4()
         {
             var adler = new Adler32();
@@ -99,7 +98,7 @@ namespace NTH.Tests.Security.Cryptography
                 Assert.AreEqual(expected[i], actual[i]);
         }
 
-        [TestMethod]
+        [Test]
         public void ComputeHash5()
         {
             var adler = new Adler32();

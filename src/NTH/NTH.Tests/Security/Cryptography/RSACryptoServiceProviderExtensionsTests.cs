@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NTH.Security.Cryptography;
+﻿using NTH.Security.Cryptography;
+using NUnit.Framework;
 using System;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace NTH.Tests.Security.Cryptography
 {
-    [TestClass]
+    [TestFixture]
     public class RSACryptoServiceProviderExtensionsTests
     {
         private const string dataToSignString =
@@ -22,9 +22,13 @@ namespace NTH.Tests.Security.Cryptography
 
         private static readonly byte[] DataToSign = Encoding.Default.GetBytes(dataToSignString);
 
-        [TestMethod]
+        [Test]
         public void Der()
         {
+            if (Environment.OSVersion.Platform == PlatformID.Unix)
+                return; // No DLLs on Unix
+            // TODO: Conditional compilation for mono compability
+
             byte[] publicKeyDER = Resources.GetResource("RSACryptoServiceProviderExtensionPublicKey.der");
             byte[] privateKeyDER = Resources.GetResource("RSACryptoServiceProviderExtensionPrivateKey.der");
 
@@ -59,9 +63,13 @@ namespace NTH.Tests.Security.Cryptography
             }
         }
 
-        [TestMethod]
+        [Test]
         public void Pem()
         {
+            if (Environment.OSVersion.Platform == PlatformID.Unix)
+                return; // No DLLs on Unix
+            // TODO: Conditional compilation for mono compability
+
             string publicKeyPem = Encoding.ASCII.GetString(Resources.GetResource("RSACryptoServiceProviderExtensionPublicKey.pem"));
             string privateKeyPem = Encoding.ASCII.GetString(Resources.GetResource("RSACryptoServiceProviderExtensionPrivateKey.pem"));
 

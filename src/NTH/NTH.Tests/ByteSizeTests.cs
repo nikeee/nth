@@ -1,20 +1,20 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace NTH.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class ByteSizeTests
     {
         #region Ctor
 
-        [TestMethod]
+        [Test]
         public void Constructor()
         {
             var bs = new ByteSize();
             Assert.AreEqual(0, bs.ByteCount);
         }
 
-        [TestMethod]
+        [Test]
         public void Constructor2()
         {
             var bs = new ByteSize(10);
@@ -27,7 +27,7 @@ namespace NTH.Tests
             Assert.AreEqual(1024, bs.ByteCount);
         }
 
-        [TestMethod]
+        [Test]
         public void Constructor3Decimal()
         {
             var bs = new ByteSize(1024, ByteSizeUnit.Bytes);
@@ -72,7 +72,7 @@ namespace NTH.Tests
             Assert.AreEqual(1000L * 1000L * 1000L * 3L, bs.ByteCount);
         }
 
-        [TestMethod]
+        [Test]
         public void Constructor3Binary()
         {
             var bs = new ByteSize(1024, ByteSizeUnit.Bytes);
@@ -120,7 +120,7 @@ namespace NTH.Tests
         #endregion
         #region ToString
 
-        [TestMethod]
+        [Test]
         public new void ToString()
         {
             var bs = new ByteSize(1024, ByteSizeUnit.Bytes);
@@ -168,7 +168,7 @@ namespace NTH.Tests
         #endregion
         #region Operators
 
-        [TestMethod]
+        [Test]
         public void OperatorAdd()
         {
             var bs1 = new ByteSize();
@@ -198,7 +198,7 @@ namespace NTH.Tests
             Assert.AreEqual(expected.ToString(), actual.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void OperatorSubtract()
         {
             var bs1 = new ByteSize();

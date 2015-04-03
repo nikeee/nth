@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace NTH.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class BitUtilTests
     {
-        [TestMethod]
+        [Test]
         public void HiWord()
         {
             const int value = 0x12345678;
@@ -18,7 +18,7 @@ namespace NTH.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void LoWord()
         {
             const int value = 0x12345678;
@@ -32,7 +32,7 @@ namespace NTH.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void LoByte()
         {
             const short value = 0x1234;
@@ -45,7 +45,7 @@ namespace NTH.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void HiByte()
         {
             const short value = 0x1234;

@@ -72,9 +72,11 @@
     <Compile Include="Collections\Generic\EnumerableExtensions.cs" />
     <Compile Include="ConsoleEx.cs" />
     <Compile Include="BitConverterEx.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Diagnostics\ArgumentList.cs" />
     <Compile Include="Diagnostics\CommandLine.cs" />
     <Compile Include="Diagnostics\CommandLineUtil.cs" />
+    <Compile Include="Diagnostics\MemoryStatus.cs" />
     <Compile Include="Diagnostics\ProcessEx.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -84,7 +86,12 @@
     <Compile Include="IO\BigEndianBinaryWriter.cs" />
     <Compile Include="IO\ByteExtensions.cs" />
     <Compile Include="IO\EndianUtil.cs" />
+    <Compile Include="IO\FileEx.cs" />
+    <Compile Include="IO\FileInfoExtensions.cs" />
+    <Compile Include="IO\PathEx.cs" />
     <Compile Include="MathEx.cs" />
+    <Compile Include="NativeTypes\MemoryStatus.cs" />
+    <Compile Include="NativeTypes\MemoryStatusEx.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="NativeTypes\CryptDecodeFlags.cs" />
     <Compile Include="NativeTypes\CryptEncodingFlags.cs" />
@@ -142,7 +149,7 @@ If Not Exist %25keydest%25 (
 )
 </PreBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

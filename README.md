@@ -1,4 +1,4 @@
-NTH library
+NTH library [![Build Status](https://travis-ci.org/nikeee/nth.svg?branch=master)](https://travis-ci.org/nikeee/nth) [![NuGet version](https://img.shields.io/nuget/v/NTH.svg)](https://www.nuget.org/packages/NTH)
 ===========
 ## Contents
 1. [Documentation](#documentation)
@@ -8,14 +8,17 @@ NTH library
     1. [Reduce Noise](#reduce-noise)
     2. [CommandLine Class](#commandline)
     3. [.ToHexString()](#tohexstring)
-    4. [.ReverseBits()](#reversebits)
-    5. [.ConvertToStruct&lt;T&gt;()](#converttostructt)
-    6. [ByteSize Class](#bytesize)
-    7. [Levenshtein Distance](#levenshtein-distance)
-    8. [ConsoleEx](#consoleex)
-    9. [BitUtil](#bitutil)
-    10. [NewLine Operations](#newline-operations)
-    11. [TODO](#todo)
+    4. [ConvertEx.FromHexString()](#convertexfromhexstring)
+    5. [.ReverseBits()](#reversebits)
+    6. [.ConvertToStruct&lt;T&gt;()](#converttostructt)
+    7. [ByteSize Class](#bytesize)
+    8. [Levenshtein Distance](#levenshtein-distance)
+    9. [ConsoleEx](#consoleex)
+    10. [BitUtil](#bitutil)
+    11. [NewLine Operations](#newline-operations)
+    12. [Unix Time Extensions](#unix-time-extensions)
+    13. [IEnumerable Extensions](#ienumerable-extensions)
+    14. [Hashing Shortcuts](#hashing-shortcuts)
 
 ## Documentation
 The NTH library is documented [here](https://nikeee.github.io/nth). Also you can find several code annotations in the [source code](https://github.com/nikeee/nth/tree/master/src) using C#'s XML documentation style.
@@ -37,21 +40,12 @@ Let's come to the good stuff, shall we?
 
 Extension methods help to reduce code noise.
 ```C#
-string foo = "bar";
-if(foo.IsNullOrEmpty())
-// ...
-// instead of
-if(string.IsNullOrEmpty(foo))
-// ...
-
 string baz = " this is\n some text containing white space    	\t ";
 var baz2 = baz.StripWhiteSpace(); // baz2 == "thisissometextcontainingwhitespace"
 ```
 
 Also available:
 ```C#
-foo.IsNullOrWhiteSpace();
-foo.IsNullOrDBNull();
 someChar.IsWhiteSpace();
 ```
 
@@ -120,6 +114,12 @@ var str = pointer.ToHexString(); // "0x0000ABCD" (if current application is runn
 // The prefix can be excluded using an overload
 // If You want a specific padding (e.g. for a 64 bit pointer), you can do this explicitly using an overload:
 str = pointer.ToHexString(false, 8); // "000000000000ABCD"
+```
+
+### ConvertEx.FromHexString
+Convert back using:
+```C#
+byte[] bytes = ConvertEx.FromHexString("DEAFBEEF");
 ```
 
 ### .ReverseBits()
@@ -222,6 +222,48 @@ string bar = "a";
 bool isNl = bar.IsNewLine(); // false
 bar = "\n";
 isNl = bar.IsNewLine(); // true
+```
+
+### Unix Time Extensions
+```C#
+// "At 23:31:30 UTC on 13 February 2009, the decimal representation of Unix time reached 1,234,567,890 seconds"
+var demDate = new DateTime(2009, 2, 13, 23, 31, 30, DateTimeKind.Utc);
+long unixTime = demDate.ToUnixTime(); // 1234567890
+
+//..and the other way round
+
+demDate = DateTimeEx.FromUnixToUtcDateTime(unixTime); // Also available: FromUnixToLocalTime
+```
+
+### IEnumerable Extensions
+
+A ForEach for IEnumerable:
+`IEnumerable<T>.ForEach(action)`
+
+Easier pagination:
+```C#
+var someSource = //any IEnumerable
+var page4 = someSource.GetPageItems(0, 10); // page with index 0 and 10 items per page
+// Beware: Uses Skip and Take of LINQ, so it enumerates.
+```
+
+Batching of items. Can be used to create item batches of a certain size of any IEnumerable. Useful for Tasks and stuff.
+```C#
+var someTaskSource = // something that returns a lot of awaitable tasks
+// To await alsways 5 at once, you can use:
+foreach(var batch in someTaskSource.Batch(5))
+{
+  // batch now has 5 (or less at the end of the IEnumerable) items
+  await Task.WhenAll(batch); // await 5 tasks of the someTaskSource at once
+  // Do something that will be done after 5 tasks are finished
+  SomeWork();
+  // then go on to the next batch
+}
+```
+
+### Hashing Shortcuts
+```C#
+string sha1Hash = FileEx.ComputeHashSha1(fileName).ToHexString();
 ```
 
 ### TODO

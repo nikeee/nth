@@ -4,11 +4,46 @@
         <name>NTH</name>
     </assembly>
     <members>
+        <member name="M:NTH.BitUtil.HighWord(System.Int32)">
+            <summary>Returns the higher 16 bit of an Int32 as a short value.</summary>
+            <param name="dword">The signed Int32 value from which to extract the higher significant 16 bit.</param>
+            <returns>The higher 16 bit of an Int32 as a short value.</returns>
+        </member>
+        <member name="M:NTH.BitUtil.LowWord(System.Int32)">
+            <summary>Returns the lower 16 bit of an Int32 as a short value.</summary>
+            <param name="dword">The Int32 value from which to extract the lower significant 16 bit.</param>
+            <returns>The lower 16 bit of an Int32 as a short value.</returns>
+        </member>
+        <member name="M:NTH.BitUtil.HighByte(System.Int16)">
+            <summary>Returns the higher 8 bit of an Int16 as a byte value.</summary>
+            <param name="word">The Int16 value from which to extract the higher significant 8 bit.</param>
+            <returns>The higher 8 bit of an Int16 as a byte value.</returns>
+        </member>
+        <member name="M:NTH.BitUtil.LowByte(System.Int16)">
+            <summary>Returns the lower 8 bit of an Int16 as a byte value.</summary>
+            <param name="word">The Int16 value from which to extract the lower significant 8 bit.</param>
+            <returns>The lower 8 bit of an Int16 as a byte value.</returns>
+        </member>
+        <member name="T:NTH.Collections.Generic.EnumerableExtensions">
+            <summary>Some utility extensions on <typeparam name="IEnumerable{T}{T}"/> to suppliment those available from Linq.</summary>
+        </member>
         <member name="M:NTH.Collections.Generic.EnumerableExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
             <summary>Performs the specified action on each element of the IEnumerable.</summary>
             <typeparam name="T">The type of the items.</typeparam>
             <param name="source">The items to interate through.</param>
             <param name="action">The Action delegate to perform on each element of the IEnumerable.</param>
+        </member>
+        <member name="T:NTH.DateTimeExtensions">
+            <summary>Some utility extensions on <typeparam name="DateTime"/>.</summary>
+        </member>
+        <member name="T:NTH.EnumExtensions">
+            <summary>Some utility extensions on <typeparam name="Enum"/>.</summary>
+        </member>
+        <member name="T:NTH.Int32Extensions">
+            <summary>Some utility extensions on <typeparam name="Int32"/>.</summary>
+        </member>
+        <member name="T:NTH.IntPtrExtensions">
+            <summary>Some utility extensions on <typeparam name="IntPtr"/>.</summary>
         </member>
         <member name="T:NTH.IO.BigEndianBinaryReader">
             <summary>Reads primitive data types as binary big endian values in a specific encoding.</summary>
@@ -42,6 +77,36 @@
             <param name="encoding">The character encoding.</param>
             <exception cref="T:System.ArgumentException">The stream does not support writing, or the stream is already closed.</exception>
             <exception cref="T:System.ArgumentNullException"><paramref name="output" /> or <paramref name="encoding" /> is null.</exception>
+        </member>
+        <member name="T:NTH.IO.ByteExtensions">
+            <summary>Some utility extensions on <typeparam name="Byte"/>.</summary>
+        </member>
+        <member name="M:NTH.IO.FileInfoExtensions.GetAttributes(System.IO.FileInfo)">
+            <summary>Gets the <see cref="T:System.IO.FileAttributes" /> of the file on the path.</summary>
+            <returns>The <see cref="T:System.IO.FileAttributes" /> of the file on the path.</returns>
+            <param name="file">The file.</param>
+            <exception cref="T:System.NullReferenceException"><paramref name="file" />is null.</exception>
+            <exception cref="T:System.IO.PathTooLongException">The specified path, file name, or both exceed the system-defined maximum length. For example, on Windows-based platforms, paths must be less than 248 characters, and file names must be less than 260 characters.</exception>
+            <exception cref="T:System.IO.FileNotFoundException"><paramref name="file" /> represents a file and is invalid, such as being on an unmapped drive, or the file cannot be found.</exception>
+            <exception cref="T:System.IO.DirectoryNotFoundException"><paramref name="file" /> represents a directory and is invalid, such as being on an unmapped drive, or the directory cannot be found.</exception>
+            <exception cref="T:System.IO.IOException">This file is being used by another process.</exception>
+            <exception cref="T:System.UnauthorizedAccessException">The caller does not have the required permission.</exception>
+            <PermissionSet>
+              <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" />
+            </PermissionSet>
+        </member>
+        <member name="M:NTH.IO.FileInfoExtensions.GetAttributes(System.IO.FileInfo,System.IO.FileAttributes)">
+            <summary>Sets the specified <see cref="T:System.IO.FileAttributes" /> of the file on the specified path.</summary>
+            <param name="file">The file.</param>
+            <param name="attributes">A bitwise combination of the enumeration values.</param>
+            <exception cref="T:System.NullReferenceException"><paramref name="file" />is null.</exception>
+            <exception cref="T:System.IO.PathTooLongException">The specified path, file name, or both exceed the system-defined maximum length. For example, on Windows-based platforms, paths must be less than 248 characters, and file names must be less than 260 characters.</exception>
+            <exception cref="T:System.IO.DirectoryNotFoundException">The specified path is invalid, (for example, it is on an unmapped drive).</exception>
+            <exception cref="T:System.IO.FileNotFoundException">The file cannot be found.</exception>
+            <exception cref="T:System.UnauthorizedAccessException"><paramref name="file" /> specified a file that is read-only.-or- This operation is not supported on the current platform.-or- <paramref name="file" /> specified a directory.-or- The caller does not have the required permission.</exception>
+            <PermissionSet>
+              <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" />
+            </PermissionSet>
         </member>
         <member name="M:NTH.MathEx.Pow(System.Int32,System.Int32)">
             <summary>Returns a specified number raised to the specified power.</summary>
@@ -163,6 +228,33 @@
             <param name="degrees">The angle in degrees.</param>
             <returns>The angle in radians.</returns>
         </member>
+        <member name="F:NTH.NativeTypes.MemoryStatus.structLength">
+            <summary>Size of the structure.</summary>
+        </member>
+        <member name="F:NTH.NativeTypes.MemoryStatus.MemoryLoad">
+            <summary>% used</summary>
+        </member>
+        <member name="F:NTH.NativeTypes.MemoryStatus.TotalPhys">
+            <summary>bytes of total ram</summary>
+        </member>
+        <member name="F:NTH.NativeTypes.MemoryStatus.AvailPhys">
+            <summary>bytes of currently available ram</summary>
+        </member>
+        <member name="F:NTH.NativeTypes.MemoryStatus.TotalPageFile">
+            <summary>bytes in pageing (? not normally supported in Ce)</summary>
+        </member>
+        <member name="F:NTH.NativeTypes.MemoryStatus.AvailPageFile">
+            <summary> bytes in pageing (? not normally supported in Ce)</summary>
+        </member>
+        <member name="F:NTH.NativeTypes.MemoryStatus.TotalVirtual">
+            <summary>total virtual bytes can be used</summary>
+        </member>
+        <member name="F:NTH.NativeTypes.MemoryStatus.AvailVirtual">
+            <summary>current virtual bytes available</summary>
+        </member>
+        <member name="F:NTH.NativeTypes.MemoryStatusEx.structLength">
+            <summary>Size of the structure.</summary>
+        </member>
         <member name="F:NTH.PrefixType.Unknown">
             <summary>???</summary>
         </member>
@@ -171,6 +263,9 @@
         </member>
         <member name="F:NTH.PrefixType.Binary">
             <summary>Decimal prefix. See <see cref="!:https://en.wikipedia.org/wiki/Binary_prefix">Wikipedia</see>.</summary>
+        </member>
+        <member name="T:NTH.SecureStringExtensions">
+            <summary>Some utility extensions on <typeparam name="System.Security.SecureString.Security.SecureString"/>.</summary>
         </member>
         <member name="T:NTH.Security.Cryptography.Adler32">
             <summary>Implements a 32-bit ADLER-32 hash algorithm.</summary>
@@ -271,6 +366,12 @@
             &lt;alphanumeric identifier&lt; ::= &lt;non-digit&lt; | &lt;non-digit&lt; &lt;identifier characters&lt; | &lt;identifier characters&lt; &lt;non-digit&lt; | &lt;identifier characters&lt; &lt;non-digit&lt; &lt;identifier characters&lt;
             </remarks>
         </member>
+        <member name="T:NTH.Text.CharExtensions">
+            <summary>Some utility extensions on <typeparam name="Char"/>.</summary>
+        </member>
+        <member name="T:NTH.Text.EnumerableExtensions">
+            <summary>Some utility extensions on <typeparam name="IEnumerable{T}{T}"/>.</summary>
+        </member>
         <member name="T:NTH.Text.Formatting.ByteSizeFormatter">
             <summary>Format a byte size long to a human readable format.</summary>
         </member>
@@ -290,6 +391,12 @@
             <param name="byteCount">The number of bytes</param>
             <param name="useBinaryPrefix">If this parameter is true, it returns a binary prefixed value. If not the return value is using a decimal prefix. Note that the value always calculates with binary powers.</param>
             <returns>Formatted string.</returns>
+        </member>
+        <member name="T:NTH.Text.StringExtensions">
+            <summary>Some utility extensions on <typeparam name="String"/>.</summary>
+        </member>
+        <member name="M:NTH.Text.StringExtensions.IsNewLine(System.String)">
+            <summary> Gets whether the specified string is a newline sequence.</summary>
         </member>
     </members>
 </doc>

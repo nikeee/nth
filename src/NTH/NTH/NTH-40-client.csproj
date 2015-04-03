@@ -70,6 +70,7 @@
     <Compile Include="ByteSizeUnit.cs" />
     <Compile Include="Collections\Generic\EnumerableExtensions.cs" />
     <Compile Include="ConsoleEx.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="Diagnostics\ArgumentList.cs" />
     <Compile Include="Diagnostics\CommandLine.cs" />
     <Compile Include="Diagnostics\CommandLineUtil.cs" />
@@ -82,12 +83,18 @@
     <Compile Include="IO\BigEndianBinaryWriter.cs" />
     <Compile Include="IO\ByteExtensions.cs" />
     <Compile Include="IO\EndianUtil.cs" />
+    <Compile Include="IO\FileEx.cs" />
+    <Compile Include="IO\FileInfoExtensions.cs" />
+    <Compile Include="IO\PathEx.cs" />
     <Compile Include="MathEx.cs" />
+    <Compile Include="Diagnostics\MemoryStatus.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="NativeTypes\CryptDecodeFlags.cs" />
     <Compile Include="NativeTypes\CryptEncodingFlags.cs" />
     <Compile Include="NativeTypes\CryptOutputTypes.cs" />
     <Compile Include="NativeTypes\CryptStringFlags.cs" />
+    <Compile Include="NativeTypes\MemoryStatus.cs" />
+    <Compile Include="NativeTypes\MemoryStatusEx.cs" />
     <Compile Include="NativeTypes\PublicKeyCertInfo.cs" />
     <Compile Include="PrefixType.cs" />
     <Compile Include="PreReleaseIdentifier.cs" />
@@ -139,7 +146,7 @@ If Not Exist %25keydest%25 (
 )
 </PreBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

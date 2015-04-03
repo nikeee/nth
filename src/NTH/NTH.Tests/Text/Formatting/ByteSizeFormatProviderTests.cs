@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NTH.Text.Formatting;
+﻿using NTH.Text.Formatting;
+using NUnit.Framework;
 
 namespace NTH.Tests.Text.Formatting
 {
-    [TestClass]
+    [TestFixture]
     public class ByteSizeFormatProviderTests
     {
-        [TestMethod]
+        [Test]
         public void Format()
         {
             long fileSize = 1337;

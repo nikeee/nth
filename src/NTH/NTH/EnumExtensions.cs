@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace NTH
 {
+    /// <summary>Some utility extensions on <typeparam name="Enum"/>.</summary>
     public static class EnumExtensions
     {
         public static T GetAttributeOfType<T>(this Enum value)

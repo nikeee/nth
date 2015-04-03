@@ -1,18 +1,18 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 
 namespace NTH.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class EnumExtensionsTest
     {
-        [TestMethod]
+        [Test]
         public void GetAttributeOfType()
         {
             var value = SampleEnum.Spitze;
-            var attribute = value.GetAttributeOfType<TestAttribute>();
+            var attribute = value.GetAttributeOfType<DemoTestAttribute>();
 
-            var expected = typeof (TestAttribute);
+            var expected = typeof(DemoTestAttribute);
             var actual = attribute.GetType();
             Assert.AreEqual(expected, actual);
             Assert.AreNotEqual(attribute, null);
@@ -20,9 +20,9 @@ namespace NTH.Tests
 
 
             value = SampleEnum.Top;
-            attribute = value.GetAttributeOfType<TestAttribute>();
+            attribute = value.GetAttributeOfType<DemoTestAttribute>();
 
-            expected = typeof(TestAttribute);
+            expected = typeof(DemoTestAttribute);
             actual = attribute.GetType();
             Assert.AreEqual(expected, actual);
             Assert.AreNotEqual(attribute, null);
@@ -30,18 +30,18 @@ namespace NTH.Tests
 
 
             value = SampleEnum.Spitze;
-            var attribute2 = value.GetAttributeOfType<TestAttribute2>();
+            var attribute2 = value.GetAttributeOfType<DemoTestAttribute2>();
 
-            expected = typeof(TestAttribute2);
+            expected = typeof(DemoTestAttribute2);
             actual = attribute2.GetType();
             Assert.AreEqual(expected, actual);
             Assert.AreNotEqual(attribute2, null);
             Assert.AreEqual(attribute2.Name2, "Nope1");
 
             value = SampleEnum.Top;
-            attribute2 = value.GetAttributeOfType<TestAttribute2>();
+            attribute2 = value.GetAttributeOfType<DemoTestAttribute2>();
 
-            expected = typeof(TestAttribute2);
+            expected = typeof(DemoTestAttribute2);
             actual = attribute2.GetType();
             Assert.AreEqual(expected, actual);
             Assert.AreNotEqual(attribute2, null);
@@ -51,28 +51,28 @@ namespace NTH.Tests
 
     enum SampleEnum
     {
-        [TestAttribute("Ganztoll")]
-        [TestAttribute2("Nope1")]
+        [DemoTestAttribute("Ganztoll")]
+        [DemoTestAttribute2("Nope1")]
         Spitze,
-        [TestAttribute("Fantastic!")]
-        [TestAttribute2("Nope2")]
+        [DemoTestAttribute("Fantastic!")]
+        [DemoTestAttribute2("Nope2")]
         Top
     }
 
-    public class TestAttribute : Attribute
+    public class DemoTestAttribute : Attribute
     {
         public string Name { get; set; }
 
-        public TestAttribute(string name)
+        public DemoTestAttribute(string name)
         {
             Name = name;
         }
     }
-    public class TestAttribute2 : Attribute
+    public class DemoTestAttribute2 : Attribute
     {
         public string Name2 { get; set; }
 
-        public TestAttribute2(string name2)
+        public DemoTestAttribute2(string name2)
         {
             Name2 = name2;
         }
