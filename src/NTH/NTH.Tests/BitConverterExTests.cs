@@ -72,6 +72,7 @@ namespace NTH.Tests
             Assert.That(actual.Length, Is.EqualTo(expected.Length));
             Assert.That(actual, Is.EqualTo(expected));
         }
+
         [Test]
         public void ToHexStringNull()
         {
