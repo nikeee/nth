@@ -7,6 +7,8 @@ namespace NTH
     {
         public static string ToHexString(byte[] value)
         {
+            if (value == null)
+                return null;
             return BitConverter.ToString(value).Replace("-", "");
         }
 
