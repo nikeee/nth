@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace NTH
 {
-    public class ConvertEx
+    public class BitConverterEx
     {
         public static string ToHexString(byte[] value)
         {
