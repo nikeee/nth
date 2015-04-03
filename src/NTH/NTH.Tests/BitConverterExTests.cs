@@ -3,7 +3,7 @@
 namespace NTH.Tests
 {
     [TestFixture]
-    public class ConvertExTests
+    public class BitConverterExTests
     {
         [Test]
         public void FromHexString1()
@@ -31,7 +31,7 @@ namespace NTH.Tests
                 0x56, 0x61, 0x6c, 0x75, 0x65, 0x54, 0x79, 0x70, 0x65, 0x00, 0x47, 0x65, 0x74, 0x41, 0x74, 0x74
             };
 
-            var actual = ConvertEx.FromHexString(someString);
+            var actual = BitConverterEx.FromHexString(someString);
 
             Assert.That(actual, Is.Not.Null);
             Assert.That(actual, Is.Not.Empty);
@@ -42,14 +42,14 @@ namespace NTH.Tests
         [Test]
         public void FromHexString2()
         {
-            var actual = ConvertEx.FromHexString(null);
+            var actual = BitConverterEx.FromHexString(null);
             Assert.That(actual, Is.Null);
         }
 
         [Test]
         public void FromHexString3()
         {
-            var actual = ConvertEx.FromHexString("");
+            var actual = BitConverterEx.FromHexString("");
             Assert.That(actual, Is.Not.Null);
             Assert.That(actual.Length, Is.EqualTo(0));
         }
@@ -57,10 +57,37 @@ namespace NTH.Tests
         [Test]
         public void FromHexString4()
         {
-            var actual = ConvertEx.FromHexString("AB");
+            var actual = BitConverterEx.FromHexString("AB");
             Assert.That(actual, Is.Not.Null);
             Assert.That(actual.Length, Is.EqualTo(1));
             Assert.That(actual[0], Is.EqualTo(0xAB));
+        }
+
+        [Test]
+        public void ToHexStringSingle()
+        {
+            var actual = BitConverterEx.ToHexString(new byte[] { 0xAB });
+            const string expected = "AB";
+            Assert.That(actual, Is.Not.Null);
+            Assert.That(actual.Length, Is.EqualTo(expected.Length));
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void ToHexStringNull()
+        {
+            var actual = BitConverterEx.ToHexString(null);
+            Assert.That(actual, Is.Null);
+        }
+
+        [Test]
+        public void ToHexString1()
+        {
+            var actual = BitConverterEx.ToHexString(new byte[] { 0xAB, 0xCD });
+            const string expected = "ABCD";
+            Assert.That(actual, Is.Not.Null);
+            Assert.That(actual.Length, Is.EqualTo(expected.Length));
+            Assert.That(actual, Is.EqualTo(expected));
         }
     }
 }
