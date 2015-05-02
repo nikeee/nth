@@ -9,10 +9,7 @@ namespace NTH.Text
         #region is-something
 
         [Obsolete("Consider using string.IsNullOrEmpty(string) again. This is counter-intuitive due to the missing null-reference exception.")]
-        public static bool IsNullOrEmpty(this string value)
-        {
-            return value == null || value.Length == 0;
-        }
+        public static bool IsNullOrEmpty(this string value) => value == null || value.Length == 0;
 
         [Obsolete("Consider using string.IsNullOrWhiteSpace(string) again. This is counter-intuitive due to the missing null-reference exception.")]
         public static bool IsNullOrWhiteSpace(this string value)
@@ -40,10 +37,7 @@ namespace NTH.Text
 
 
         /// <summary> Gets whether the specified string is a newline sequence.</summary>
-        public static bool IsNewLine(this string value)
-        {
-            return value == "\r\n" || value == "\n" || value == "\r";
-        }
+        public static bool IsNewLine(this string value) => value == "\r\n" || value == "\n" || value == "\r";
 
         #endregion
 
@@ -62,22 +56,13 @@ namespace NTH.Text
 
         #region ensure
 
-        public static string EnsureWrappingStrings(this string value, string prefix, string suffix)
-        {
-            return value.EnsurePrefix(prefix).EnsureSuffix(suffix);
-        }
+        public static string EnsureWrappingStrings(this string value, string prefix, string suffix) => value.EnsurePrefix(prefix).EnsureSuffix(suffix);
 
-        public static string EnsureQuotes(this string value)
-        {
-            return value.EnsureWrappingStrings("\"", "\"");
-        }
+        public static string EnsureQuotes(this string value) => value.EnsureWrappingStrings("\"", "\"");
 
         #region ensure prefix
 
-        public static string EnsurePrefix(this string value, string prefix)
-        {
-            return value.EnsurePrefix(prefix, StringComparison.Ordinal);
-        }
+        public static string EnsurePrefix(this string value, string prefix) => value.EnsurePrefix(prefix, StringComparison.Ordinal);
         public static string EnsurePrefix(this string value, string prefix, StringComparison comparison)
         {
             if (string.IsNullOrEmpty(value))
@@ -90,10 +75,7 @@ namespace NTH.Text
         #endregion
         #region ensure suffix
 
-        public static string EnsureSuffix(this string value, string suffix)
-        {
-            return value.EnsureSuffix(suffix, StringComparison.Ordinal);
-        }
+        public static string EnsureSuffix(this string value, string suffix) => value.EnsureSuffix(suffix, StringComparison.Ordinal);
         public static string EnsureSuffix(this string value, string suffix, StringComparison comparison)
         {
             if (string.IsNullOrEmpty(value))
@@ -107,17 +89,11 @@ namespace NTH.Text
 
         #endregion
 
-        public static bool Contains(this string str, string value, StringComparison comparisonType)
-        {
-            return str.IndexOf(value, comparisonType) > -1;
-        }
+        public static bool Contains(this string str, string value, StringComparison comparisonType) => str.IndexOf(value, comparisonType) > -1;
 
         #region levenshtein
 
-        public static int LevenshteinDistanceTo(this string source, string target)
-        {
-            return source.LevenshteinDistanceTo(target, LevenshteinMethod.Default);
-        }
+        public static int LevenshteinDistanceTo(this string source, string target) => source.LevenshteinDistanceTo(target, LevenshteinMethod.Default);
         public static int LevenshteinDistanceTo(this string source, string target, LevenshteinMethod method)
         {
             switch (method)
@@ -139,10 +115,7 @@ namespace NTH.Text
 
         #region normalize
 
-        public static string NormalizeNewLines(this string value)
-        {
-            return value.NormalizeNewLines(Environment.NewLine);
-        }
+        public static string NormalizeNewLines(this string value) => value.NormalizeNewLines(Environment.NewLine);
 
         public static string NormalizeNewLines(this string value, string newNewLine)
         {

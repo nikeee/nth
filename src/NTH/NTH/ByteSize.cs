@@ -7,9 +7,7 @@ namespace NTH
         private static ByteSize _zero;
         public static ByteSize Zero { get { return _zero ?? (_zero = new ByteSize(0, ByteSizeUnit.Bytes)); } }
 
-        private readonly long _byteCount;
-
-        public long ByteCount { get { return _byteCount; } }
+        public long ByteCount { get; }
 
         #region Ctor
 
@@ -23,7 +21,7 @@ namespace NTH
         {
             if (prefixedBytes == 0)
             {
-                _byteCount = 0;
+                ByteCount = 0;
                 return;
             }
 
@@ -33,11 +31,11 @@ namespace NTH
                 int factorIdentifier = (int)type & 0xff;
                 int baseInt = (PrefixType)kind == PrefixType.Binary ? 1024 : 1000;
 
-                _byteCount = prefixedBytes * MathEx.Pow(baseInt, factorIdentifier);
+                ByteCount = prefixedBytes * MathEx.Pow(baseInt, factorIdentifier);
             }
             else
             {
-                _byteCount = prefixedBytes;
+                ByteCount = prefixedBytes;
             }
         }
 
@@ -58,12 +56,9 @@ namespace NTH
             }
             if (bs2 == null)
                 return new ByteSize(bs1.ByteCount);
-            return new ByteSize(bs1._byteCount + bs2._byteCount);
+            return new ByteSize(bs1.ByteCount + bs2.ByteCount);
         }
-        public static ByteSize operator ++(ByteSize b)
-        {
-            return new ByteSize(b._byteCount + 1);
-        }
+        public static ByteSize operator ++(ByteSize b) => new ByteSize(b.ByteCount + 1);
         public static ByteSize operator -(ByteSize bs1, ByteSize bs2)
         {
             if (bs1 == null)
@@ -74,36 +69,21 @@ namespace NTH
             }
             if (bs2 == null)
                 return new ByteSize(bs1.ByteCount);
-            return new ByteSize(bs1._byteCount - bs2._byteCount);
+            return new ByteSize(bs1.ByteCount - bs2.ByteCount);
         }
-        public static ByteSize operator --(ByteSize b)
-        {
-            return new ByteSize(b._byteCount - 1);
-        }
+        public static ByteSize operator --(ByteSize b) => new ByteSize(b.ByteCount - 1);
 
         #endregion
         #region gt/lt operators
-        
-        public static bool operator <(ByteSize b1, ByteSize b2)
-        {
-            return b1._byteCount < b2._byteCount;
-        }
 
-        public static bool operator <=(ByteSize b1, ByteSize b2)
-        {
-            return b1._byteCount <= b2._byteCount;
-        }
+        public static bool operator <(ByteSize b1, ByteSize b2) => b1.ByteCount < b2.ByteCount;
 
-        public static bool operator >(ByteSize b1, ByteSize b2)
-        {
-            return b1._byteCount > b2._byteCount;
-        }
+        public static bool operator <=(ByteSize b1, ByteSize b2) => b1.ByteCount <= b2.ByteCount;
 
-        public static bool operator >=(ByteSize b1, ByteSize b2)
-        {
-            return b1._byteCount >= b2._byteCount;
-        }
-        
+        public static bool operator >(ByteSize b1, ByteSize b2) => b1.ByteCount > b2.ByteCount;
+
+        public static bool operator >=(ByteSize b1, ByteSize b2) => b1.ByteCount >= b2.ByteCount;
+
         #endregion
         #region Equals
 
@@ -113,44 +93,29 @@ namespace NTH
                 return true;
             if ((object)a == null || (object)b == null)
                 return false;
-            return a._byteCount == b._byteCount;
+            return a.ByteCount == b.ByteCount;
         }
 
-        public static bool operator !=(ByteSize a, ByteSize b)
-        {
-            return !(a == b);
-        }
+        public static bool operator !=(ByteSize a, ByteSize b) => !(a == b);
 
         public override bool Equals(object obj)
         {
             var bs = obj as ByteSize;
             if (bs == null)
                 return false;
-            return bs._byteCount == this._byteCount;
+            return bs.ByteCount == this.ByteCount;
         }
 
-        public bool Equals(ByteSize bs)
-        {
-            return bs._byteCount == _byteCount;
-        }
+        public bool Equals(ByteSize bs) => bs.ByteCount == ByteCount;
 
-        public override int GetHashCode()
-        {
-            return _byteCount.GetHashCode();
-        }
+        public override int GetHashCode() => ByteCount.GetHashCode();
 
         #endregion
         #region ToString
 
-        public string ToString(PrefixType prefixType)
-        {
-            return Format(_byteCount, prefixType);
-        }
+        public string ToString(PrefixType prefixType) => Format(ByteCount, prefixType);
 
-        public override string ToString()
-        {
-            return ToString(PrefixType.Binary);
-        }
+        public override string ToString() => ToString(PrefixType.Binary);
 
         private static string Format(long size, PrefixType prefixType)
         {

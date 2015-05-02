@@ -47,11 +47,8 @@ namespace NTH
             return res;
         }
 
-        private static int GetIntForHexChar(char hex)
-        {
-            // See: http://stackoverflow.com/a/9995303/785210
-            return hex - (hex < 58 ? 48 : 55);
-        }
+        /// <remarks> http://stackoverflow.com/a/9995303/785210 </remarks>
+        private static int GetIntForHexChar(char hex) => hex - (hex < 58 ? 48 : 55);
 
         private static char GetHexCharForInt(int i)
         {
