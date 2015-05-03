@@ -1,4 +1,7 @@
 language: csharp
+mono:
+  - latest
+  - 4.0.0
 solution: ./src/NTH/NTH.sln
 install:
   - nuget restore ./src/NTH/NTH.sln
