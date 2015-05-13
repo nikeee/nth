@@ -1,4 +1,4 @@
-NTH library [![Build Status](https://travis-ci.org/nikeee/nth.svg?branch=master)](https://travis-ci.org/nikeee/nth) [![NuGet version](https://img.shields.io/nuget/v/NTH.svg)](https://www.nuget.org/packages/NTH)
+NTH library [![Travis Build Status](https://travis-ci.org/nikeee/nth.svg?branch=master)](https://travis-ci.org/nikeee/nth) [![Windows Build Status](https://ci.appveyor.com/api/projects/status/t2m0t1ixy2jfo2bu?svg=true)](https://ci.appveyor.com/project/nikeee/nth) [![NuGet version](https://img.shields.io/nuget/v/NTH.svg)](https://www.nuget.org/packages/NTH)
 ===========
 ## Contents
 1. [Documentation](#documentation)
