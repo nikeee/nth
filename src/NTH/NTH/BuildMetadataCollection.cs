@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 
 namespace NTH
 {
-    public class BuildMetadataCollection : Collection<BuildMetadata>
+    public class BuildMetadataCollection : Collection<BuildMetadata>, IEquatable<BuildMetadataCollection>
     {
         #region Ctors
 
@@ -63,13 +64,13 @@ namespace NTH
             return AreItemsEqual(this, b);
         }
 
-        public bool Equals(BuildMetadataCollection obj)
+        public bool Equals(BuildMetadataCollection other)
         {
-            if (obj == null)
+            if ((object)other == null)
                 return false;
-            if (Count != obj.Count)
+            if (Count != other.Count)
                 return false;
-            return AreItemsEqual(this, obj);
+            return AreItemsEqual(this, other);
         }
 
         public override int GetHashCode()

@@ -13,7 +13,7 @@ namespace NTH
     /// Represents a semantic version 2.0.0 as described in <a href="http://semver.org/spec/v2.0.0.html">the SemVer specification</a>.
     /// </summary>
     [Serializable]
-    public class SemanticVersion : IComparable<SemanticVersion>, ISerializable
+    public class SemanticVersion : IComparable<SemanticVersion>, ISerializable, IEquatable<SemanticVersion>
     {
         public int Major { get; set; }
         public int Minor { get; set; }
@@ -376,15 +376,15 @@ namespace NTH
                    && p.BuildMetadata == BuildMetadata;
         }
 
-        public bool Equals(SemanticVersion obj)
+        public bool Equals(SemanticVersion other)
         {
-            if (obj == null)
+            if ((object)other == null)
                 return false;
-            return obj.Major == Major
-                   && obj.Minor == Minor
-                   && obj.Patch == Patch
-                   && obj.PreReleaseIdentifier == PreReleaseIdentifier
-                   && obj.BuildMetadata == BuildMetadata; // TODO: May ignore build metadata on equality comparison?
+            return other.Major == Major
+                   && other.Minor == Minor
+                   && other.Patch == Patch
+                   && other.PreReleaseIdentifier == PreReleaseIdentifier
+                   && other.BuildMetadata == BuildMetadata; // TODO: May ignore build metadata on equality comparison?
         }
 
         public override int GetHashCode()

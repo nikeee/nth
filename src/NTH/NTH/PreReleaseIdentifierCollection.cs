@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace NTH
 {
-    public class PreReleaseIdentifierCollection : Collection<PreReleaseIdentifier>
+    public class PreReleaseIdentifierCollection : Collection<PreReleaseIdentifier>, IEquatable<PreReleaseIdentifierCollection>
     {
         #region Ctors
 
@@ -132,13 +132,13 @@ namespace NTH
             return AreItemsEqual(this, b);
         }
 
-        public bool Equals(PreReleaseIdentifierCollection obj)
+        public bool Equals(PreReleaseIdentifierCollection other)
         {
-            if (obj == null)
+            if ((object)other == null)
                 return false;
-            if (Count != obj.Count)
+            if (Count != other.Count)
                 return false;
-            return AreItemsEqual(this, obj);
+            return AreItemsEqual(this, other);
         }
 
         public override int GetHashCode()
