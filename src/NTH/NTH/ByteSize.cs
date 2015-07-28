@@ -2,7 +2,7 @@
 
 namespace NTH
 {
-    public class ByteSize
+    public class ByteSize : IEquatable<ByteSize>
     {
         private static ByteSize _zero;
         public static ByteSize Zero { get { return _zero ?? (_zero = new ByteSize(0, ByteSizeUnit.Bytes)); } }
@@ -129,9 +129,11 @@ namespace NTH
             return bs._byteCount == this._byteCount;
         }
 
-        public bool Equals(ByteSize bs)
+        public bool Equals(ByteSize other)
         {
-            return bs._byteCount == _byteCount;
+            if((object)other == null)
+                return false;
+            return other._byteCount == _byteCount;
         }
 
         public override int GetHashCode()
