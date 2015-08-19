@@ -2,7 +2,7 @@
 
 namespace NTH
 {
-    public class PreReleaseIdentifier
+    public class PreReleaseIdentifier : IEquatable<PreReleaseIdentifier>
     {
         private string _value;
 
@@ -75,7 +75,7 @@ namespace NTH
                 return false;
             if (isBDigit)
                 return true;
-            
+
             var valueA = a.GetRawValue();
             var valueB = b.GetRawValue();
 
@@ -121,7 +121,7 @@ namespace NTH
                 return true;
             if (isBDigit)
                 return false;
-            
+
             var valueA = a.GetRawValue();
             var valueB = b.GetRawValue();
 
@@ -179,16 +179,16 @@ namespace NTH
             return p._value == _value; // TODO: case (in)sensitive?
         }
 
-        public bool Equals(PreReleaseIdentifier obj)
+        public bool Equals(PreReleaseIdentifier other)
         {
-            if (obj == null)
+            if ((object)other == null)
                 return false;
-            return obj._value == _value; // TODO: case (in)sensitive?
+            return other._value == _value; // TODO: case (in)sensitive?
         }
 
         public override int GetHashCode()
         {
-             return base.GetHashCode(); // No immutable fields available, so just call the base?
+            return base.GetHashCode(); // No immutable fields available, so just call the base?
         }
 
         #endregion
