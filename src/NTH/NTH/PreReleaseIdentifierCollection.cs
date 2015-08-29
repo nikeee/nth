@@ -114,10 +114,7 @@ namespace NTH
             return AreItemsEqual(a, b);
         }
 
-        public static bool operator !=(PreReleaseIdentifierCollection a, PreReleaseIdentifierCollection b)
-        {
-            return !(a == b);
-        }
+        public static bool operator !=(PreReleaseIdentifierCollection a, PreReleaseIdentifierCollection b) => !(a == b);
 
         #endregion
         #region equals
@@ -141,10 +138,7 @@ namespace NTH
             return AreItemsEqual(this, other);
         }
 
-        public override int GetHashCode()
-        {
-            return base.GetHashCode(); // No immutable fields available, so just call the base?
-        }
+        public override int GetHashCode() => base.GetHashCode(); // No immutable fields available, so just call the base?
 
         #endregion
 

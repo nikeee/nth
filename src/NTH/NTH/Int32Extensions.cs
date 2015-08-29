@@ -5,10 +5,7 @@
     {
         private const string Prefix = "0x";
 
-        public static string ToHexString(this int value)
-        {
-            return value.ToHexString(true);
-        }
+        public static string ToHexString(this int value) => value.ToHexString(true);
 
         public static string ToHexString(this int value, bool includePrefix)
         {
