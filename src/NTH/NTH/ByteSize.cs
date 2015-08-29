@@ -78,7 +78,7 @@ namespace NTH
 
         #endregion
         #region gt/lt operators
-        
+
         public static bool operator <(ByteSize b1, ByteSize b2) => b1._byteCount < b2._byteCount;
         public static bool operator <=(ByteSize b1, ByteSize b2) => b1._byteCount <= b2._byteCount;
         public static bool operator >(ByteSize b1, ByteSize b2) => b1._byteCount > b2._byteCount;
@@ -96,10 +96,7 @@ namespace NTH
             return a._byteCount == b._byteCount;
         }
 
-        public static bool operator !=(ByteSize a, ByteSize b)
-        {
-            return !(a == b);
-        }
+        public static bool operator !=(ByteSize a, ByteSize b) => !(a == b);
 
         public override bool Equals(object obj)
         {
