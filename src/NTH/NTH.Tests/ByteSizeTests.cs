@@ -28,6 +28,14 @@ namespace NTH.Tests
         }
 
         [Test]
+        public void NonNullability()
+        {
+            var bs = default(ByteSize);
+            Assert.AreNotEqual(null, bs);
+            Assert.AreEqual(0, bs.ByteCount);
+        }
+
+        [Test]
         public void Constructor3Decimal()
         {
             var bs = new ByteSize(1024, ByteSizeUnit.Bytes);
