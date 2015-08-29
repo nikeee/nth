@@ -2,20 +2,16 @@
 
 namespace NTH
 {
-    public class ByteSize : IEquatable<ByteSize>
+    public struct ByteSize : IEquatable<ByteSize>
     {
-        private static ByteSize _zero;
-        public static ByteSize Zero { get { return _zero ?? (_zero = new ByteSize(0, ByteSizeUnit.Bytes)); } }
+        public static ByteSize Zero => default(ByteSize);
 
         private readonly long _byteCount;
 
-        public long ByteCount { get { return _byteCount; } }
+        public long ByteCount => _byteCount;
 
         #region Ctor
 
-        public ByteSize()
-            : this(0)
-        { }
         public ByteSize(long bytes)
             : this(bytes, ByteSizeUnit.Bytes)
         { }
@@ -48,32 +44,10 @@ namespace NTH
 
         #region +/- operators
 
-        public static ByteSize operator +(ByteSize bs1, ByteSize bs2)
-        {
-            if (bs1 == null)
-            {
-                if (bs2 == null)
-                    return new ByteSize(0, ByteSizeUnit.Bytes);
-                return new ByteSize(bs2.ByteCount);
-            }
-            if (bs2 == null)
-                return new ByteSize(bs1.ByteCount);
-            return new ByteSize(bs1._byteCount + bs2._byteCount);
-        }
+        public static ByteSize operator +(ByteSize bs1, ByteSize bs2) => new ByteSize(bs1._byteCount + bs2._byteCount);
         public static ByteSize operator ++(ByteSize b) => new ByteSize(b._byteCount + 1);
 
-        public static ByteSize operator -(ByteSize bs1, ByteSize bs2)
-        {
-            if (bs1 == null)
-            {
-                if (bs2 == null)
-                    return new ByteSize(0, ByteSizeUnit.Bytes);
-                return new ByteSize(-bs2.ByteCount);
-            }
-            if (bs2 == null)
-                return new ByteSize(bs1.ByteCount);
-            return new ByteSize(bs1._byteCount - bs2._byteCount);
-        }
+        public static ByteSize operator -(ByteSize bs1, ByteSize bs2) => new ByteSize(bs1._byteCount - bs2._byteCount);
         public static ByteSize operator --(ByteSize b) => new ByteSize(b._byteCount - 1);
 
         #endregion
@@ -100,18 +74,12 @@ namespace NTH
 
         public override bool Equals(object obj)
         {
-            var bs = obj as ByteSize;
-            if (bs == null)
-                return false;
-            return bs._byteCount == this._byteCount;
+            if (obj is ByteSize)
+                return ((ByteSize)obj)._byteCount == _byteCount;
+            return false;
         }
 
-        public bool Equals(ByteSize other)
-        {
-            if((object)other == null)
-                return false;
-            return other._byteCount == _byteCount;
-        }
+        public bool Equals(ByteSize other) => other._byteCount == _byteCount;
 
         public override int GetHashCode() => _byteCount.GetHashCode();
 
