@@ -23,18 +23,16 @@ namespace NTH
                 return;
             }
 
-            if (type != ByteSizeUnit.Bytes)
-            {
-                int kind = (int)type >> 8;
-                int factorIdentifier = (int)type & 0xff;
-                int baseInt = (PrefixType)kind == PrefixType.Binary ? 1024 : 1000;
-
-                _byteCount = prefixedBytes * MathEx.Pow(baseInt, factorIdentifier);
-            }
-            else
+            if (type == ByteSizeUnit.Bytes)
             {
                 _byteCount = prefixedBytes;
+                return;
             }
+            int kind = (int)type >> 8;
+            int factorIdentifier = (int)type & 0xff;
+            int baseInt = (PrefixType)kind == PrefixType.Binary ? 1024 : 1000;
+
+            _byteCount = prefixedBytes * MathEx.Pow(baseInt, factorIdentifier);
         }
 
         #endregion
@@ -61,24 +59,10 @@ namespace NTH
         #endregion
         #region Equals
 
-        public static bool operator ==(ByteSize a, ByteSize b)
-        {
-            if (object.ReferenceEquals(a, b))
-                return true;
-            if ((object)a == null || (object)b == null)
-                return false;
-            return a._byteCount == b._byteCount;
-        }
+        public static bool operator ==(ByteSize a, ByteSize b) => a._byteCount == b._byteCount;
+        public static bool operator !=(ByteSize a, ByteSize b) => a._byteCount != b._byteCount;
 
-        public static bool operator !=(ByteSize a, ByteSize b) => !(a == b);
-
-        public override bool Equals(object obj)
-        {
-            if (obj is ByteSize)
-                return ((ByteSize)obj)._byteCount == _byteCount;
-            return false;
-        }
-
+        public override bool Equals(object obj) => obj is ByteSize && (ByteSize)obj == this;
         public bool Equals(ByteSize other) => other._byteCount == _byteCount;
 
         public override int GetHashCode() => _byteCount.GetHashCode();
