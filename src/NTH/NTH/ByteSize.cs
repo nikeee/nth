@@ -60,10 +60,8 @@ namespace NTH
                 return new ByteSize(bs1.ByteCount);
             return new ByteSize(bs1._byteCount + bs2._byteCount);
         }
-        public static ByteSize operator ++(ByteSize b)
-        {
-            return new ByteSize(b._byteCount + 1);
-        }
+        public static ByteSize operator ++(ByteSize b) => new ByteSize(b._byteCount + 1);
+
         public static ByteSize operator -(ByteSize bs1, ByteSize bs2)
         {
             if (bs1 == null)
@@ -76,34 +74,16 @@ namespace NTH
                 return new ByteSize(bs1.ByteCount);
             return new ByteSize(bs1._byteCount - bs2._byteCount);
         }
-        public static ByteSize operator --(ByteSize b)
-        {
-            return new ByteSize(b._byteCount - 1);
-        }
+        public static ByteSize operator --(ByteSize b) => new ByteSize(b._byteCount - 1);
 
         #endregion
         #region gt/lt operators
         
-        public static bool operator <(ByteSize b1, ByteSize b2)
-        {
-            return b1._byteCount < b2._byteCount;
-        }
+        public static bool operator <(ByteSize b1, ByteSize b2) => b1._byteCount < b2._byteCount;
+        public static bool operator <=(ByteSize b1, ByteSize b2) => b1._byteCount <= b2._byteCount;
+        public static bool operator >(ByteSize b1, ByteSize b2) => b1._byteCount > b2._byteCount;
+        public static bool operator >=(ByteSize b1, ByteSize b2) => b1._byteCount >= b2._byteCount;
 
-        public static bool operator <=(ByteSize b1, ByteSize b2)
-        {
-            return b1._byteCount <= b2._byteCount;
-        }
-
-        public static bool operator >(ByteSize b1, ByteSize b2)
-        {
-            return b1._byteCount > b2._byteCount;
-        }
-
-        public static bool operator >=(ByteSize b1, ByteSize b2)
-        {
-            return b1._byteCount >= b2._byteCount;
-        }
-        
         #endregion
         #region Equals
 
@@ -136,23 +116,13 @@ namespace NTH
             return other._byteCount == _byteCount;
         }
 
-        public override int GetHashCode()
-        {
-            return _byteCount.GetHashCode();
-        }
+        public override int GetHashCode() => _byteCount.GetHashCode();
 
         #endregion
         #region ToString
 
-        public string ToString(PrefixType prefixType)
-        {
-            return Format(_byteCount, prefixType);
-        }
-
-        public override string ToString()
-        {
-            return ToString(PrefixType.Binary);
-        }
+        public string ToString(PrefixType prefixType) => Format(_byteCount, prefixType);
+        public override string ToString() => ToString(PrefixType.Binary);
 
         private static string Format(long size, PrefixType prefixType)
         {
