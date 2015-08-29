@@ -25,7 +25,6 @@ namespace NTH
             {
                 ByteCount = prefixedBytes;
                 return;
-
             }
             int kind = (int)type >> 8;
             int factorIdentifier = (int)type & 0xff;
@@ -79,24 +78,24 @@ namespace NTH
             string i = prefixType == PrefixType.Decimal ? "" : "i";
 
             if (size < unit)
-                return (size).ToString("F0") + " bytes";
+                return $"{size:F0} bytes";
 
             if (size < Math.Pow(unit, 2))
-                return (size / unit).ToString("F0") + " K" + i + "B";
+                return $"{(size / unit):F0} K{i}B";
 
             if (size < Math.Pow(unit, 3))
-                return (size / Math.Pow(unit, 2)).ToString("F0") + " M" + i + "B";
+                return $"{(size / Math.Pow(unit, 2)):F0} M{i}B";
 
             if (size < Math.Pow(unit, 4))
-                return (size / Math.Pow(unit, 3)).ToString("F0") + " G" + i + "B";
+                return $"{(size / Math.Pow(unit, 3)):F0} G{i}B";
 
             if (size < Math.Pow(unit, 5))
-                return (size / Math.Pow(unit, 4)).ToString("F0") + " T" + i + "B";
+                return $"{(size / Math.Pow(unit, 4)):F0} T{i}B";
 
             if (size < Math.Pow(unit, 6))
-                return (size / Math.Pow(unit, 5)).ToString("F0") + " P" + i + "B";
+                return $"{(size / Math.Pow(unit, 5)):F0} P{i}B";
 
-            return (size / Math.Pow(unit, 6)).ToString("F0") + " E" + i + "B";
+            return $"{(size / Math.Pow(unit, 6)):F0} E{i}B";
         }
 
         #endregion
